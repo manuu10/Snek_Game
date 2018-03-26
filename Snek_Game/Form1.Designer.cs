@@ -53,6 +53,7 @@
             this.lbl_snekSpeed = new System.Windows.Forms.Label();
             this.lbl_snekSize = new System.Windows.Forms.Label();
             this.btn_Help = new System.Windows.Forms.Button();
+            this.lbl_info_bullets = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -251,6 +252,7 @@
             // 
             // grpBox_info
             // 
+            this.grpBox_info.Controls.Add(this.lbl_info_bullets);
             this.grpBox_info.Controls.Add(this.lbl_info_obstacles);
             this.grpBox_info.Controls.Add(this.lbl_info_speedy);
             this.grpBox_info.Controls.Add(this.lbl_info_slow);
@@ -352,6 +354,16 @@
             this.btn_Help.UseVisualStyleBackColor = false;
             this.btn_Help.Click += new System.EventHandler(this.btn_Help_Click);
             // 
+            // lbl_info_bullets
+            // 
+            this.lbl_info_bullets.AutoSize = true;
+            this.lbl_info_bullets.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_info_bullets.Location = new System.Drawing.Point(405, 53);
+            this.lbl_info_bullets.Name = "lbl_info_bullets";
+            this.lbl_info_bullets.Size = new System.Drawing.Size(56, 21);
+            this.lbl_info_bullets.TabIndex = 7;
+            this.lbl_info_bullets.Text = "Bullets";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +417,7 @@
         private System.Windows.Forms.Label lbl_info_speedy;
         private System.Windows.Forms.Label lbl_info_obstacles;
         private System.Windows.Forms.Button btn_Help;
+        private System.Windows.Forms.Label lbl_info_bullets;
     }
 
 

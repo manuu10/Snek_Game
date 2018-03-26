@@ -101,6 +101,8 @@ namespace Snek_Game
             if (keyData == Keys.Right) snakeSnek.SetDirection(1, 0);
             if (keyData == Keys.K) snakeSnek.AddSegment();
 
+            if(keyData == Keys.F && canShootBullets) _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(),snakeSnek.GetSnakeDirection()));
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
