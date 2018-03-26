@@ -39,6 +39,22 @@ namespace Snek_Game
             
         }
 
+        public void DrawBullet(Point loc, Color c, Size dir)
+        {
+            Rectangle rect = new Rectangle();
+            if (dir.Width == 0)
+            {
+                rect = new Rectangle(loc.X * dimension + Padding + offset_x + dimension / 3, loc.Y * dimension + Padding + offset_y, dimension / 3 - Padding * 2, dimension - Padding * 2);
+            }
+
+            if (dir.Height == 0)
+            {
+                rect = new Rectangle(loc.X * dimension + Padding + offset_x + dimension, loc.Y * dimension/3 + Padding + offset_y, dimension - Padding * 2, dimension/3 - Padding * 2);
+            }
+            gfx.FillRectangle(new SolidBrush(c),rect );
+            
+        }
+
         public void DrawBorders()
         {
             gfx.DrawRectangle(new Pen(Color.DarkSlateGray,4), offset_x,offset_y,_fieldWidth*dimension,_fieldHeight*dimension);
