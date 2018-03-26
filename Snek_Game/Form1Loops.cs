@@ -17,6 +17,7 @@ namespace Snek_Game
             snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
             _bonuses = new List<Bonus>();
             _obstacles = new List<Obstacle>();
+            _bullets = new List<Bullet>();
             
             updLabelSpeed();
             updLabelLength();
@@ -123,6 +124,11 @@ namespace Snek_Game
 
                                 break;
                             }
+                            case (int)Bonus.Powerups.Bullets:
+                            {
+                                canShootBullets = true;
+                                break;
+                            }
                         }
                         _bonuses[i].Update();
                     }
@@ -155,6 +161,11 @@ namespace Snek_Game
                                 _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
                                 break;
                             }
+                            case (int)Bonus.Powerups.Bullets:
+                            {
+                                canShootBullets = false;
+                                break;
+                            }
                         }
                         _bonuses.RemoveAt(i);
                     }
@@ -184,9 +195,10 @@ namespace Snek_Game
                     if (_powerUpSpawnPeriod >= _powerUpSpawnPeriodMax)
                     {
                         // ever powerup has a 1/4 chance to spawn
-                        int randPow = Rnd.Next(0, 1000);
-                        randPow = randPow - randPow % 250;
-                        randPow = randPow / 250;
+                        //int randPow = Rnd.Next(0, 1250);
+                        //randPow = randPow - randPow % 250;
+                        //randPow = randPow / 250;
+                        int randPow = 4;
                         Bonus.Powerups pow = (Bonus.Powerups) randPow;
 
                         Point rPoint;
@@ -210,6 +222,35 @@ namespace Snek_Game
                     }
                 }
 
+                _bulletMovePeriod++;
+                if (_bulletMovePeriod >= _bulletMovePeriodMax)
+                {
+                    foreach (var bullet in _bullets)
+                    {
+                        bullet.Update();
+                    }
+                }
+                
+                // collision detection for bullets -> obstacles
+                for (var i = 0; i < _bullets.Count; i++)
+                {
+                    bool skip = false;
+                    for (var j = 0; j < _obstacles.Count; j++)
+                    {
+                        var obstacle = _obstacles[j];
+                        if (_bullets[i].HitObject(obstacle.Loc))
+                        {
+                            _obstacles.RemoveAt(j);
+                            _bullets.RemoveAt(i);
+                            skip = true;
+                            break;
+                        }
+                    }
+
+                    if (skip) continue;
+                    if (!brd.IsInsideBoard(_bullets[i].Loc))
+                        _bullets.RemoveAt(i);
+                }
             }
         }
 
@@ -218,7 +259,6 @@ namespace Snek_Game
             brd.gfx = gfx;
             if (!_gameOver)
             {
-                snakeSnek.Draw(brd);
                 snakeFood.Draw(brd);
                 foreach (var b in _bonuses)
                 {
@@ -229,6 +269,12 @@ namespace Snek_Game
                 {
                     o.Draw(brd);
                 }
+
+                foreach (var b in _bullets)
+                {
+                    b.Draw(brd);
+                }
+                snakeSnek.Draw(brd);
             }
             else
             {

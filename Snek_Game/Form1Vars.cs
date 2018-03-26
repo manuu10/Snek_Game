@@ -15,6 +15,7 @@ namespace Snek_Game
         private Board brd;
         private List<Bonus> _bonuses;
         private List<Obstacle> _obstacles;
+        private List<Bullet> _bullets;
 
         private bool _gameOver;
         private const int widht = 50;
@@ -36,12 +37,18 @@ namespace Snek_Game
         private int _obstacleSpawnPeriodMax = 900;
         private int _obstacleAmountMax = 100;
 
+        private int _bulletMovePeriod;
+        private int _bulletMovePeriodMax = 5;
+
+
         private bool doubleMaFood;
         private bool invincible;
 
         private bool slow;
         private bool useSlowOrSpeed;
         private bool speedy;
+
+        private bool canShootBullets;
 
 
     }

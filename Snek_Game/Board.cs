@@ -49,7 +49,7 @@ namespace Snek_Game
 
             if (dir.Height == 0)
             {
-                rect = new Rectangle(loc.X * dimension + Padding + offset_x + dimension, loc.Y * dimension/3 + Padding + offset_y, dimension - Padding * 2, dimension/3 - Padding * 2);
+                rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y + dimension / 3, dimension - Padding * 2, dimension / 3 - Padding * 2);
             }
             gfx.FillRectangle(new SolidBrush(c),rect );
             

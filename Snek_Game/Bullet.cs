@@ -15,16 +15,22 @@ namespace Snek_Game
             Dir = dir;
         }
         private Size Dir;
-        public readonly Point Loc;
+        public Point Loc;
         public Color c = Color.OrangeRed;
         public void Update()
         {
-            Point.Add(Loc, Dir);
+            Loc = Point.Add(Loc, Dir);
         }
 
         public void Draw(Board brd)
         {
             brd.DrawBullet(Loc, c, Dir);
+        }
+
+        public bool HitObject(Point loc)
+        {
+            if (loc == Loc) return true;
+            return false;
         }
 
     }
