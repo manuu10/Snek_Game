@@ -22,10 +22,11 @@ namespace Snek_Game
         private const int height = 25;
        
         private int _snakeMovePeriod;
-        private int _snakeMovePeriodMax = 30;
-        private int _snakeMovePeriodMaxMax = 30;
+        private int _snakeMovePeriodMax = 40;
+        private int _snakeMovePeriodMaxMax = 50;
         private int _oldsnakeMovePeriodMax;
-        private int _snakeMovePeriodMin = 3;
+        private int _snakeMovePeriodMin = 6;
+        private int _snakeMovePeriodMinMin = 3;
         private int _snakeSpeedUpPeriod;
         private int _snakeSpeedUpPeriodMax = 240;
 

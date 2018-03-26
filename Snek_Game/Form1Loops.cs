@@ -117,7 +117,7 @@ namespace Snek_Game
                                     {
                                         _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
                                     }
-                                    _snakeMovePeriodMax = _snakeMovePeriodMin;
+                                    _snakeMovePeriodMax = _snakeMovePeriodMinMin;
                                     speedy = true;
                                     slow = false;
                                 }
