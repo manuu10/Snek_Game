@@ -39,7 +39,7 @@ namespace Snek_Game
 
         public void updLabelSpeed()
         {
-            int buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax + _snakeMovePeriodMin;
+            int buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax;
             lbl_snekSpeed.Text = "Speed: " + buff;
         }
         public void updLabelLength()
