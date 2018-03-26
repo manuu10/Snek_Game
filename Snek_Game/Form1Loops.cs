@@ -53,6 +53,8 @@ namespace Snek_Game
                 {
                     snakeSnek.GoThroughWalls(brd);
                 }
+
+                #region Collision Detection
                 // Grow snake when food is hit
                 // place Food at new unused location
                 if (snakeSnek.HitObject(snakeFood.Loc))
@@ -63,9 +65,31 @@ namespace Snek_Game
                     do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }
                     while (CheckIfTileIsUsed(rPoint));
                     snakeFood = new Food(rPoint);
-
                 }
 
+                // collision detection for bullets -> obstacles
+                for (var i = 0; i < _bullets.Count; i++)
+                {
+                    bool skip = false;
+                    for (var j = 0; j < _obstacles.Count; j++)
+                    {
+                        var obstacle = _obstacles[j];
+                        if (_bullets[i].HitObject(obstacle.Loc))
+                        {
+                            _obstacles.RemoveAt(j);
+                            _bullets.RemoveAt(i);
+                            skip = true;
+                            break;
+                        }
+                    }
+
+                    if (skip) continue;
+                    if (!brd.IsInsideBoard(_bullets[i].Loc))
+                        _bullets.RemoveAt(i);
+                }
+                #endregion
+
+                #region Powerup Handling
                 for (var i = 0; i < _bonuses.Count; i++)
                 {
                     // if snake hit powerup and powerup isnt started yet, start powerups Timer 
@@ -170,8 +194,9 @@ namespace Snek_Game
                         _bonuses.RemoveAt(i);
                     }
                 }
+                #endregion
 
-                
+                #region SpawnAndSpeed Handling
                 _snakeMovePeriod++;
                 if (_snakeMovePeriod >= _snakeMovePeriodMax)
                 {
@@ -230,27 +255,9 @@ namespace Snek_Game
                         bullet.Update();
                     }
                 }
-                
-                // collision detection for bullets -> obstacles
-                for (var i = 0; i < _bullets.Count; i++)
-                {
-                    bool skip = false;
-                    for (var j = 0; j < _obstacles.Count; j++)
-                    {
-                        var obstacle = _obstacles[j];
-                        if (_bullets[i].HitObject(obstacle.Loc))
-                        {
-                            _obstacles.RemoveAt(j);
-                            _bullets.RemoveAt(i);
-                            skip = true;
-                            break;
-                        }
-                    }
+                #endregion
 
-                    if (skip) continue;
-                    if (!brd.IsInsideBoard(_bullets[i].Loc))
-                        _bullets.RemoveAt(i);
-                }
+                
             }
         }
 
@@ -259,6 +266,7 @@ namespace Snek_Game
             brd.gfx = gfx;
             if (!_gameOver)
             {
+                #region Draw Entities
                 snakeFood.Draw(brd);
                 foreach (var b in _bonuses)
                 {
@@ -275,12 +283,17 @@ namespace Snek_Game
                     b.Draw(brd);
                 }
                 snakeSnek.Draw(brd);
+                #endregion
             }
+
             else
             {
                 brd.DrawGameOver();
             }
+            if (chk_toggleGrid.Checked) brd.DrawGrid();
+            brd.DrawBorders();
 
+            #region Information GroupBox Visuals
             updLabelSpeed();
             updLabelLength();
             updLabelObstacle();
@@ -289,8 +302,7 @@ namespace Snek_Game
             lbl_info_slow.ForeColor = slow ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_speedy.ForeColor = speedy ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_bullets.ForeColor = canShootBullets ? Color.MediumSeaGreen : grpBox_info.ForeColor;
-            if (chk_toggleGrid.Checked) brd.DrawGrid();
-            brd.DrawBorders();
+            #endregion
         }
 
 
