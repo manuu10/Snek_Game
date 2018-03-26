@@ -21,6 +21,7 @@ namespace Snek_Game
             Color.Yellow,       // DoubleFood
             Color.DeepSkyBlue,  // Slow
             Color.Red,          // Speedy
+            Color.White         // Bullets
         };
 
         public static readonly int[] durationsMax =
@@ -28,14 +29,16 @@ namespace Snek_Game
             400,    // Invincible
             500,    // DoubleFood
             300,    // Slow
-            250     // Speedy
+            250,    // Speedy
+            650     // Bullets
         };
         public enum Powerups
         {
             Invincible,
             DoubleFood,
             Slow,
-            Speedy
+            Speedy,
+            Bullets
         }
 
         public readonly Point loc;
