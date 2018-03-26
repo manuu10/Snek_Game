@@ -69,7 +69,12 @@ namespace Snek_Game
         {
             return nSegments.Count;
         }
-    
+
+        public Size GetSnakeDirection()
+        {
+            return new Size(dirX,dirY);
+        }
+
         public void Draw(Board brd)
         {
             for (int i = nSegments.Count - 1; i >= 0; i--)
