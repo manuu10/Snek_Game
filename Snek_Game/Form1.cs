@@ -1,0 +1,178 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace Snek_Game
+{
+    public partial class Form1 : Form
+    {
+
+        
+        public Form1()
+        {
+            InitializeComponent();
+            InitMyShit();
+            lbl_WndInfo.Text = Text;
+        }
+
+        
+
+        //UPDATE MODEL
+        private void tmr_Game_Tick(object sender, EventArgs e)
+        {
+            UpdateModel();
+        }
+
+        //DRAWING MODEL
+        private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            Graphics g = e.Graphics;
+            DrawingModel(g);
+        }
+
+
+        public void updLabelSpeed()
+        {
+            int buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax + _snakeMovePeriodMin;
+            lbl_snekSpeed.Text = "Speed: " + buff;
+        }
+        public void updLabelLength()
+        {
+            lbl_snekSize.Text = "Length : " + snakeSnek.GetSnakeLength();
+        }
+        public void updLabelObstacle()
+        {
+            lbl_info_obstacles.Text = "Obstacles : " + _obstacles.Count;
+        }
+
+        private void tmr_Draw_Tick(object sender, EventArgs e)
+        {
+            pbGameCanvas.Refresh();
+        }
+
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+            snakeSnek.AddSegment();
+            pbGameCanvas.Refresh();
+        }
+
+        private void btn_start_Click(object sender, EventArgs e)
+        {
+            tmr_Game.Start();
+        }
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+            tmr_Game.Stop();
+        }
+
+        private void btnControlss(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (btn.Text)
+            {
+                case"up":
+                    snakeSnek.SetDirection(0, -1);
+                    break;
+                case "down":
+                    snakeSnek.SetDirection(0, 1);
+                    break;
+                case "left":
+                    snakeSnek.SetDirection(-1, 0);
+                    break;
+                case "right":
+                    snakeSnek.SetDirection(1, 0);
+                    break;
+                
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Up) snakeSnek.SetDirection(0, -1);
+            if (keyData == Keys.Down) snakeSnek.SetDirection(0, 1);
+            if (keyData == Keys.Left) snakeSnek.SetDirection(-1, 0);
+            if (keyData == Keys.Right) snakeSnek.SetDirection(1, 0);
+            if (keyData == Keys.K) snakeSnek.AddSegment();
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            snakeSnek = new Snek(new Point(1,1));
+            snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
+            _snakeMovePeriodMax = _snakeMovePeriodMaxMax;
+            _snakeMovePeriod = 0;
+            _snakeSpeedUpPeriod = 0;
+            _obstacleSpawnPeriod = 0;
+            _powerUpSpawnPeriod = 0;
+            _bonuses.Clear();
+            _obstacles.Clear();           
+            pbGameCanvas.Refresh();
+            speedy = false;
+            slow = false;
+            invincible = false;
+            doubleMaFood = false;
+            _gameOver = false;
+            tmr_Game.Stop();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
+        #region Window tasks
+        Point lastlocation;
+        bool mousedown;
+        private void btn_CloseWnd_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lbl_WndInfo_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousedown = true;
+            lastlocation = e.Location;
+        }
+
+        private void lbl_WndInfo_MouseUp(object sender, MouseEventArgs e)
+        {
+            mousedown = false;
+        }
+
+        private void lbl_WndInfo_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!mousedown) return;
+            this.Location = new Point(
+                (this.Location.X - lastlocation.X) + e.X, (this.Location.Y - lastlocation.Y) + e.Y);
+
+            this.Update();
+        }
+        #endregion
+
+        private void btn_Help_Click(object sender, EventArgs e)
+        {
+            HelpWindow hw = new HelpWindow();
+            hw.Parent = this.ParentForm;
+            hw.StartPosition = FormStartPosition.CenterParent;
+            tmr_Game.Stop();
+            hw.ShowDialog();
+            tmr_Game.Start();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            btn_Help.PerformClick();
+        }
+    }
+}
