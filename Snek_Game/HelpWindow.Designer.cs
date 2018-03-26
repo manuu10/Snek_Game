@@ -31,8 +31,8 @@
             this.lbl_WndInfo = new System.Windows.Forms.Label();
             this.btn_CloseWnd = new System.Windows.Forms.Button();
             this.pnl_Inputs = new System.Windows.Forms.Panel();
-            this.pnl_powerups = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnl_powerups = new System.Windows.Forms.Panel();
             this.pnl_Inputs.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,10 +71,20 @@
             this.pnl_Inputs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_Inputs.Controls.Add(this.label1);
             this.pnl_Inputs.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_Inputs.Location = new System.Drawing.Point(289, 27);
+            this.pnl_Inputs.Location = new System.Drawing.Point(224, 27);
             this.pnl_Inputs.Name = "pnl_Inputs";
-            this.pnl_Inputs.Size = new System.Drawing.Size(212, 255);
+            this.pnl_Inputs.Size = new System.Drawing.Size(277, 156);
             this.pnl_Inputs.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(266, 283);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "- Use Arrow Keys to control\r\n\r\n- Snek will speed-up over time\r\n\r\n- Use F Key to f" +
+    "ire Bullets if powerup is active\r\n\r\n- Bullets can kill obstacles\r\n\r\n\r\n";
             // 
             // pnl_powerups
             // 
@@ -83,24 +93,15 @@
             this.pnl_powerups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_powerups.Location = new System.Drawing.Point(0, 27);
             this.pnl_powerups.Name = "pnl_powerups";
-            this.pnl_powerups.Size = new System.Drawing.Size(289, 255);
+            this.pnl_powerups.Size = new System.Drawing.Size(224, 156);
             this.pnl_powerups.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 154);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "- Use Arrow Keys to control\r\n\r\n- Snek will speed-up over time\r\n";
             // 
             // HelpWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(501, 282);
+            this.ClientSize = new System.Drawing.Size(501, 183);
             this.Controls.Add(this.pnl_powerups);
             this.Controls.Add(this.pnl_Inputs);
             this.Controls.Add(this.btn_CloseWnd);

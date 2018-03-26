@@ -104,6 +104,11 @@ namespace Snek_Game
                 startY += 30;
             }
 
+            if (this.Size.Height < startY)
+            {
+                this.Size = new Size(this.Size.Width,startY + 60);
+            }
+
         }
 
         private void FoodInfo_Paint(object sender, PaintEventArgs e)
