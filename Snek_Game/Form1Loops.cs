@@ -194,11 +194,11 @@ namespace Snek_Game
                     _powerUpSpawnPeriod++;
                     if (_powerUpSpawnPeriod >= _powerUpSpawnPeriodMax)
                     {
-                        // ever powerup has a 1/4 chance to spawn
-                        //int randPow = Rnd.Next(0, 1250);
-                        //randPow = randPow - randPow % 250;
-                        //randPow = randPow / 250;
-                        int randPow = 4;
+                        //every powerup has a 1 / 5 chance to spawn
+                        int randPow = Rnd.Next(0, 1250);
+                        randPow = randPow - randPow % 250;
+                        randPow = randPow / 250;
+
                         Bonus.Powerups pow = (Bonus.Powerups) randPow;
 
                         Point rPoint;
