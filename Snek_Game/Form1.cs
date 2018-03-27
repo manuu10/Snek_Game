@@ -78,16 +78,16 @@ namespace Snek_Game
             switch (btn.Text)
             {
                 case"up":
-                    snakeSnek.SetDirection(0, -1);
+                    snakeSnek.SetDirection(new Size(0,-1));
                     break;
                 case "down":
-                    snakeSnek.SetDirection(0, 1);
+                    snakeSnek.SetDirection(new Size(0, 1));
                     break;
                 case "left":
-                    snakeSnek.SetDirection(-1, 0);
+                    snakeSnek.SetDirection(new Size(-1, 0));
                     break;
                 case "right":
-                    snakeSnek.SetDirection(1, 0);
+                    snakeSnek.SetDirection(new Size(1, 0));
                     break;
                 
             }
@@ -95,20 +95,34 @@ namespace Snek_Game
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Up) snakeSnek.SetDirection(0, -1);
-            if (keyData == Keys.Down) snakeSnek.SetDirection(0, 1);
-            if (keyData == Keys.Left) snakeSnek.SetDirection(-1, 0);
-            if (keyData == Keys.Right) snakeSnek.SetDirection(1, 0);
-            if (keyData == Keys.K) snakeSnek.AddSegment();
-
-            if (keyData == Keys.F && canShootBullets) _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(),snakeSnek.GetSnakeDirection()));
+            switch (keyData)
+            {
+                case Keys.Up:
+                    snakeSnek.SetDirection(new Size(0, -1));
+                    break;
+                case Keys.Down:
+                    snakeSnek.SetDirection(new Size(0, 1));
+                    break;
+                case Keys.Left:
+                    snakeSnek.SetDirection(new Size(-1, 0));
+                    break;
+                case Keys.Right:
+                    snakeSnek.SetDirection(new Size(1, 0));
+                    break;
+                case Keys.K:
+                    snakeSnek.AddSegment();
+                    break;
+                case Keys.F when canShootBullets:
+                    _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(),snakeSnek.GetSnakeDirection()));
+                    break;
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void btn_reset_Click(object sender, EventArgs e)
         {
-            snakeSnek = new Snek(new Point(1,1));
+            snakeSnek = new Snek(startLocation);
             snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
             _snakeMovePeriodMax = _snakeMovePeriodMaxMax;
             _snakeMovePeriod = 0;

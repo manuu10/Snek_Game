@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace Snek_Game
     {
         public Random Rnd = new Random();
 
+        private readonly Point startLocation = new Point(8,1);
         private Snek snakeSnek;
         private Food snakeFood;
         private Board brd;

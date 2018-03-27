@@ -54,12 +54,10 @@ namespace Snek_Game
             gfx.FillRectangle(new SolidBrush(c),rect );
             
         }
-
         public void DrawBorders()
         {
             gfx.DrawRectangle(new Pen(Color.DarkSlateGray,4), offset_x,offset_y,_fieldWidth*dimension,_fieldHeight*dimension);
         }
-
         public void DrawGrid()
         {
             Color c = Color.FromArgb(100, Color.White);
@@ -74,7 +72,6 @@ namespace Snek_Game
                 gfx.DrawLine(p, offset_x, y * dimension + offset_y, _fieldWidth * dimension + offset_x, y * dimension + offset_y);
             }
         }
-
         public void DrawGameOver()
         {
             gfx.DrawImage(gameOverBitmap, offset_x + Padding * 3, offset_y + Padding * 3, _fieldWidth * dimension - Padding * 6, _fieldHeight * dimension - Padding * 6);

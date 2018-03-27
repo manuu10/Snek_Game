@@ -34,12 +34,14 @@ namespace Snek_Game
         public Snek(Point start)
         {
             nSegments.Add(new Segment(start,_headColor));
+            for (int i = 0; i < 6; i++)
+            {
+                AddSegment();
+            }
         }
     
         private readonly List<Segment> nSegments = new List<Segment>();
-        private int dirX = 1;
-        private int dirY;
-
+        private Size dir = new Size(1,0);
 
         private readonly Color _headColor = Color.FromArgb(0,67,10);
         private readonly Color[] _bodyColors =
@@ -69,10 +71,9 @@ namespace Snek_Game
         {
             return nSegments.Count;
         }
-
         public Size GetSnakeDirection()
         {
-            return new Size(dirX,dirY);
+            return dir;
         }
 
         public void Draw(Board brd)
@@ -102,18 +103,17 @@ namespace Snek_Game
             }
             else
             {
-                dummyx = dirX;
-                dummyy = dirY;
+                dummyx = dir.Width;
+                dummyy = dir.Height;
             }
 
             Point p = new Point(nSegments[index].Loc.X - dummyx, nSegments[index].Loc.Y - dummyy);
             nSegments.Add(new Segment(p,_bodyColors[index % _bodyColors.Length]));
         }
-        public void SetDirection(int dx,int dy)
+        public void SetDirection(Size newdir)
         {
             //Richtung ändern
-            dirX = dx;
-            dirY = dy;
+            dir = newdir;
         }
         public void ApplyRainbowEffect()
         {
@@ -139,7 +139,8 @@ namespace Snek_Game
             {
                 nSegments[i].Follow(nSegments[i - 1]);
             }
-            nSegments[0].Loc = new Point(nSegments[0].Loc.X + dirX, nSegments[0].Loc.Y + dirY);
+
+            nSegments[0].Loc = Point.Add(nSegments[0].Loc, dir);
         }
 
         

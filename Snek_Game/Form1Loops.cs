@@ -13,7 +13,7 @@ namespace Snek_Game
         public void InitMyShit()
         {
             brd = new Board(widht, height, pbGameCanvas.Width, pbGameCanvas.Height);
-            snakeSnek = new Snek(new Point(1, 1));
+            snakeSnek = new Snek(startLocation);
             snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
             _bonuses = new List<Bonus>();
             _obstacles = new List<Obstacle>();
