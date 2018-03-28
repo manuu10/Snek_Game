@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Snek_Game
 {
@@ -24,24 +21,24 @@ namespace Snek_Game
         private const int height = 25;
        
         private int _snakeMovePeriod;
-        private int _snakeMovePeriodMax = 40;
-        private int _snakeMovePeriodMaxMax = 50;
-        private int _oldsnakeMovePeriodMax;
-        private int _snakeMovePeriodMin = 6;
-        private int _snakeMovePeriodMinMin = 3;
+        private int _snakeMovePeriodMax = 40; // changes over time, snake starts with that speed
+        private int _snakeMovePeriodMaxMax = 50; // the speed that the snake is getting with the slow powerup
+        private int _oldsnakeMovePeriodMax; // stores the current speed when slow or speedy is picked up
+        private int _snakeMovePeriodMin = 6; // normal speedup wont pass this value
+        private int _snakeMovePeriodMinMin = 3; // speed when speedy powerup is active
         private int _snakeSpeedUpPeriod;
-        private int _snakeSpeedUpPeriodMax = 240;
+        private int _snakeSpeedUpPeriodMax = 240; // time for the snake to speed up
 
         private int _powerUpSpawnPeriod;
-        private int _powerUpSpawnPeriodMax = 720;
+        private int _powerUpSpawnPeriodMax = 720; // time for powerups to spawn
         private int _powerUpAmountMax = 10;
 
         private int _obstacleSpawnPeriod;
-        private int _obstacleSpawnPeriodMax = 900;
+        private int _obstacleSpawnPeriodMax = 900; // time for obstacles to spawn
         private int _obstacleAmountMax = 100;
 
         private int _bulletMovePeriod;
-        private int _bulletMovePeriodMax = 5;
+        private int _bulletMovePeriodMax = 5; // speed for the bullets
 
 
         private bool doubleMaFood;
