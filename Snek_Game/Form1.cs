@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -32,16 +33,16 @@ namespace Snek_Game
         }
 
 
-        public void updLabelSpeed()
+        private void UpdLabelSpeed()
         {
             int buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax;
             lbl_snekSpeed.Text = "Speed: " + buff;
         }
-        public void updLabelLength()
+        private void UpdLabelLength()
         {
             lbl_snekSize.Text = "Length : " + snakeSnek.GetSnakeLength();
         }
-        public void updLabelObstacle()
+        private void UpdLabelObstacle()
         {
             lbl_info_obstacles.Text = "Obstacles : " + _obstacles.Count;
         }
@@ -125,7 +126,8 @@ namespace Snek_Game
             _obstacleSpawnPeriod = 0;
             _powerUpSpawnPeriod = 0;
             _bonuses.Clear();
-            _obstacles.Clear();           
+            _obstacles.Clear();
+            _bullets.Clear();
             pbGameCanvas.Refresh();
             speedy = false;
             slow = false;

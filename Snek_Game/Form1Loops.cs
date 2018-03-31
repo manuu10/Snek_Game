@@ -14,9 +14,11 @@ namespace Snek_Game
             _bonuses = new List<Bonus>();
             _obstacles = new List<Obstacle>();
             _bullets = new List<Bullet>();
-            
-            updLabelSpeed();
-            updLabelLength();
+
+            joysticks = mJoy.GetSticks();
+
+            UpdLabelSpeed();
+            UpdLabelLength();
             tmr_Game.Interval = 1;
             tmr_Draw.Interval = 1;
             tmr_Draw.Start();
@@ -26,6 +28,7 @@ namespace Snek_Game
 
         private void UpdateModel()
         {
+            HandleJoystickInput();
             if (!_gameOver)
             {
                 // if snek is not invicible,
@@ -290,9 +293,9 @@ namespace Snek_Game
             brd.DrawBorders();
 
             #region Information GroupBox Visuals
-            updLabelSpeed();
-            updLabelLength();
-            updLabelObstacle();
+            UpdLabelSpeed();
+            UpdLabelLength();
+            UpdLabelObstacle();
             lbl_info_doubleFood.ForeColor = doubleMaFood ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_invincible.ForeColor = invincible ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_slow.ForeColor = slow ? Color.MediumSeaGreen : grpBox_info.ForeColor;
@@ -322,6 +325,54 @@ namespace Snek_Game
             return false;
         }
 
-       
+        private void HandleJoystickInput()
+        {
+            for (int i = 0; i < joysticks.Length; i++)
+            {
+                mJoy.stickHandle(joysticks[i], i);
+                if (!_gameOver)
+                {
+                    if (mJoy.buttons[0])
+                    {
+                        snakeSnek.SetDirection(new Size(0, 1));
+                    }
+
+                    if (mJoy.buttons[1])
+                    {
+                        snakeSnek.SetDirection(new Size(1, 0));
+                    }
+
+                    if (mJoy.buttons[2])
+                    {
+                        snakeSnek.SetDirection(new Size(-1, 0));
+                    }
+
+                    if (mJoy.buttons[3])
+                    {
+                        snakeSnek.SetDirection(new Size(0, -1));
+                    }
+
+                    if (mJoy.buttons[4])
+                    {
+                        snakeSnek.AddSegment();
+                    }
+
+                    if (mJoy.buttons[5] && canShootBullets)
+                    {
+                        _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(), snakeSnek.GetSnakeDirection()));
+                    }
+                }
+
+                if (mJoy.buttons[6])
+                {
+                    btn_Help.PerformClick();
+                }
+                if (mJoy.buttons[7])
+                {
+                    btn_reset.PerformClick();
+                    btn_start.PerformClick();
+                }
+            }
+        }
     }
 }

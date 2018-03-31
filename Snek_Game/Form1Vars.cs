@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using SlimDX.DirectInput;
 
 namespace Snek_Game
 {
     public partial class Form1
     {
+        public ManuInput mJoy = new ManuInput();
+        public Joystick[] joysticks;
         public Random Rnd = new Random();
 
         private readonly Point startLocation = new Point(8,1);

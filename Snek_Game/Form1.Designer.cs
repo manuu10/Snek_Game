@@ -45,6 +45,7 @@
             this.chk_toggleGrid = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpBox_info = new System.Windows.Forms.GroupBox();
+            this.lbl_info_bullets = new System.Windows.Forms.Label();
             this.lbl_info_obstacles = new System.Windows.Forms.Label();
             this.lbl_info_speedy = new System.Windows.Forms.Label();
             this.lbl_info_slow = new System.Windows.Forms.Label();
@@ -53,7 +54,7 @@
             this.lbl_snekSpeed = new System.Windows.Forms.Label();
             this.lbl_snekSize = new System.Windows.Forms.Label();
             this.btn_Help = new System.Windows.Forms.Button();
-            this.lbl_info_bullets = new System.Windows.Forms.Label();
+            this.lbljoyinfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -224,7 +225,7 @@
             // chk_toggleGrid
             // 
             this.chk_toggleGrid.AutoSize = true;
-            this.chk_toggleGrid.Location = new System.Drawing.Point(613, 51);
+            this.chk_toggleGrid.Location = new System.Drawing.Point(24, 97);
             this.chk_toggleGrid.Name = "chk_toggleGrid";
             this.chk_toggleGrid.Size = new System.Drawing.Size(121, 17);
             this.chk_toggleGrid.TabIndex = 14;
@@ -234,6 +235,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbljoyinfo);
             this.panel1.Controls.Add(this.grpBox_info);
             this.panel1.Controls.Add(this.btn_start);
             this.panel1.Controls.Add(this.btnadd);
@@ -268,6 +270,16 @@
             this.grpBox_info.TabIndex = 15;
             this.grpBox_info.TabStop = false;
             this.grpBox_info.Text = "Information";
+            // 
+            // lbl_info_bullets
+            // 
+            this.lbl_info_bullets.AutoSize = true;
+            this.lbl_info_bullets.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_info_bullets.Location = new System.Drawing.Point(405, 53);
+            this.lbl_info_bullets.Name = "lbl_info_bullets";
+            this.lbl_info_bullets.Size = new System.Drawing.Size(56, 21);
+            this.lbl_info_bullets.TabIndex = 7;
+            this.lbl_info_bullets.Text = "Bullets";
             // 
             // lbl_info_obstacles
             // 
@@ -354,15 +366,14 @@
             this.btn_Help.UseVisualStyleBackColor = false;
             this.btn_Help.Click += new System.EventHandler(this.btn_Help_Click);
             // 
-            // lbl_info_bullets
+            // lbljoyinfo
             // 
-            this.lbl_info_bullets.AutoSize = true;
-            this.lbl_info_bullets.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_bullets.Location = new System.Drawing.Point(405, 53);
-            this.lbl_info_bullets.Name = "lbl_info_bullets";
-            this.lbl_info_bullets.Size = new System.Drawing.Size(56, 21);
-            this.lbl_info_bullets.TabIndex = 7;
-            this.lbl_info_bullets.Text = "Bullets";
+            this.lbljoyinfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbljoyinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbljoyinfo.Location = new System.Drawing.Point(576, 15);
+            this.lbljoyinfo.Name = "lbljoyinfo";
+            this.lbljoyinfo.Size = new System.Drawing.Size(266, 115);
+            this.lbljoyinfo.TabIndex = 16;
             // 
             // Form1
             // 
@@ -418,6 +429,7 @@
         private System.Windows.Forms.Label lbl_info_obstacles;
         private System.Windows.Forms.Button btn_Help;
         private System.Windows.Forms.Label lbl_info_bullets;
+        private System.Windows.Forms.Label lbljoyinfo;
     }
 
 
