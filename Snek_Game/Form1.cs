@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Snek_Game
 {
     public partial class Form1 : Form
     {
-
-        
         public Form1()
         {
             InitializeComponent();
@@ -16,7 +14,6 @@ namespace Snek_Game
             lbl_WndInfo.Text = Text;
         }
 
-        
 
         //UPDATE MODEL
         private void tmr_Game_Tick(object sender, EventArgs e)
@@ -27,21 +24,23 @@ namespace Snek_Game
         //DRAWING MODEL
         private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            Graphics g = e.Graphics;
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+            var g = e.Graphics;
             DrawingModel(g);
         }
 
 
         private void UpdLabelSpeed()
         {
-            int buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax;
+            var buff = _snakeMovePeriodMaxMax - _snakeMovePeriodMax;
             lbl_snekSpeed.Text = "Speed: " + buff;
         }
+
         private void UpdLabelLength()
         {
             lbl_snekSize.Text = "Length : " + snakeSnek.GetSnakeLength();
         }
+
         private void UpdLabelObstacle()
         {
             lbl_info_obstacles.Text = "Obstacles : " + _obstacles.Count;
@@ -70,11 +69,11 @@ namespace Snek_Game
 
         private void btnControlss(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            var btn = (Button) sender;
             switch (btn.Text)
             {
                 case"up":
-                    snakeSnek.SetDirection(new Size(0,-1));
+                    snakeSnek.SetDirection(new Size(0, -1));
                     break;
                 case "down":
                     snakeSnek.SetDirection(new Size(0, 1));
@@ -85,33 +84,23 @@ namespace Snek_Game
                 case "right":
                     snakeSnek.SetDirection(new Size(1, 0));
                     break;
-                
             }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (keyData)
-            {
-                case Keys.Up:
-                    snakeSnek.SetDirection(new Size(0, -1));
-                    break;
-                case Keys.Down:
-                    snakeSnek.SetDirection(new Size(0, 1));
-                    break;
-                case Keys.Left:
-                    snakeSnek.SetDirection(new Size(-1, 0));
-                    break;
-                case Keys.Right:
-                    snakeSnek.SetDirection(new Size(1, 0));
-                    break;
-                case Keys.K:
-                    snakeSnek.AddSegment();
-                    break;
-                case Keys.F when canShootBullets:
-                    _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(),snakeSnek.GetSnakeDirection()));
-                    break;
-            }
+            if (keyData == Keys.Up)
+                snakeSnek.SetDirection(new Size(0, -1));
+            else if (keyData == Keys.Down)
+                snakeSnek.SetDirection(new Size(0, 1));
+            else if (keyData == Keys.Left)
+                snakeSnek.SetDirection(new Size(-1, 0));
+            else if (keyData == Keys.Right)
+                snakeSnek.SetDirection(new Size(1, 0));
+            else if (keyData == Keys.K)
+                snakeSnek.AddSegment();
+            else if (keyData == Keys.F && canShootBullets)
+                _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(), snakeSnek.GetSnakeDirection()));
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -140,17 +129,34 @@ namespace Snek_Game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+        }
+
+        private void btn_Help_Click(object sender, EventArgs e)
+        {
+            var hw = new HelpWindow
+            {
+                Parent = ParentForm,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            tmr_Game.Stop();
+            hw.ShowDialog();
+            tmr_Game.Start();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            btn_Help.PerformClick();
         }
 
 
-
         #region Window tasks
-        Point lastlocation;
-        bool mousedown;
+
+        private Point lastlocation;
+        private bool mousedown;
+
         private void btn_CloseWnd_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void lbl_WndInfo_MouseDown(object sender, MouseEventArgs e)
@@ -167,26 +173,12 @@ namespace Snek_Game
         private void lbl_WndInfo_MouseMove(object sender, MouseEventArgs e)
         {
             if (!mousedown) return;
-            this.Location = new Point(
-                (this.Location.X - lastlocation.X) + e.X, (this.Location.Y - lastlocation.Y) + e.Y);
+            Location = new Point(
+                Location.X - lastlocation.X + e.X, Location.Y - lastlocation.Y + e.Y);
 
-            this.Update();
+            Update();
         }
+
         #endregion
-
-        private void btn_Help_Click(object sender, EventArgs e)
-        {
-            HelpWindow hw = new HelpWindow();
-            hw.Parent = this.ParentForm;
-            hw.StartPosition = FormStartPosition.CenterParent;
-            tmr_Game.Stop();
-            hw.ShowDialog();
-            tmr_Game.Start();
-        }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            btn_Help.PerformClick();
-        }
     }
 }
