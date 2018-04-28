@@ -109,7 +109,6 @@ namespace Snek_Game
         {
             snakeSnek = new Snek(startLocation);
             snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
-            _snakeMovePeriodMax = _snakeMovePeriodMaxMax;
             _snakeMovePeriod = 0;
             _snakeSpeedUpPeriod = 0;
             _obstacleSpawnPeriod = 0;
@@ -180,5 +179,18 @@ namespace Snek_Game
         }
 
         #endregion
+
+        private void btn_opencfg_Click(object sender, EventArgs e)
+        {
+            
+            var hw = new ConfigWindow(this)
+            {
+                Parent = ParentForm,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            tmr_Game.Stop();
+            hw.ShowDialog();
+            tmr_Game.Start();
+        }
     }
 }

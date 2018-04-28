@@ -44,6 +44,7 @@
             this.btn_reset = new System.Windows.Forms.Button();
             this.chk_toggleGrid = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbljoyinfo = new System.Windows.Forms.Label();
             this.grpBox_info = new System.Windows.Forms.GroupBox();
             this.lbl_info_bullets = new System.Windows.Forms.Label();
             this.lbl_info_obstacles = new System.Windows.Forms.Label();
@@ -54,7 +55,7 @@
             this.lbl_snekSpeed = new System.Windows.Forms.Label();
             this.lbl_snekSize = new System.Windows.Forms.Label();
             this.btn_Help = new System.Windows.Forms.Button();
-            this.lbljoyinfo = new System.Windows.Forms.Label();
+            this.btn_opencfg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -252,6 +253,15 @@
             this.panel1.Size = new System.Drawing.Size(1468, 137);
             this.panel1.TabIndex = 15;
             // 
+            // lbljoyinfo
+            // 
+            this.lbljoyinfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbljoyinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbljoyinfo.Location = new System.Drawing.Point(576, 15);
+            this.lbljoyinfo.Name = "lbljoyinfo";
+            this.lbljoyinfo.Size = new System.Drawing.Size(266, 115);
+            this.lbljoyinfo.TabIndex = 16;
+            // 
             // grpBox_info
             // 
             this.grpBox_info.Controls.Add(this.lbl_info_bullets);
@@ -366,14 +376,20 @@
             this.btn_Help.UseVisualStyleBackColor = false;
             this.btn_Help.Click += new System.EventHandler(this.btn_Help_Click);
             // 
-            // lbljoyinfo
+            // btn_opencfg
             // 
-            this.lbljoyinfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbljoyinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbljoyinfo.Location = new System.Drawing.Point(576, 15);
-            this.lbljoyinfo.Name = "lbljoyinfo";
-            this.lbljoyinfo.Size = new System.Drawing.Size(266, 115);
-            this.lbljoyinfo.TabIndex = 16;
+            this.btn_opencfg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_opencfg.BackColor = System.Drawing.Color.DarkGreen;
+            this.btn_opencfg.FlatAppearance.BorderSize = 0;
+            this.btn_opencfg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_opencfg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_opencfg.Location = new System.Drawing.Point(862, 0);
+            this.btn_opencfg.Name = "btn_opencfg";
+            this.btn_opencfg.Size = new System.Drawing.Size(90, 27);
+            this.btn_opencfg.TabIndex = 17;
+            this.btn_opencfg.Text = "Config";
+            this.btn_opencfg.UseVisualStyleBackColor = false;
+            this.btn_opencfg.Click += new System.EventHandler(this.btn_opencfg_Click);
             // 
             // Form1
             // 
@@ -381,6 +397,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(1468, 955);
+            this.Controls.Add(this.btn_opencfg);
             this.Controls.Add(this.btn_Help);
             this.Controls.Add(this.pbGameCanvas);
             this.Controls.Add(this.panel1);
@@ -430,6 +447,7 @@
         private System.Windows.Forms.Button btn_Help;
         private System.Windows.Forms.Label lbl_info_bullets;
         private System.Windows.Forms.Label lbljoyinfo;
+        private System.Windows.Forms.Button btn_opencfg;
     }
 
 
