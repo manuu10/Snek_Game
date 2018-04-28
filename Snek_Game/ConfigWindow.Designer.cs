@@ -52,6 +52,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txt_maxObs = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.debuglabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_WndInfo
@@ -330,12 +331,22 @@
     "geben wird, wird die Snake alle 10 milisekunden sich um ein Feld nach vorn beweg" +
     "en";
             // 
+            // debuglabel
+            // 
+            this.debuglabel.AutoSize = true;
+            this.debuglabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.debuglabel.Location = new System.Drawing.Point(340, 412);
+            this.debuglabel.Name = "debuglabel";
+            this.debuglabel.Size = new System.Drawing.Size(0, 13);
+            this.debuglabel.TabIndex = 30;
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(933, 437);
+            this.Controls.Add(this.debuglabel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txt_maxObs);
@@ -395,6 +406,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txt_maxObs;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label debuglabel;
     }
 }
 

@@ -24,7 +24,7 @@ namespace Snek_Game
             tmr_Draw.Start();
         }
 
-       
+
 
         private void UpdateModel()
         {
@@ -45,7 +45,7 @@ namespace Snek_Game
                         _gameOver = true;
                         break;
                     }
-                    
+
                 }
                 // snake can go through walls if invicibility is active
                 if (invincible)
@@ -59,7 +59,7 @@ namespace Snek_Game
                 if (snakeSnek.HitObject(snakeFood.Loc))
                 {
                     snakeSnek.AddSegment();
-                    if(doubleMaFood) snakeSnek.AddSegment();
+                    if (doubleMaFood) snakeSnek.AddSegment();
                     Point rPoint;
                     do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }
                     while (CheckIfTileIsUsed(rPoint));
@@ -97,8 +97,8 @@ namespace Snek_Game
                         _bonuses[i].StartTimer();
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
-                        if (_bonuses[i].GetPowerupType() == (int) Bonus.Powerups.Slow) useSlowOrSpeed = true;
-                        if (_bonuses[i].GetPowerupType() == (int) Bonus.Powerups.Speedy) useSlowOrSpeed = false;
+                        if (_bonuses[i].GetPowerupType() == (int)Bonus.Powerups.Slow) useSlowOrSpeed = true;
+                        if (_bonuses[i].GetPowerupType() == (int)Bonus.Powerups.Speedy) useSlowOrSpeed = false;
                     }
 
                     // apply shit for while Bonus is active
@@ -107,51 +107,51 @@ namespace Snek_Game
                         switch (_bonuses[i].GetPowerupType())
                         {
                             case (int)Bonus.Powerups.Invincible:
-                            {
-                                snakeSnek.ApplyRainbowEffect();
-                                invincible = true;
-                                break;
-                            }
+                                {
+                                    snakeSnek.ApplyRainbowEffect();
+                                    invincible = true;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.DoubleFood:
-                            {
-                                doubleMaFood = true;
-                                break;
-                            }
+                                {
+                                    doubleMaFood = true;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Slow:
-                            {
-                                if (useSlowOrSpeed)
                                 {
-                                    if (!slow && !speedy)
+                                    if (useSlowOrSpeed)
                                     {
-                                        _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
+                                        if (!slow && !speedy)
+                                        {
+                                            _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
+                                        }
+                                        _snakeMovePeriodMax = _snakeMovePeriodMaxMax - 1;
+                                        slow = true;
+                                        speedy = false;
                                     }
-                                    _snakeMovePeriodMax = _snakeMovePeriodMaxMax-1;
-                                    slow = true;
-                                    speedy = false;
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Speedy:
-                            {
-                                if (!useSlowOrSpeed)
                                 {
-                                    if (!speedy && !slow)
+                                    if (!useSlowOrSpeed)
                                     {
-                                        _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
+                                        if (!speedy && !slow)
+                                        {
+                                            _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
+                                        }
+                                        _snakeMovePeriodMax = _snakeMovePeriodMinMin;
+                                        speedy = true;
+                                        slow = false;
                                     }
-                                    _snakeMovePeriodMax = _snakeMovePeriodMinMin;
-                                    speedy = true;
-                                    slow = false;
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Bullets:
-                            {
-                                canShootBullets = true;
-                                break;
-                            }
+                                {
+                                    canShootBullets = true;
+                                    break;
+                                }
                         }
                         _bonuses[i].Update();
                     }
@@ -162,33 +162,33 @@ namespace Snek_Game
                         switch (_bonuses[i].GetPowerupType())
                         {
                             case (int)Bonus.Powerups.Invincible:
-                            {
-                                snakeSnek.ApplyStandardColors();
-                                invincible = false;
-                                break;
-                            }
+                                {
+                                    snakeSnek.ApplyStandardColors();
+                                    invincible = false;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.DoubleFood:
-                            {
-                                doubleMaFood = false;
-                                break;
-                            }
+                                {
+                                    doubleMaFood = false;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Slow:
-                            {
-                                slow = false;
-                                _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
-                                break;
-                            }
+                                {
+                                    slow = false;
+                                    _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Speedy:
-                            {
-                                speedy = false;
-                                _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
-                                break;
-                            }
+                                {
+                                    speedy = false;
+                                    _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
+                                    break;
+                                }
                             case (int)Bonus.Powerups.Bullets:
-                            {
-                                canShootBullets = false;
-                                break;
-                            }
+                                {
+                                    canShootBullets = false;
+                                    break;
+                                }
                         }
                         _bonuses.RemoveAt(i);
                     }
@@ -223,12 +223,12 @@ namespace Snek_Game
                         randPow = randPow - randPow % 250;
                         randPow = randPow / 250;
 
-                        Bonus.Powerups pow = (Bonus.Powerups) randPow;
+                        Bonus.Powerups pow = (Bonus.Powerups)randPow;
 
                         Point rPoint;
                         do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }
                         while (CheckIfTileIsUsed(rPoint));
-                        _bonuses.Add(new Bonus(rPoint,pow));
+                        _bonuses.Add(new Bonus(rPoint, pow));
                         _powerUpSpawnPeriod = 0;
                     }
                 }
@@ -256,7 +256,7 @@ namespace Snek_Game
                 }
                 #endregion
 
-                
+
             }
         }
 
@@ -309,8 +309,8 @@ namespace Snek_Game
         {
             foreach (var b in _bonuses)
             {
-                if(!b.IsStarted())
-                { if (b.loc == loc) return true;}
+                if (!b.IsStarted())
+                { if (b.loc == loc) return true; }
             }
 
             foreach (var o in _obstacles)

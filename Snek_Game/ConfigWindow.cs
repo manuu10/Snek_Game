@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Snek_Game
 {
@@ -63,12 +64,58 @@ namespace Snek_Game
 
         private void btn_loadcfg_Click(object sender, EventArgs e)
         {
+            string path = string.Empty;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Config files (*.cfg)|*.cfg";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                path = ofd.FileName;
+            }
+            ofd.Dispose();
+            StreamReader sr = new StreamReader(path);
+            string line;
+            while((line = sr.ReadLine()) != null)
+            {
+                if (line == "[startspeed]")
+                    txt_startspeed.Text = sr.ReadLine();
+                else if (line == "[maxspeed]")
+                    txt_maxspeed.Text = sr.ReadLine();
+                else if (line == "[speedyspeed]")
+                    txt_speedySpeed.Text = sr.ReadLine();
+                else if (line == "[slowspeed]")
+                    txt_slowSpeed.Text = sr.ReadLine();
+                else if (line == "[speeduptime]")
+                    txt_speedUpTime.Text = sr.ReadLine();
 
+                else if (line == "[powerupspawntime]")
+                    txt_pwupTime.Text = sr.ReadLine();
+                else if (line == "[maxpowerups]")
+                    txt_maxPwup.Text = sr.ReadLine();
+
+                else if (line == "[obstaclespawntime]")
+                    txt_obsTime.Text = sr.ReadLine();
+                else if (line == "[maxobstacle]")
+                    txt_maxObs.Text = sr.ReadLine();
+
+            }
+            sr.Dispose();
+            debuglabel.Text = "Configuration loaded!";
         }
 
         private void btn_savecfg_Click(object sender, EventArgs e)
         {
-
+            string path = string.Empty;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Config files (*.cfg)|*.cfg";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName;
+            }
+            sfd.Dispose();
+            StreamWriter sw = new StreamWriter(path);
+            sw.Write(StringFromAllOptions());
+            sw.Dispose();
+            debuglabel.Text = "Configuration saved!";
         }
 
         private void btn_applycfg_Click(object sender, EventArgs e)
@@ -84,6 +131,44 @@ namespace Snek_Game
 
             mainForm._obstacleSpawnPeriodMax = Convert.ToInt32(txt_obsTime.Text);
             mainForm._obstacleAmountMax = Convert.ToInt32(txt_maxObs.Text);
+            debuglabel.Text = "Configuration applied!";
+        }
+
+        private string StringFromAllOptions()
+        {
+            
+            var output = String.Format(
+                    "[startspeed]\n" +
+                    "{0}\n\n" +
+                    "[maxspeed]\n" +
+                    "{1}\n\n" +
+                    "[speedyspeed]\n" +
+                    "{2}\n\n" +
+                    "[slowspeed]\n" +
+                    "{3}\n\n" +
+                    "[speeduptime]\n" +
+                    "{4}\n\n\n\n" +
+
+                    "[powerupspawntime]\n" +
+                    "{5}\n\n" +
+                    "[maxpowerups]\n" +
+                    "{6}\n\n\n\n" +
+
+                    "[obstaclespawntime]\n" +
+                    "{7}\n\n" +
+                    "[maxobstacle]\n" +
+                    "{8}",
+                    txt_startspeed.Text,
+                    txt_maxspeed.Text,
+                    txt_speedySpeed.Text,
+                    txt_slowSpeed.Text,
+                    txt_speedUpTime.Text,
+                    txt_pwupTime.Text,
+                    txt_maxPwup.Text,
+                    txt_obsTime.Text,
+                    txt_maxObs.Text);
+            output = output.Replace("\n", Environment.NewLine);
+            return output;
         }
     }
 }
