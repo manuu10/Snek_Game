@@ -321,11 +321,11 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(13, 239);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(219, 132);
+            this.label10.Size = new System.Drawing.Size(237, 132);
             this.label10.TabIndex = 29;
-            this.label10.Text = "Umso nidriger ein Speed Value ist desto schneller ist die Snake, wenn z.B 10 eing" +
-    "egeben wird, wird die Snake alle 10 milisekunden sich um ein Feld nach vorn bewe" +
-    "gen";
+            this.label10.Text = "Umso nidriger ein Speed Wert ist desto schneller ist die Snake, wenn z.B 10 einge" +
+    "geben wird, wird die Snake alle 10 milisekunden sich um ein Feld nach vorn beweg" +
+    "en";
             // 
             // ConfigWindow
             // 
