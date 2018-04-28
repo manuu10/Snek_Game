@@ -24,7 +24,8 @@ namespace Snek_Game
         private const int height = 25;
        
         private int _snakeMovePeriod;
-        public int _snakeMovePeriodMax = 40; // changes over time, snake starts with that speed
+        public int _snakeMovePeriodStart = 40;
+        private int _snakeMovePeriodMax = 0; // changes over time, snake starts with that speed
         public int _snakeMovePeriodMaxMax = 50; // the speed that the snake is getting with the slow powerup
         private int _oldsnakeMovePeriodMax; // stores the current speed when slow or speedy is picked up
         public int _snakeMovePeriodMin = 6; // normal speedup wont pass this value

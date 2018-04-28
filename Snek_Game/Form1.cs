@@ -12,6 +12,7 @@ namespace Snek_Game
             InitializeComponent();
             InitMyShit();
             lbl_WndInfo.Text = Text;
+            btn_reset_Click(null, null);
         }
 
 
@@ -109,6 +110,7 @@ namespace Snek_Game
         {
             snakeSnek = new Snek(startLocation);
             snakeFood = new Food(new Point(Rnd.Next(0, widht), Rnd.Next(0, height)));
+            _snakeMovePeriodMax = _snakeMovePeriodStart;
             _snakeMovePeriod = 0;
             _snakeSpeedUpPeriod = 0;
             _obstacleSpawnPeriod = 0;

@@ -97,6 +97,7 @@
             this.btn_loadcfg.TabIndex = 7;
             this.btn_loadcfg.Text = "Load Configuration";
             this.btn_loadcfg.UseVisualStyleBackColor = false;
+            this.btn_loadcfg.Click += new System.EventHandler(this.btn_loadcfg_Click);
             // 
             // btn_savecfg
             // 
@@ -111,6 +112,7 @@
             this.btn_savecfg.TabIndex = 8;
             this.btn_savecfg.Text = "Save Configuration";
             this.btn_savecfg.UseVisualStyleBackColor = false;
+            this.btn_savecfg.Click += new System.EventHandler(this.btn_savecfg_Click);
             // 
             // btn_applycfg
             // 
@@ -125,6 +127,7 @@
             this.btn_applycfg.TabIndex = 9;
             this.btn_applycfg.Text = "Apply Configuration";
             this.btn_applycfg.UseVisualStyleBackColor = false;
+            this.btn_applycfg.Click += new System.EventHandler(this.btn_applycfg_Click);
             // 
             // txt_startspeed
             // 
