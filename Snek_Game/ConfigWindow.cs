@@ -72,34 +72,13 @@ namespace Snek_Game
                 path = ofd.FileName;
             }
             ofd.Dispose();
-            StreamReader sr = new StreamReader(path);
-            string line;
-            while((line = sr.ReadLine()) != null)
+            if (!string.IsNullOrEmpty(path))
             {
-                if (line == "[startspeed]")
-                    txt_startspeed.Text = sr.ReadLine();
-                else if (line == "[maxspeed]")
-                    txt_maxspeed.Text = sr.ReadLine();
-                else if (line == "[speedyspeed]")
-                    txt_speedySpeed.Text = sr.ReadLine();
-                else if (line == "[slowspeed]")
-                    txt_slowSpeed.Text = sr.ReadLine();
-                else if (line == "[speeduptime]")
-                    txt_speedUpTime.Text = sr.ReadLine();
-
-                else if (line == "[powerupspawntime]")
-                    txt_pwupTime.Text = sr.ReadLine();
-                else if (line == "[maxpowerups]")
-                    txt_maxPwup.Text = sr.ReadLine();
-
-                else if (line == "[obstaclespawntime]")
-                    txt_obsTime.Text = sr.ReadLine();
-                else if (line == "[maxobstacle]")
-                    txt_maxObs.Text = sr.ReadLine();
-
+                loadconf(path);
+                debuglabel.Text = "Configuration loaded!";
+                return;
             }
-            sr.Dispose();
-            debuglabel.Text = "Configuration loaded!";
+            debuglabel.Text = "Loading cancelled";           
         }
 
         private void btn_savecfg_Click(object sender, EventArgs e)
@@ -169,6 +148,42 @@ namespace Snek_Game
                     txt_maxObs.Text);
             output = output.Replace("\n", Environment.NewLine);
             return output;
+        }
+
+        private void btn_res_def_Click(object sender, EventArgs e)
+        {
+            loadconf("defaultconfig.manu");
+        }
+
+        private void loadconf(string path)
+        {
+            StreamReader sr = new StreamReader(path);
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line == "[startspeed]")
+                    txt_startspeed.Text = sr.ReadLine();
+                else if (line == "[maxspeed]")
+                    txt_maxspeed.Text = sr.ReadLine();
+                else if (line == "[speedyspeed]")
+                    txt_speedySpeed.Text = sr.ReadLine();
+                else if (line == "[slowspeed]")
+                    txt_slowSpeed.Text = sr.ReadLine();
+                else if (line == "[speeduptime]")
+                    txt_speedUpTime.Text = sr.ReadLine();
+
+                else if (line == "[powerupspawntime]")
+                    txt_pwupTime.Text = sr.ReadLine();
+                else if (line == "[maxpowerups]")
+                    txt_maxPwup.Text = sr.ReadLine();
+
+                else if (line == "[obstaclespawntime]")
+                    txt_obsTime.Text = sr.ReadLine();
+                else if (line == "[maxobstacle]")
+                    txt_maxObs.Text = sr.ReadLine();
+
+            }
+            sr.Dispose();
         }
     }
 }

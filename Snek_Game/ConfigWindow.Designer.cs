@@ -53,6 +53,7 @@
             this.txt_maxObs = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.debuglabel = new System.Windows.Forms.Label();
+            this.btn_res_def = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_WndInfo
@@ -335,10 +336,25 @@
             // 
             this.debuglabel.AutoSize = true;
             this.debuglabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.debuglabel.Location = new System.Drawing.Point(340, 412);
+            this.debuglabel.Location = new System.Drawing.Point(334, 322);
             this.debuglabel.Name = "debuglabel";
             this.debuglabel.Size = new System.Drawing.Size(0, 13);
             this.debuglabel.TabIndex = 30;
+            // 
+            // btn_res_def
+            // 
+            this.btn_res_def.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_res_def.BackColor = System.Drawing.Color.Maroon;
+            this.btn_res_def.FlatAppearance.BorderSize = 0;
+            this.btn_res_def.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_res_def.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_res_def.Location = new System.Drawing.Point(382, 390);
+            this.btn_res_def.Name = "btn_res_def";
+            this.btn_res_def.Size = new System.Drawing.Size(158, 35);
+            this.btn_res_def.TabIndex = 31;
+            this.btn_res_def.Text = "Restore default";
+            this.btn_res_def.UseVisualStyleBackColor = false;
+            this.btn_res_def.Click += new System.EventHandler(this.btn_res_def_Click);
             // 
             // ConfigWindow
             // 
@@ -346,6 +362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(933, 437);
+            this.Controls.Add(this.btn_res_def);
             this.Controls.Add(this.debuglabel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -407,6 +424,7 @@
         private System.Windows.Forms.TextBox txt_maxObs;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label debuglabel;
+        private System.Windows.Forms.Button btn_res_def;
     }
 }
 
