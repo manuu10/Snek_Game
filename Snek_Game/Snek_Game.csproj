@@ -93,6 +93,7 @@
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ManuInput.cs" />
+    <Compile Include="Misc.cs" />
     <Compile Include="Obstacle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

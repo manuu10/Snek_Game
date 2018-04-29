@@ -15,12 +15,12 @@ namespace Snek_Game
             int startY = 20;
 
             int space = 15;
-            foreach (var val in Enum.GetValues(typeof(Bonus.Powerups)))
+            foreach (var val in Enum.GetValues(typeof(Bonus.PowerUps)))
             {
                 Label txt = new Label
                 {
                     Location = new Point(startX, startY),
-                    Text = Enum.GetName(typeof(Bonus.Powerups), val),
+                    Text = Enum.GetName(typeof(Bonus.PowerUps), val),
                     AutoSize = false,
                     Size = new Size(150,30),
                     Font = new Font("Arial", 13, FontStyle.Bold, GraphicsUnit.Pixel),

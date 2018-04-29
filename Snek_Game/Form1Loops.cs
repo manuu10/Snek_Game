@@ -97,27 +97,27 @@ namespace Snek_Game
                         _bonuses[i].StartTimer();
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
-                        if (_bonuses[i].GetPowerupType() == (int)Bonus.Powerups.Slow) useSlowOrSpeed = true;
-                        if (_bonuses[i].GetPowerupType() == (int)Bonus.Powerups.Speedy) useSlowOrSpeed = false;
+                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow) useSlowOrSpeed = true;
+                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Speedy) useSlowOrSpeed = false;
                     }
 
                     // apply shit for while Bonus is active
                     if (_bonuses[i].IsStarted())
                     {
-                        switch (_bonuses[i].GetPowerupType())
+                        switch (_bonuses[i].GetPowerUpType())
                         {
-                            case (int)Bonus.Powerups.Invincible:
+                            case (int)Bonus.PowerUps.Invincible:
                                 {
                                     snakeSnek.ApplyRainbowEffect();
                                     invincible = true;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.DoubleFood:
+                            case (int)Bonus.PowerUps.DoubleFood:
                                 {
                                     doubleMaFood = true;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Slow:
+                            case (int)Bonus.PowerUps.Slow:
                                 {
                                     if (useSlowOrSpeed)
                                     {
@@ -132,7 +132,7 @@ namespace Snek_Game
 
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Speedy:
+                            case (int)Bonus.PowerUps.Speedy:
                                 {
                                     if (!useSlowOrSpeed)
                                     {
@@ -147,7 +147,7 @@ namespace Snek_Game
 
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Bullets:
+                            case (int)Bonus.PowerUps.Bullets:
                                 {
                                     canShootBullets = true;
                                     break;
@@ -159,32 +159,32 @@ namespace Snek_Game
                     // remove shit if bonus ran out
                     if (_bonuses[i].CanBeDeleted())
                     {
-                        switch (_bonuses[i].GetPowerupType())
+                        switch (_bonuses[i].GetPowerUpType())
                         {
-                            case (int)Bonus.Powerups.Invincible:
+                            case (int)Bonus.PowerUps.Invincible:
                                 {
                                     snakeSnek.ApplyStandardColors();
                                     invincible = false;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.DoubleFood:
+                            case (int)Bonus.PowerUps.DoubleFood:
                                 {
                                     doubleMaFood = false;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Slow:
+                            case (int)Bonus.PowerUps.Slow:
                                 {
                                     slow = false;
                                     _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Speedy:
+                            case (int)Bonus.PowerUps.Speedy:
                                 {
                                     speedy = false;
                                     _snakeMovePeriodMax = _oldsnakeMovePeriodMax;
                                     break;
                                 }
-                            case (int)Bonus.Powerups.Bullets:
+                            case (int)Bonus.PowerUps.Bullets:
                                 {
                                     canShootBullets = false;
                                     break;
@@ -223,7 +223,7 @@ namespace Snek_Game
                         randPow = randPow - randPow % 250;
                         randPow = randPow / 250;
 
-                        Bonus.Powerups pow = (Bonus.Powerups)randPow;
+                        Bonus.PowerUps pow = (Bonus.PowerUps)randPow;
 
                         Point rPoint;
                         do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }

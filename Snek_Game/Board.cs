@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Collections.Generic;
 
 namespace Snek_Game
 {
@@ -26,12 +27,46 @@ namespace Snek_Game
             
             gfx.FillRectangle(new SolidBrush(c), rect);
         }
+        public void DrawGlowingCell(Point loc,Color Cellcolor,Color glowColor,int size)
+        {
+            Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
+            List<Rectangle> rects = new List<Rectangle>();
+            for (int i = 0; i < dimension/2 + size; i++)
+            {
+                rects.Add(Misc.RectFromCenter(center, i, i));
+            }
+
+            for (int i = 0; i < rects.Count; i++)
+            {
+                gfx.DrawRectangle(new Pen(glowColor), rects[i]);
+                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
+                glowColor = Color.FromArgb(alpha, glowColor);
+            }
+            DrawCell(loc, Cellcolor);
+        }
         public void DrawRoundCell(Point loc, Color c)
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
 
             gfx.FillEllipse(new SolidBrush(c), rect);
             
+        }
+        public void DrawRoundGlowingCell(Point loc, Color Cellcolor, Color glowColor, int size)
+        {
+            Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
+            List<Rectangle> rects = new List<Rectangle>();
+            for (int i = 0; i < dimension / 2 + size; i++)
+            {
+                rects.Add(Misc.RectFromCenter(center, i, i));
+            }
+
+            for (int i = 0; i < rects.Count; i++)
+            {
+                gfx.DrawEllipse(new Pen(glowColor), rects[i]);
+                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
+                glowColor = Color.FromArgb(alpha, glowColor);
+            }
+            DrawRoundCell(loc, Cellcolor);
         }
 
         public void DrawBullet(Point loc, Color c, Size dir)
@@ -69,13 +104,13 @@ namespace Snek_Game
         }
         public void DrawGameOver()
         {
-            gfx.DrawImage(gameOverBitmap, offset_x + Padding * 3, offset_y + Padding * 3, _fieldWidth * dimension - Padding * 6, _fieldHeight * dimension - Padding * 6);
+            gfx.DrawImage(Misc.gameOverBitmap, offset_x + Padding * 3, offset_y + Padding * 3, _fieldWidth * dimension - Padding * 6, _fieldHeight * dimension - Padding * 6);
         }
 
         
 
         public Graphics gfx { get; set; }
-        public int dimension = 25;
+        public int dimension = 26;
 
         public readonly int _fieldWidth;
         public readonly int _fieldHeight;
@@ -85,7 +120,7 @@ namespace Snek_Game
         private readonly int offset_x;
         private readonly int offset_y;
 
-        private readonly Bitmap gameOverBitmap = Snek_Game.Properties.Resources.GameOver;
+        
 
     }
 }

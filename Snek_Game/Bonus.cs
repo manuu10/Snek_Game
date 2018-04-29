@@ -4,10 +4,10 @@ namespace Snek_Game
 {
     class Bonus
     {
-        public Bonus(Point Loc, Powerups pow)
+        public Bonus(Point Loc, PowerUps pow)
         {
             loc = Loc;
-            PowerupType = (int)pow;
+            PowerUpType = (int)pow;
         }
 
         public static readonly Color[] colPallete =
@@ -27,7 +27,7 @@ namespace Snek_Game
             250,    // Speedy
             650     // Bullets
         };
-        public enum Powerups
+        public enum PowerUps
         {
             Invincible,
             DoubleFood,
@@ -37,7 +37,7 @@ namespace Snek_Game
         }
 
         public readonly Point loc;
-        private readonly int PowerupType;
+        private readonly int PowerUpType;
         private int duration;
         private bool _started;
         private bool _canBeDeleted;
@@ -61,7 +61,7 @@ namespace Snek_Game
         public void Update()
         {
             duration++;
-            if (duration >= durationsMax[PowerupType])
+            if (duration >= durationsMax[PowerUpType])
             {
                 _started = false;
                 _canBeDeleted = true;
@@ -71,18 +71,12 @@ namespace Snek_Game
         {
             if (!_started)
             {
-                brd.DrawCell(loc, colPallete[PowerupType]);
+                brd.DrawGlowingCell(loc, colPallete[PowerUpType],colPallete[PowerUpType],10);
             }
         }
-        public int GetPowerupType()
+        public int GetPowerUpType()
         {
-            return PowerupType;
+            return PowerUpType;
         }
-    }
-    
-
-    public static class BonusShits
-    {
-    }
-   
+    }  
 }
