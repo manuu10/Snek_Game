@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 
 namespace Snek_Game
 {
@@ -44,6 +45,7 @@ namespace Snek_Game
             }
             DrawCell(loc, Cellcolor);
         }
+
         public void DrawRoundCell(Point loc, Color c)
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
@@ -67,6 +69,33 @@ namespace Snek_Game
                 glowColor = Color.FromArgb(alpha, glowColor);
             }
             DrawRoundCell(loc, Cellcolor);
+        }
+
+        public void DrawRoundedRectCell(Point loc,Color c)
+        {
+            Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
+
+            GraphicsPath gp = Misc.MakeRoundedRect(rect, 4, 4, true, true, true, true);
+            gfx.FillPath(new SolidBrush(c), gp);
+        }
+        public void DrawRoundedRectGlowingCell(Point loc, Color Cellcolor, Color glowColor, int size)
+        {
+            Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
+            List<GraphicsPath> rects = new List<GraphicsPath>();
+            for (int i = 0; i < dimension / 2 + size; i++)
+            {
+                var rect = Misc.RectFromCenter(center, i, i);
+                GraphicsPath gp = Misc.MakeRoundedRect(rect, 8, 8, true, true, true, true);
+                rects.Add(gp);
+            }
+            
+            for (int i = 0; i < rects.Count; i++)
+            {
+                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
+                glowColor = Color.FromArgb(100, glowColor.R, glowColor.G, glowColor.B);
+                gfx.DrawPath(new Pen(glowColor), rects[i]);
+            }
+            DrawRoundedRectCell(loc, Cellcolor);
         }
 
         public void DrawBullet(Point loc, Color c, Size dir)
@@ -110,7 +139,7 @@ namespace Snek_Game
         
 
         public Graphics gfx { get; set; }
-        public int dimension = 26;
+        public int dimension = 30;
 
         public readonly int _fieldWidth;
         public readonly int _fieldHeight;

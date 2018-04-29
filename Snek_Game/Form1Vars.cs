@@ -20,8 +20,8 @@ namespace Snek_Game
         private List<Bullet> _bullets;
 
         private bool _gameOver;
-        private const int widht = 50;
-        private const int height = 25;
+        private const int widht = 44;
+        private const int height = 24;
        
         private int _snakeMovePeriod;
         public int _snakeMovePeriodStart = 40;

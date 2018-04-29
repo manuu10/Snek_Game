@@ -21,7 +21,7 @@ namespace Snek_Game
             }
             public void Draw(Board brd)
             {
-                brd.DrawCell(Loc, col);
+                brd.DrawRoundedRectCell(Loc, col);
             }
         }
 

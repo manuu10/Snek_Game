@@ -71,7 +71,7 @@ namespace Snek_Game
         {
             if (!_started)
             {
-                brd.DrawGlowingCell(loc, colPallete[PowerUpType],colPallete[PowerUpType],10);
+                brd.DrawRoundedRectGlowingCell(loc, colPallete[PowerUpType],colPallete[PowerUpType],5);
             }
         }
         public int GetPowerUpType()
