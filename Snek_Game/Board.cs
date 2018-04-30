@@ -28,7 +28,7 @@ namespace Snek_Game
             
             gfx.FillRectangle(new SolidBrush(c), rect);
         }
-        public void DrawGlowingCell(Point loc,Color Cellcolor,Color glowColor,int size)
+        public void DrawGlowingCell(Point loc,Color cellColor,Color glowColor,int size,int opacity)
         {
             Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
             List<Rectangle> rects = new List<Rectangle>();
@@ -37,13 +37,16 @@ namespace Snek_Game
                 rects.Add(Misc.RectFromCenter(center, i, i));
             }
 
-            for (int i = 0; i < rects.Count; i++)
+            //draw all rectangles from the very outer to the most inner
+            for (int i = rects.Count - 1; i >= 0; i--)
             {
-                gfx.DrawRectangle(new Pen(glowColor), rects[i]);
-                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
-                glowColor = Color.FromArgb(alpha, glowColor);
+                float test = opacity / (float)rects.Count;
+                float alpha = opacity - ((i + 1) * test);
+                glowColor = Color.FromArgb((int)alpha, glowColor.R, glowColor.G, glowColor.B);
+                Brush b = new SolidBrush(glowColor);
+                gfx.FillRectangle(b, rects[i]);
             }
-            DrawCell(loc, Cellcolor);
+            DrawCell(loc, cellColor);
         }
 
         public void DrawRoundCell(Point loc, Color c)
@@ -53,7 +56,7 @@ namespace Snek_Game
             gfx.FillEllipse(new SolidBrush(c), rect);
             
         }
-        public void DrawRoundGlowingCell(Point loc, Color Cellcolor, Color glowColor, int size)
+        public void DrawRoundGlowingCell(Point loc, Color cellColor, Color glowColor, int size,int opacity)
         {
             Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
             List<Rectangle> rects = new List<Rectangle>();
@@ -62,13 +65,16 @@ namespace Snek_Game
                 rects.Add(Misc.RectFromCenter(center, i, i));
             }
 
-            for (int i = 0; i < rects.Count; i++)
+            //draw all rectangles from the very outer to the most inner
+            for (int i = rects.Count - 1; i >= 0; i--)
             {
-                gfx.DrawEllipse(new Pen(glowColor), rects[i]);
-                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
-                glowColor = Color.FromArgb(alpha, glowColor);
+                float test = opacity / (float)rects.Count;
+                float alpha = opacity - ((i + 1) * test);
+                glowColor = Color.FromArgb((int)alpha, glowColor.R, glowColor.G, glowColor.B);
+                Brush b = new SolidBrush(glowColor);
+                gfx.FillEllipse(b, rects[i]);
             }
-            DrawRoundCell(loc, Cellcolor);
+            DrawRoundCell(loc, cellColor);
         }
 
         public void DrawRoundedRectCell(Point loc,Color c)
@@ -78,9 +84,10 @@ namespace Snek_Game
             GraphicsPath gp = Misc.MakeRoundedRect(rect, 4, 4, true, true, true, true);
             gfx.FillPath(new SolidBrush(c), gp);
         }
-        public void DrawRoundedRectGlowingCell(Point loc, Color Cellcolor, Color glowColor, int size)
+        public void DrawRoundedRectGlowingCell(Point loc, Color cellColor, Color glowColor, int size,int opacity)
         {
             Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
+
             List<GraphicsPath> rects = new List<GraphicsPath>();
             for (int i = 0; i < dimension / 2 + size; i++)
             {
@@ -88,14 +95,17 @@ namespace Snek_Game
                 GraphicsPath gp = Misc.MakeRoundedRect(rect, 8, 8, true, true, true, true);
                 rects.Add(gp);
             }
-            
-            for (int i = 0; i < rects.Count; i++)
+            //draw all rectangles from the very outer to the most inner
+            for (int i = rects.Count - 1; i >= 0; i--)
             {
-                int alpha = 255 - ((255 / (rects.Count + 1)) * (i + 1));
-                glowColor = Color.FromArgb(100, glowColor.R, glowColor.G, glowColor.B);
-                gfx.DrawPath(new Pen(glowColor), rects[i]);
+                float test = opacity / (float)rects.Count;
+                float alpha = opacity - ((i + 1) * test);
+                glowColor = Color.FromArgb((int)alpha, glowColor.R, glowColor.G, glowColor.B);
+                Brush b = new SolidBrush(glowColor);
+                gfx.FillPath(b, rects[i]);
             }
-            DrawRoundedRectCell(loc, Cellcolor);
+
+            DrawRoundedRectCell(loc, cellColor);
         }
 
         public void DrawBullet(Point loc, Color c, Size dir)
@@ -135,8 +145,6 @@ namespace Snek_Game
         {
             gfx.DrawImage(Misc.gameOverBitmap, offset_x + Padding * 3, offset_y + Padding * 3, _fieldWidth * dimension - Padding * 6, _fieldHeight * dimension - Padding * 6);
         }
-
-        
 
         public Graphics gfx { get; set; }
         public int dimension = 30;

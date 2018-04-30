@@ -12,17 +12,22 @@ namespace Snek_Game
         public Random Rnd = new Random();
 
         private readonly Point startLocation = new Point(8,1);
+
+        private bool _gameOver;
+        private const int widht = 44;
+        private const int height = 24;
+
+
+        #region entities
         private Snek snakeSnek;
         private Food snakeFood;
         private Board brd;
         private List<Bonus> _bonuses;
         private List<Obstacle> _obstacles;
         private List<Bullet> _bullets;
+        #endregion
 
-        private bool _gameOver;
-        private const int widht = 44;
-        private const int height = 24;
-       
+        #region speed etc.
         private int _snakeMovePeriod;
         public int _snakeMovePeriodStart = 40;
         private int _snakeMovePeriodMax = 0; // changes over time, snake starts with that speed
@@ -43,8 +48,9 @@ namespace Snek_Game
 
         private int _bulletMovePeriod;
         private int _bulletMovePeriodMax = 5; // speed for the bullets
+        #endregion
 
-
+        #region powerUps
         private bool doubleMaFood;
         private bool invincible;
 
@@ -53,7 +59,7 @@ namespace Snek_Game
         private bool speedy;
 
         private bool canShootBullets;
-
+        #endregion
 
     }
 }

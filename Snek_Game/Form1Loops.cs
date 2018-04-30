@@ -25,7 +25,6 @@ namespace Snek_Game
         }
 
 
-
         private void UpdateModel()
         {
             HandleJoystickInput();

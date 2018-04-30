@@ -25,7 +25,7 @@ namespace Snek_Game
         //DRAWING MODEL
         private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias ;
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             var g = e.Graphics;
             DrawingModel(g);
         }
