@@ -81,7 +81,7 @@ namespace Snek_Game
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
 
-            GraphicsPath gp = Misc.MakeRoundedRect(rect, 4, 4, true, true, true, true);
+            GraphicsPath gp = Misc.MakeRoundedRect(rect, 4, 4, true);
             gfx.FillPath(new SolidBrush(c), gp);
         }
         public void DrawRoundedRectGlowingCell(Point loc, Color cellColor, Color glowColor, int size,int opacity)
@@ -92,7 +92,7 @@ namespace Snek_Game
             for (int i = 0; i < dimension / 2 + size; i++)
             {
                 var rect = Misc.RectFromCenter(center, i, i);
-                GraphicsPath gp = Misc.MakeRoundedRect(rect, 8, 8, true, true, true, true);
+                GraphicsPath gp = Misc.MakeRoundedRect(rect, 8, 8, true);
                 rects.Add(gp);
             }
             //draw all rectangles from the very outer to the most inner

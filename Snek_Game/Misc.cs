@@ -105,6 +105,10 @@ namespace Snek_Game
 
             return path;
         }
+        public static GraphicsPath MakeRoundedRect(RectangleF rect, float xradius, float yradius, bool All)
+        {
+            return MakeRoundedRect(rect, xradius, yradius, true, true, true, true);
+        }
 
         public static Color MakeRandomARGB(int alpha)
         {
