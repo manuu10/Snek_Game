@@ -9,6 +9,8 @@ namespace Snek_Game
 {
     public static class Misc
     {
+        private static Random rnd = new Random();
+
         public static readonly Bitmap gameOverBitmap = Snek_Game.Properties.Resources.GameOver;
         public static Rectangle RectFromCenter(Point center,int hWidth,int hHeight)
         {
@@ -104,5 +106,17 @@ namespace Snek_Game
             return path;
         }
 
+        public static Color MakeRandomARGB(int alpha)
+        {
+            int red = rnd.Next(0, 256);
+            int green = rnd.Next(0, 256);
+            int blue = rnd.Next(0, 256);
+            return Color.FromArgb(alpha, red, green, blue);
+        }
+
+        public static Color MakeRandomRGB()
+        {
+            return MakeRandomARGB(255);
+        }
     }
 }
