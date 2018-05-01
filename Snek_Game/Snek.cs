@@ -23,6 +23,10 @@ namespace Snek_Game
             {
                 brd.DrawRoundedRectCell(Loc, col);
             }
+            public void DrawGlowing(Board brd,Color glowColor)
+            {
+                brd.DrawRoundedRectGlowingCell(Loc, col, glowColor, 7, 128);
+            }
         }
 
         public Snek(Point start)
@@ -75,6 +79,13 @@ namespace Snek_Game
             for (int i = nSegments.Count - 1; i >= 0; i--)
             {
                 nSegments[i].Draw(brd);
+            }
+        }
+        public void DrawGlowing(Board brd,Color glowColor)
+        {
+            for (int i = nSegments.Count - 1; i >= 0; i--)
+            {
+                nSegments[i].DrawGlowing(brd,glowColor);
             }
         }
         public void AddSegment()
