@@ -21,6 +21,10 @@ namespace Snek_Game
         {
             brd.DrawBullet(Loc, c, Dir);
         }
+        public void DrawGlowing(Board brd)
+        {
+            brd.DrawBulletGlowing(Loc, c, Dir,c,2,128);
+        }
 
         public bool HitObject(Point loc)
         {

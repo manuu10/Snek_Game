@@ -123,6 +123,45 @@ namespace Snek_Game
             gfx.FillRectangle(new SolidBrush(c),rect );
             
         }
+        public void DrawBulletGlowing(Point loc, Color cellColor, Size dir, Color glowColor, int size, int opacity)
+        {
+            Rectangle rect = new Rectangle();
+            Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
+            List<Rectangle> rects = new List<Rectangle>();
+
+            if (dir.Width == 0)
+            {
+                //rect = new Rectangle(loc.X * dimension + Padding + offset_x + dimension / 3, loc.Y * dimension + Padding + offset_y, dimension / 3 - Padding * 2, dimension - Padding * 2);
+                
+                for (int i = 0; i < dimension / 2 + size; i++)
+                {
+                    rects.Add(Misc.RectFromCenter(center, i/3, i));
+                }
+            }
+
+            if (dir.Height == 0)
+            {
+                //rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y + dimension / 3, dimension - Padding * 2, dimension / 3 - Padding * 2);
+              
+                for (int i = 0; i < dimension / 2 + size; i++)
+                {
+                    rects.Add(Misc.RectFromCenter(center, i, i/3));
+                }
+            }
+
+            //draw all rectangles from the very outer to the most inner
+            for (int i = rects.Count - 1; i >= 0; i--)
+            {
+                float test = opacity / (float)rects.Count;
+                float alpha = opacity - ((i + 1) * test);
+                glowColor = Color.FromArgb((int)alpha, glowColor.R, glowColor.G, glowColor.B);
+                Brush b = new SolidBrush(glowColor);
+                gfx.FillRectangle(b, rects[i]);
+            }
+            DrawBullet(loc, cellColor, dir);
+
+        }
+
         public void DrawBorders()
         {
             gfx.DrawRectangle(new Pen(Color.DarkSlateGray,4), offset_x,offset_y,_fieldWidth*dimension,_fieldHeight*dimension);
