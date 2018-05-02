@@ -15,5 +15,9 @@ namespace Snek_Game
         {
             brd.DrawRoundCell(Loc,c);
         }
+        public void DrawGlowing(Board brd, Color glowColor)
+        {
+            brd.DrawRoundGlowingCell(Loc, c, glowColor, 8, 180);
+        }
     }
 }
