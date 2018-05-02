@@ -265,22 +265,44 @@ namespace Snek_Game
             if (!_gameOver)
             {
                 #region Draw Entities
-                snakeFood.Draw(brd);
-                foreach (var b in _bonuses)
+                if (!glowing)
                 {
-                    b.Draw(brd);
-                }
+                    snakeFood.Draw(brd);
+                    foreach (var b in _bonuses)
+                    {
+                        b.Draw(brd);
+                    }
 
-                foreach (var o in _obstacles)
-                {
-                    o.Draw(brd);
-                }
+                    foreach (var o in _obstacles)
+                    {
+                        o.Draw(brd);
+                    }
 
-                foreach (var b in _bullets)
-                {
-                    b.Draw(brd);
+                    foreach (var b in _bullets)
+                    {
+                        b.Draw(brd);
+                    }
+                    snakeSnek.Draw(brd);
                 }
-                snakeSnek.Draw(brd);
+                else
+                {
+                    snakeFood.DrawGlowing(brd,Color.LightGreen);
+                    foreach (var b in _bonuses)
+                    {
+                        b.DrawGlowing(brd);
+                    }
+
+                    foreach (var o in _obstacles)
+                    {
+                        o.DrawGlowing(brd);
+                    }
+
+                    foreach (var b in _bullets)
+                    {
+                        b.DrawGlowing(brd);
+                    }
+                    snakeSnek.DrawGlowing(brd,Color.White);
+                }
                 #endregion
             }
 

@@ -61,5 +61,9 @@ namespace Snek_Game
         private bool canShootBullets;
         #endregion
 
+        #region other settings
+        public bool glowing;
+        #endregion
+
     }
 }

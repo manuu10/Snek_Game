@@ -29,6 +29,8 @@ namespace Snek_Game
 
             txt_obsTime.Text = mainForm._obstacleSpawnPeriodMax.ToString();
             txt_maxObs.Text = mainForm._obstacleAmountMax.ToString();
+
+            chk_glowing.Checked = mainForm.glowing;
         }
         private Form1 mainForm;
         #region Window tasks
@@ -110,6 +112,8 @@ namespace Snek_Game
 
             mainForm._obstacleSpawnPeriodMax = Convert.ToInt32(txt_obsTime.Text);
             mainForm._obstacleAmountMax = Convert.ToInt32(txt_maxObs.Text);
+
+            mainForm.glowing = chk_glowing.Checked;
             debuglabel.Text = "Configuration applied!";
         }
 

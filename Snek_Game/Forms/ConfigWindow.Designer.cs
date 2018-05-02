@@ -54,6 +54,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.debuglabel = new System.Windows.Forms.Label();
             this.btn_res_def = new System.Windows.Forms.Button();
+            this.chk_glowing = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lbl_WndInfo
@@ -356,12 +357,23 @@
             this.btn_res_def.UseVisualStyleBackColor = false;
             this.btn_res_def.Click += new System.EventHandler(this.btn_res_def_Click);
             // 
+            // chk_glowing
+            // 
+            this.chk_glowing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_glowing.Location = new System.Drawing.Point(688, 239);
+            this.chk_glowing.Name = "chk_glowing";
+            this.chk_glowing.Size = new System.Drawing.Size(128, 38);
+            this.chk_glowing.TabIndex = 32;
+            this.chk_glowing.Text = "Glowing ";
+            this.chk_glowing.UseVisualStyleBackColor = true;
+            // 
             // ConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(933, 437);
+            this.Controls.Add(this.chk_glowing);
             this.Controls.Add(this.btn_res_def);
             this.Controls.Add(this.debuglabel);
             this.Controls.Add(this.label10);
@@ -425,6 +437,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label debuglabel;
         private System.Windows.Forms.Button btn_res_def;
+        private System.Windows.Forms.CheckBox chk_glowing;
     }
 }
 
