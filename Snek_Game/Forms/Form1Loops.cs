@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Drawing;
 
 namespace Snek_Game
@@ -345,15 +346,15 @@ namespace Snek_Game
             {
                 if (_bonuses.Count != 0)
                 {
-                    int index = _bonuses.FindIndex(x =>
+                    var erg = _bonuses.FindAll(x =>
                              x.GetPowerUpType() == i &&
                              x.IsStarted() &&
                             !x.CanBeDeleted()
-                        );
+                        ).OrderBy(x => x.duration).FirstOrDefault();
 
-                    if (index != -1)
+                    if (erg != null)
                     {
-                        manuProgress[i].Draw(gfx, _bonuses[index].duration);
+                        manuProgress[i].Draw(gfx, erg.duration);
                     }
                 }
             }
