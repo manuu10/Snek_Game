@@ -123,4 +123,24 @@ namespace Snek_Game
             return MakeRandomARGB(255);
         }
     }
+    public class ManuProgressBar
+    {
+        public ManuProgressBar(Rectangle Region, int MaxValue)
+        {
+            maxval = MaxValue;
+            region = Region;
+            muliplier = (float)region.Size.Width / (float)maxval;
+        }
+        private int maxval;
+        private Rectangle region;
+        private float muliplier;
+        public void Draw(Graphics gfx, int currentval)
+        {
+            float width = muliplier * currentval;
+            Size s = new Size((int)width, region.Size.Height);
+            Rectangle rect = new Rectangle(region.Location, s);
+            gfx.FillRectangle(Brushes.Green,rect);
+            gfx.DrawRectangle(Pens.White, region);
+        }
+    }
 }

@@ -13,6 +13,8 @@ namespace Snek_Game
 
         private readonly Point startLocation = new Point(8,1);
 
+        private ManuProgressBar[] manuProgress;
+
         private bool _gameOver;
         private const int widht = 44;
         private const int height = 24;

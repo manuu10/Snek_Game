@@ -9,36 +9,10 @@ namespace Snek_Game
             loc = Loc;
             PowerUpType = (int)pow;
         }
-
-        public static readonly Color[] colPallete =
-        {
-            Color.Magenta,      // Invincible
-            Color.Yellow,       // DoubleFood
-            Color.DeepSkyBlue,  // Slow
-            Color.Red,          // Speedy
-            Color.White         // Bullets
-        };
-
-        public static readonly int[] durationsMax =
-        {
-            400,    // Invincible
-            500,    // DoubleFood
-            300,    // Slow
-            250,    // Speedy
-            650     // Bullets
-        };
-        public enum PowerUps
-        {
-            Invincible,
-            DoubleFood,
-            Slow,
-            Speedy,
-            Bullets
-        }
-
+        
         public readonly Point loc;
         private readonly int PowerUpType;
-        private int duration;
+        public int duration { get; private set; }
         private bool _started;
         private bool _canBeDeleted;
 
@@ -85,5 +59,33 @@ namespace Snek_Game
         {
             return PowerUpType;
         }
-    }  
+
+        #region static Information about Powerups
+        public static readonly Color[] colPallete =
+        {
+            Color.Magenta,      // Invincible
+            Color.Yellow,       // DoubleFood
+            Color.DeepSkyBlue,  // Slow
+            Color.Red,          // Speedy
+            Color.White         // Bullets
+        };
+
+        public static readonly int[] durationsMax =
+        {
+            400,    // Invincible
+            500,    // DoubleFood
+            300,    // Slow
+            250,    // Speedy
+            650     // Bullets
+        };
+        public enum PowerUps
+        {
+            Invincible,
+            DoubleFood,
+            Slow,
+            Speedy,
+            Bullets
+        }
+        #endregion  
+    }
 }

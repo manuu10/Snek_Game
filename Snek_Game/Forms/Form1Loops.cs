@@ -16,11 +16,22 @@ namespace Snek_Game
             _bullets = new List<Bullet>();
 
             joysticks = mJoy.GetSticks();
+            manuProgress = new ManuProgressBar[]
+            {
+                new ManuProgressBar(new Rectangle(lbl_info_invincible.Left,lbl_info_invincible.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Invincible]),
+                new ManuProgressBar(new Rectangle(lbl_info_doubleFood.Left,lbl_info_doubleFood.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.DoubleFood]),
+                new ManuProgressBar(new Rectangle(lbl_info_slow.Left,lbl_info_slow.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Slow]),
+                new ManuProgressBar(new Rectangle(lbl_info_speedy.Left,lbl_info_speedy.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Speedy]),
+                new ManuProgressBar(new Rectangle(lbl_info_bullets.Left,lbl_info_bullets.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Bullets])
+            };
+            
 
             UpdLabelSpeed();
             UpdLabelLength();
             tmr_Game.Interval = 1;
             tmr_Draw.Interval = 1;
+            tmr_grpboxpaint.Interval = 10;
+            tmr_grpboxpaint.Start();
             tmr_Draw.Start();
         }
 
@@ -322,7 +333,30 @@ namespace Snek_Game
             lbl_info_slow.ForeColor = slow ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_speedy.ForeColor = speedy ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_bullets.ForeColor = canShootBullets ? Color.MediumSeaGreen : grpBox_info.ForeColor;
+
+
+            
             #endregion
+        }
+
+        private void GroupBoxPainting(Graphics gfx)
+        {
+            for (int i = 0; i < manuProgress.Length; i++)
+            {
+                if (_bonuses.Count != 0)
+                {
+                    int index = _bonuses.FindIndex(x =>
+                             x.GetPowerUpType() == i &&
+                             x.IsStarted() &&
+                            !x.CanBeDeleted()
+                        );
+
+                    if (index != -1)
+                    {
+                        manuProgress[i].Draw(gfx, _bonuses[index].duration);
+                    }
+                }
+            }
         }
 
 

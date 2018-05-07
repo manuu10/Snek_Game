@@ -33,10 +33,6 @@
             this.btn_CloseWnd = new System.Windows.Forms.Button();
             this.pbGameCanvas = new System.Windows.Forms.PictureBox();
             this.btn_start = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnright = new System.Windows.Forms.Button();
-            this.btnleft = new System.Windows.Forms.Button();
-            this.btndown = new System.Windows.Forms.Button();
             this.tmr_Game = new System.Windows.Forms.Timer(this.components);
             this.btnadd = new System.Windows.Forms.Button();
             this.btn_stop = new System.Windows.Forms.Button();
@@ -44,7 +40,6 @@
             this.btn_reset = new System.Windows.Forms.Button();
             this.chk_toggleGrid = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbljoyinfo = new System.Windows.Forms.Label();
             this.grpBox_info = new System.Windows.Forms.GroupBox();
             this.lbl_info_bullets = new System.Windows.Forms.Label();
             this.lbl_info_obstacles = new System.Windows.Forms.Label();
@@ -56,6 +51,7 @@
             this.lbl_snekSize = new System.Windows.Forms.Label();
             this.btn_Help = new System.Windows.Forms.Button();
             this.btn_opencfg = new System.Windows.Forms.Button();
+            this.tmr_grpboxpaint = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -106,72 +102,17 @@
             // btn_start
             // 
             this.btn_start.BackColor = System.Drawing.Color.Maroon;
-            this.btn_start.FlatAppearance.BorderSize = 0;
+            this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_start.Location = new System.Drawing.Point(24, 15);
+            this.btn_start.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_start.Location = new System.Drawing.Point(11, 9);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(114, 35);
+            this.btn_start.Size = new System.Drawing.Size(114, 25);
             this.btn_start.TabIndex = 6;
             this.btn_start.Text = "Start";
             this.btn_start.UseVisualStyleBackColor = false;
             this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(444, 15);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(60, 25);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "up";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.btnControlss);
-            // 
-            // btnright
-            // 
-            this.btnright.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnright.FlatAppearance.BorderSize = 0;
-            this.btnright.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnright.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnright.Location = new System.Drawing.Point(501, 46);
-            this.btnright.Name = "btnright";
-            this.btnright.Size = new System.Drawing.Size(60, 25);
-            this.btnright.TabIndex = 8;
-            this.btnright.Text = "right";
-            this.btnright.UseVisualStyleBackColor = false;
-            this.btnright.Click += new System.EventHandler(this.btnControlss);
-            // 
-            // btnleft
-            // 
-            this.btnleft.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnleft.FlatAppearance.BorderSize = 0;
-            this.btnleft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnleft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnleft.Location = new System.Drawing.Point(386, 46);
-            this.btnleft.Name = "btnleft";
-            this.btnleft.Size = new System.Drawing.Size(60, 25);
-            this.btnleft.TabIndex = 9;
-            this.btnleft.Text = "left";
-            this.btnleft.UseVisualStyleBackColor = false;
-            this.btnleft.Click += new System.EventHandler(this.btnControlss);
-            // 
-            // btndown
-            // 
-            this.btndown.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btndown.FlatAppearance.BorderSize = 0;
-            this.btndown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btndown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndown.Location = new System.Drawing.Point(444, 77);
-            this.btndown.Name = "btndown";
-            this.btndown.Size = new System.Drawing.Size(60, 25);
-            this.btndown.TabIndex = 10;
-            this.btndown.Text = "down";
-            this.btndown.UseVisualStyleBackColor = false;
-            this.btndown.Click += new System.EventHandler(this.btnControlss);
             // 
             // tmr_Game
             // 
@@ -179,13 +120,13 @@
             // 
             // btnadd
             // 
-            this.btnadd.BackColor = System.Drawing.Color.DarkMagenta;
-            this.btnadd.FlatAppearance.BorderSize = 0;
+            this.btnadd.BackColor = System.Drawing.Color.Maroon;
+            this.btnadd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(144, 40);
+            this.btnadd.Location = new System.Drawing.Point(131, 9);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(85, 37);
+            this.btnadd.Size = new System.Drawing.Size(88, 25);
             this.btnadd.TabIndex = 11;
             this.btnadd.Text = "add";
             this.btnadd.UseVisualStyleBackColor = false;
@@ -194,12 +135,12 @@
             // btn_stop
             // 
             this.btn_stop.BackColor = System.Drawing.Color.Maroon;
-            this.btn_stop.FlatAppearance.BorderSize = 0;
+            this.btn_stop.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_stop.Location = new System.Drawing.Point(24, 56);
+            this.btn_stop.Location = new System.Drawing.Point(11, 40);
             this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(114, 35);
+            this.btn_stop.Size = new System.Drawing.Size(114, 26);
             this.btn_stop.TabIndex = 12;
             this.btn_stop.Text = "Stop";
             this.btn_stop.UseVisualStyleBackColor = false;
@@ -211,13 +152,13 @@
             // 
             // btn_reset
             // 
-            this.btn_reset.BackColor = System.Drawing.Color.Black;
-            this.btn_reset.FlatAppearance.BorderSize = 0;
+            this.btn_reset.BackColor = System.Drawing.Color.Maroon;
+            this.btn_reset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_reset.Location = new System.Drawing.Point(235, 40);
+            this.btn_reset.Location = new System.Drawing.Point(131, 40);
             this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(60, 37);
+            this.btn_reset.Size = new System.Drawing.Size(88, 25);
             this.btn_reset.TabIndex = 13;
             this.btn_reset.Text = "reset";
             this.btn_reset.UseVisualStyleBackColor = false;
@@ -226,7 +167,7 @@
             // chk_toggleGrid
             // 
             this.chk_toggleGrid.AutoSize = true;
-            this.chk_toggleGrid.Location = new System.Drawing.Point(24, 97);
+            this.chk_toggleGrid.Location = new System.Drawing.Point(11, 113);
             this.chk_toggleGrid.Name = "chk_toggleGrid";
             this.chk_toggleGrid.Size = new System.Drawing.Size(121, 17);
             this.chk_toggleGrid.TabIndex = 14;
@@ -236,31 +177,17 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbljoyinfo);
             this.panel1.Controls.Add(this.grpBox_info);
             this.panel1.Controls.Add(this.btn_start);
             this.panel1.Controls.Add(this.btnadd);
-            this.panel1.Controls.Add(this.btnleft);
             this.panel1.Controls.Add(this.chk_toggleGrid);
-            this.panel1.Controls.Add(this.btndown);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btn_stop);
             this.panel1.Controls.Add(this.btn_reset);
-            this.panel1.Controls.Add(this.btnright);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1468, 137);
             this.panel1.TabIndex = 15;
-            // 
-            // lbljoyinfo
-            // 
-            this.lbljoyinfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbljoyinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbljoyinfo.Location = new System.Drawing.Point(576, 15);
-            this.lbljoyinfo.Name = "lbljoyinfo";
-            this.lbljoyinfo.Size = new System.Drawing.Size(266, 115);
-            this.lbljoyinfo.TabIndex = 16;
             // 
             // grpBox_info
             // 
@@ -274,18 +201,19 @@
             this.grpBox_info.Controls.Add(this.lbl_snekSize);
             this.grpBox_info.Font = new System.Drawing.Font("SketchFlow Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBox_info.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.grpBox_info.Location = new System.Drawing.Point(848, 3);
+            this.grpBox_info.Location = new System.Drawing.Point(225, 3);
             this.grpBox_info.Name = "grpBox_info";
-            this.grpBox_info.Size = new System.Drawing.Size(607, 127);
+            this.grpBox_info.Size = new System.Drawing.Size(1230, 127);
             this.grpBox_info.TabIndex = 15;
             this.grpBox_info.TabStop = false;
             this.grpBox_info.Text = "Information";
+            this.grpBox_info.Paint += new System.Windows.Forms.PaintEventHandler(this.grpBox_info_Paint);
             // 
             // lbl_info_bullets
             // 
             this.lbl_info_bullets.AutoSize = true;
             this.lbl_info_bullets.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_bullets.Location = new System.Drawing.Point(405, 53);
+            this.lbl_info_bullets.Location = new System.Drawing.Point(531, 26);
             this.lbl_info_bullets.Name = "lbl_info_bullets";
             this.lbl_info_bullets.Size = new System.Drawing.Size(56, 21);
             this.lbl_info_bullets.TabIndex = 7;
@@ -305,7 +233,7 @@
             // 
             this.lbl_info_speedy.AutoSize = true;
             this.lbl_info_speedy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_speedy.Location = new System.Drawing.Point(405, 26);
+            this.lbl_info_speedy.Location = new System.Drawing.Point(401, 78);
             this.lbl_info_speedy.Name = "lbl_info_speedy";
             this.lbl_info_speedy.Size = new System.Drawing.Size(61, 21);
             this.lbl_info_speedy.TabIndex = 5;
@@ -315,7 +243,7 @@
             // 
             this.lbl_info_slow.AutoSize = true;
             this.lbl_info_slow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_slow.Location = new System.Drawing.Point(242, 78);
+            this.lbl_info_slow.Location = new System.Drawing.Point(401, 26);
             this.lbl_info_slow.Name = "lbl_info_slow";
             this.lbl_info_slow.Size = new System.Drawing.Size(44, 21);
             this.lbl_info_slow.TabIndex = 4;
@@ -335,7 +263,7 @@
             // 
             this.lbl_info_doubleFood.AutoSize = true;
             this.lbl_info_doubleFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_doubleFood.Location = new System.Drawing.Point(242, 53);
+            this.lbl_info_doubleFood.Location = new System.Drawing.Point(242, 78);
             this.lbl_info_doubleFood.Name = "lbl_info_doubleFood";
             this.lbl_info_doubleFood.Size = new System.Drawing.Size(95, 21);
             this.lbl_info_doubleFood.TabIndex = 2;
@@ -391,6 +319,10 @@
             this.btn_opencfg.UseVisualStyleBackColor = false;
             this.btn_opencfg.Click += new System.EventHandler(this.btn_opencfg_Click);
             // 
+            // tmr_grpboxpaint
+            // 
+            this.tmr_grpboxpaint.Tick += new System.EventHandler(this.tmr_grpboxpaint_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -425,10 +357,6 @@
         private System.Windows.Forms.Button btn_CloseWnd;
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.PictureBox pbGameCanvas;
-        private System.Windows.Forms.Button btndown;
-        private System.Windows.Forms.Button btnleft;
-        private System.Windows.Forms.Button btnright;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer tmr_Game;
         private System.Windows.Forms.Button btnadd;
         private System.Windows.Forms.Button btn_stop;
@@ -446,8 +374,8 @@
         private System.Windows.Forms.Label lbl_info_obstacles;
         private System.Windows.Forms.Button btn_Help;
         private System.Windows.Forms.Label lbl_info_bullets;
-        private System.Windows.Forms.Label lbljoyinfo;
         private System.Windows.Forms.Button btn_opencfg;
+        private System.Windows.Forms.Timer tmr_grpboxpaint;
     }
 
 

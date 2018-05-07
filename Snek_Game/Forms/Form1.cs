@@ -23,11 +23,27 @@ namespace Snek_Game
         }
 
         //DRAWING MODEL
+
+        private void tmr_Draw_Tick(object sender, EventArgs e)
+        {
+            pbGameCanvas.Invalidate();
+        }
+        private void tmr_grpboxpaint_Tick(object sender, EventArgs e)
+        {
+            Point start = lbl_info_invincible.Location;
+            Size size = new Size(grpBox_info.Width - 10 - start.X, grpBox_info.Height - 10 - start.Y);
+            grpBox_info.Invalidate(new Rectangle(start,size));
+        }
+
         private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             var g = e.Graphics;
             DrawingModel(g);
+        }
+        private void grpBox_info_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxPainting(e.Graphics);
         }
 
 
@@ -47,10 +63,7 @@ namespace Snek_Game
             lbl_info_obstacles.Text = "Obstacles : " + _obstacles.Count;
         }
 
-        private void tmr_Draw_Tick(object sender, EventArgs e)
-        {
-            pbGameCanvas.Refresh();
-        }
+        
 
         private void btnadd_Click(object sender, EventArgs e)
         {
@@ -139,9 +152,9 @@ namespace Snek_Game
                 Parent = ParentForm,
                 StartPosition = FormStartPosition.CenterParent
             };
-            tmr_Game.Stop();
+            btn_stop.PerformClick();
             hw.ShowDialog();
-            tmr_Game.Start();
+            btn_start.PerformClick();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -185,14 +198,16 @@ namespace Snek_Game
         private void btn_opencfg_Click(object sender, EventArgs e)
         {
             
-            var hw = new ConfigWindow(this)
+            var cw = new ConfigWindow(this)
             {
                 Parent = ParentForm,
                 StartPosition = FormStartPosition.CenterParent
             };
-            tmr_Game.Stop();
-            hw.ShowDialog();
-            tmr_Game.Start();
+            btn_stop.PerformClick();
+            cw.ShowDialog();
+            btn_start.PerformClick();
         }
+
+        
     }
 }
