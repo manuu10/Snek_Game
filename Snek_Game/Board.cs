@@ -22,11 +22,12 @@ namespace Snek_Game
                    loc.Y < _fieldHeight;
         }
 
-        public void DrawCell(Point loc,Color c)
+        public void DrawCell(Point loc,Color c,bool outline = false)
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
             
             gfx.FillRectangle(new SolidBrush(c), rect);
+            if(outline)gfx.DrawRectangle(new Pen(Color.Black, 2), rect);
         }
         public void DrawGlowingCell(Point loc,Color cellColor,Color glowColor,int size,int opacity)
         {
@@ -46,15 +47,15 @@ namespace Snek_Game
                 Brush b = new SolidBrush(glowColor);
                 gfx.FillRectangle(b, rects[i]);
             }
-            DrawCell(loc, cellColor);
+            DrawCell(loc, cellColor,true);
         }
 
-        public void DrawRoundCell(Point loc, Color c)
+        public void DrawRoundCell(Point loc, Color c, bool outline = false)
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
 
             gfx.FillEllipse(new SolidBrush(c), rect);
-            
+            if(outline)gfx.DrawEllipse(new Pen(Color.Black, 2), rect);
         }
         public void DrawRoundGlowingCell(Point loc, Color cellColor, Color glowColor, int size,int opacity)
         {
@@ -74,15 +75,16 @@ namespace Snek_Game
                 Brush b = new SolidBrush(glowColor);
                 gfx.FillEllipse(b, rects[i]);
             }
-            DrawRoundCell(loc, cellColor);
+            DrawRoundCell(loc, cellColor,true);
         }
 
-        public void DrawRoundedRectCell(Point loc,Color c)
+        public void DrawRoundedRectCell(Point loc, Color c, bool outline = false)
         {
             Rectangle rect = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
 
             GraphicsPath gp = Misc.MakeRoundedRect(rect, 4, 4, true);
             gfx.FillPath(new SolidBrush(c), gp);
+            if(outline)gfx.DrawPath(new Pen(Color.Black,2), gp);
         }
         public void DrawRoundedRectGlowingCell(Point loc, Color cellColor, Color glowColor, int size,int opacity)
         {
@@ -105,7 +107,8 @@ namespace Snek_Game
                 gfx.FillPath(b, rects[i]);
             }
 
-            DrawRoundedRectCell(loc, cellColor);
+            DrawRoundedRectCell(loc, cellColor,true);
+            
         }
 
         public void DrawBullet(Point loc, Color c, Size dir)
@@ -125,7 +128,6 @@ namespace Snek_Game
         }
         public void DrawBulletGlowing(Point loc, Color cellColor, Size dir, Color glowColor, int size, int opacity)
         {
-            Rectangle rect = new Rectangle();
             Point center = new Point(loc.X * dimension + dimension / 2 + offset_x, loc.Y * dimension + dimension / 2 + offset_y);
             List<Rectangle> rects = new List<Rectangle>();
 
