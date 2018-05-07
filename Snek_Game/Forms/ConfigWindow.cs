@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using IniParser;
+using IniParser.Model;
 
 namespace Snek_Game
 {
@@ -68,7 +70,7 @@ namespace Snek_Game
         {
             string path = string.Empty;
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Config files (*.cfg)|*.cfg";
+            ofd.Filter = "Ini files (*.ini)|*.ini";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 path = ofd.FileName;
@@ -82,21 +84,71 @@ namespace Snek_Game
             }
             debuglabel.Text = "Loading cancelled";           
         }
+        private void loadconf(string path)
+        {
+            var parser = new FileIniDataParser();
+            var data = parser.ReadFile(path);
+
+            txt_startspeed.Text = data["snake"]["startspeed"];
+            txt_maxspeed.Text = data["snake"]["maxspeed"];
+            txt_speedySpeed.Text = data["snake"]["speedyspeed"];
+            txt_slowSpeed.Text = data["snake"]["slowspeed"];
+            txt_speedUpTime.Text = data["snake"]["speeduptime"];
+
+            txt_pwupTime.Text = data["powerup"]["spawnTime"];
+            txt_maxPwup.Text = data["powerup"]["maxAmount"];
+
+            txt_obsTime.Text = data["obstacle"]["spawnTime"];
+            txt_maxObs.Text = data["obstacle"]["maxAmount"];
+
+            bool flag;
+            if (bool.TryParse(data["other"]["glowing"], out flag))
+            {
+                chk_glowing.Checked = flag;
+            }
+            else
+            {
+                chk_glowing.Checked = false;
+            }
+        }
 
         private void btn_savecfg_Click(object sender, EventArgs e)
         {
             string path = string.Empty;
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Config files (*.cfg)|*.cfg";
+            sfd.Filter = "Ini files (*.ini)|*.ini";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 path = sfd.FileName;
             }
             sfd.Dispose();
-            StreamWriter sw = new StreamWriter(path);
-            sw.Write(StringFromAllOptions());
-            sw.Dispose();
-            debuglabel.Text = "Configuration saved!";
+            if (!string.IsNullOrEmpty(path))
+            {
+                saveconf(path);
+                debuglabel.Text = "Configuration saved!";
+                return;
+            }
+            debuglabel.Text = "Saving cancelled";
+        }
+        private void saveconf(string path)
+        {
+            var parser = new FileIniDataParser();
+            var data = new IniData();
+            data["snake"]["startspeed"] = txt_startspeed.Text;
+            
+            data["snake"]["maxspeed"] = txt_maxspeed.Text;
+            data["snake"]["speedyspeed"] = txt_speedySpeed.Text;
+            data["snake"]["slowspeed"] = txt_slowSpeed.Text;
+            data["snake"]["speeduptime"] = txt_speedUpTime.Text;
+
+            data["powerup"]["spawnTime"] = txt_pwupTime.Text;
+            data["powerup"]["maxAmount"] = txt_maxPwup.Text;
+
+            data["obstacle"]["spawnTime"] = txt_obsTime.Text;
+            data["obstacle"]["maxAmount"] = txt_maxObs.Text;
+
+            data["other"]["glowing"] = Convert.ToString(chk_glowing.Checked);
+            parser.WriteFile(path, data);
         }
 
         private void btn_applycfg_Click(object sender, EventArgs e)
@@ -117,77 +169,55 @@ namespace Snek_Game
             debuglabel.Text = "Configuration applied!";
         }
 
-        private string StringFromAllOptions()
-        {
+        //private string StringFromAllOptions()
+        //{
             
-            var output = String.Format(
-                    "[startspeed]\n" +
-                    "{0}\n\n" +
-                    "[maxspeed]\n" +
-                    "{1}\n\n" +
-                    "[speedyspeed]\n" +
-                    "{2}\n\n" +
-                    "[slowspeed]\n" +
-                    "{3}\n\n" +
-                    "[speeduptime]\n" +
-                    "{4}\n\n\n\n" +
+        //    var output = String.Format(
+        //            "[startspeed]\n" +
+        //            "{0}\n" +
+        //            "[maxspeed]\n" +
+        //            "{1}\n" +
+        //            "[speedyspeed]\n" +
+        //            "{2}\n" +
+        //            "[slowspeed]\n" +
+        //            "{3}\n" +
+        //            "[speeduptime]\n" +
+        //            "{4}\n\n" +
 
-                    "[powerupspawntime]\n" +
-                    "{5}\n\n" +
-                    "[maxpowerups]\n" +
-                    "{6}\n\n\n\n" +
+        //            "[powerupspawntime]\n" +
+        //            "{5}\n" +
+        //            "[maxpowerups]\n" +
+        //            "{6}\n\n" +
 
-                    "[obstaclespawntime]\n" +
-                    "{7}\n\n" +
-                    "[maxobstacle]\n" +
-                    "{8}",
-                    txt_startspeed.Text,
-                    txt_maxspeed.Text,
-                    txt_speedySpeed.Text,
-                    txt_slowSpeed.Text,
-                    txt_speedUpTime.Text,
-                    txt_pwupTime.Text,
-                    txt_maxPwup.Text,
-                    txt_obsTime.Text,
-                    txt_maxObs.Text);
-            output = output.Replace("\n", Environment.NewLine);
-            return output;
-        }
+        //            "[obstaclespawntime]\n" +
+        //            "{7}\n" +
+        //            "[maxobstacle]\n" +
+        //            "{8}",
+        //            txt_startspeed.Text,
+        //            txt_maxspeed.Text,
+        //            txt_speedySpeed.Text,
+        //            txt_slowSpeed.Text,
+        //            txt_speedUpTime.Text,
+        //            txt_pwupTime.Text,
+        //            txt_maxPwup.Text,
+        //            txt_obsTime.Text,
+        //            txt_maxObs.Text);
+        //    output = output.Replace("\n", Environment.NewLine);
+        //    return output;
+        //}
 
         private void btn_res_def_Click(object sender, EventArgs e)
         {
-            loadconf("defaultconfig.manu");
+            loadconf("defaultconfig.DEFAULT_INI");
         }
 
-        private void loadconf(string path)
+        private void txt_TextChanged(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(path);
-            string line;
-            while ((line = sr.ReadLine()) != null)
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
             {
-                if (line == "[startspeed]")
-                    txt_startspeed.Text = sr.ReadLine();
-                else if (line == "[maxspeed]")
-                    txt_maxspeed.Text = sr.ReadLine();
-                else if (line == "[speedyspeed]")
-                    txt_speedySpeed.Text = sr.ReadLine();
-                else if (line == "[slowspeed]")
-                    txt_slowSpeed.Text = sr.ReadLine();
-                else if (line == "[speeduptime]")
-                    txt_speedUpTime.Text = sr.ReadLine();
-
-                else if (line == "[powerupspawntime]")
-                    txt_pwupTime.Text = sr.ReadLine();
-                else if (line == "[maxpowerups]")
-                    txt_maxPwup.Text = sr.ReadLine();
-
-                else if (line == "[obstaclespawntime]")
-                    txt_obsTime.Text = sr.ReadLine();
-                else if (line == "[maxobstacle]")
-                    txt_maxObs.Text = sr.ReadLine();
-
+                ((TextBox)sender).Text = "0";
             }
-            sr.Dispose();
+            ((TextBox)sender).Text = ((TextBox)sender).Text.Replace("-", "");
         }
     }
 }

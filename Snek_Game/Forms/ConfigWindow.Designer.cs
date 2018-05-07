@@ -142,6 +142,7 @@
             this.txt_startspeed.Size = new System.Drawing.Size(169, 31);
             this.txt_startspeed.TabIndex = 10;
             this.txt_startspeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_startspeed.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label2
             // 
@@ -173,6 +174,7 @@
             this.txt_maxspeed.Size = new System.Drawing.Size(169, 31);
             this.txt_maxspeed.TabIndex = 13;
             this.txt_maxspeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_maxspeed.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label3
             // 
@@ -194,6 +196,7 @@
             this.txt_speedySpeed.Size = new System.Drawing.Size(169, 31);
             this.txt_speedySpeed.TabIndex = 15;
             this.txt_speedySpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_speedySpeed.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label4
             // 
@@ -215,6 +218,7 @@
             this.txt_slowSpeed.Size = new System.Drawing.Size(169, 31);
             this.txt_slowSpeed.TabIndex = 17;
             this.txt_slowSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_slowSpeed.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label5
             // 
@@ -236,6 +240,7 @@
             this.txt_speedUpTime.Size = new System.Drawing.Size(169, 31);
             this.txt_speedUpTime.TabIndex = 19;
             this.txt_speedUpTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_speedUpTime.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label6
             // 
@@ -257,6 +262,7 @@
             this.txt_pwupTime.Size = new System.Drawing.Size(169, 31);
             this.txt_pwupTime.TabIndex = 21;
             this.txt_pwupTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_pwupTime.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label7
             // 
@@ -278,6 +284,7 @@
             this.txt_maxPwup.Size = new System.Drawing.Size(169, 31);
             this.txt_maxPwup.TabIndex = 23;
             this.txt_maxPwup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_maxPwup.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label8
             // 
@@ -299,6 +306,7 @@
             this.txt_obsTime.Size = new System.Drawing.Size(169, 31);
             this.txt_obsTime.TabIndex = 25;
             this.txt_obsTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_obsTime.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label9
             // 
@@ -320,6 +328,7 @@
             this.txt_maxObs.Size = new System.Drawing.Size(169, 31);
             this.txt_maxObs.TabIndex = 27;
             this.txt_maxObs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_maxObs.TextChanged += new System.EventHandler(this.txt_TextChanged);
             // 
             // label10
             // 
