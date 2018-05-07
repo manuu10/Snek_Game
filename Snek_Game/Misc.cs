@@ -132,7 +132,7 @@ namespace Snek_Game
             muliplier = (float)region.Size.Width / (float)maxval;
         }
         private int maxval;
-        private Rectangle region;
+        public readonly Rectangle region;
         private float muliplier;
         public void Draw(Graphics gfx, int currentval)
         {

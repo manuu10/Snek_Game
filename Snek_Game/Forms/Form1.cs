@@ -30,9 +30,15 @@ namespace Snek_Game
         }
         private void tmr_grpboxpaint_Tick(object sender, EventArgs e)
         {
-            Point start = lbl_info_invincible.Location;
-            Size size = new Size(grpBox_info.Width - 10 - start.X, grpBox_info.Height - 10 - start.Y);
-            grpBox_info.Invalidate(new Rectangle(start,size));
+            //Point start = lbl_info_invincible.Location;
+            //Size size = new Size(grpBox_info.Width - 10 - start.X, grpBox_info.Height - 10 - start.Y);
+            foreach(var m in manuProgress)
+            {
+                var rect = m.region;
+                rect.Inflate(1, 1);
+                grpBox_info.Invalidate(rect);
+            }
+            
         }
 
         private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
