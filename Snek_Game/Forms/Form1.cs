@@ -69,7 +69,12 @@ namespace Snek_Game
             lbl_info_obstacles.Text = "Obstacles : " + _obstacles.Count;
         }
 
-        
+        private void UpdLabelScore()
+        {
+            lbl_currentscore.Text = "Score : " + _currentscore;
+        }
+
+
 
         private void btnadd_Click(object sender, EventArgs e)
         {

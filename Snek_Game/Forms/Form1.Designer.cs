@@ -52,6 +52,7 @@
             this.btn_Help = new System.Windows.Forms.Button();
             this.btn_opencfg = new System.Windows.Forms.Button();
             this.tmr_grpboxpaint = new System.Windows.Forms.Timer(this.components);
+            this.lbl_currentscore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -191,6 +192,7 @@
             // 
             // grpBox_info
             // 
+            this.grpBox_info.Controls.Add(this.lbl_currentscore);
             this.grpBox_info.Controls.Add(this.lbl_info_bullets);
             this.grpBox_info.Controls.Add(this.lbl_info_obstacles);
             this.grpBox_info.Controls.Add(this.lbl_info_speedy);
@@ -213,7 +215,7 @@
             // 
             this.lbl_info_bullets.AutoSize = true;
             this.lbl_info_bullets.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_bullets.Location = new System.Drawing.Point(531, 26);
+            this.lbl_info_bullets.Location = new System.Drawing.Point(574, 26);
             this.lbl_info_bullets.Name = "lbl_info_bullets";
             this.lbl_info_bullets.Size = new System.Drawing.Size(56, 21);
             this.lbl_info_bullets.TabIndex = 7;
@@ -233,7 +235,7 @@
             // 
             this.lbl_info_speedy.AutoSize = true;
             this.lbl_info_speedy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_speedy.Location = new System.Drawing.Point(401, 78);
+            this.lbl_info_speedy.Location = new System.Drawing.Point(444, 78);
             this.lbl_info_speedy.Name = "lbl_info_speedy";
             this.lbl_info_speedy.Size = new System.Drawing.Size(61, 21);
             this.lbl_info_speedy.TabIndex = 5;
@@ -243,7 +245,7 @@
             // 
             this.lbl_info_slow.AutoSize = true;
             this.lbl_info_slow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_slow.Location = new System.Drawing.Point(401, 26);
+            this.lbl_info_slow.Location = new System.Drawing.Point(444, 26);
             this.lbl_info_slow.Name = "lbl_info_slow";
             this.lbl_info_slow.Size = new System.Drawing.Size(44, 21);
             this.lbl_info_slow.TabIndex = 4;
@@ -253,7 +255,7 @@
             // 
             this.lbl_info_invincible.AutoSize = true;
             this.lbl_info_invincible.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_invincible.Location = new System.Drawing.Point(242, 26);
+            this.lbl_info_invincible.Location = new System.Drawing.Point(285, 26);
             this.lbl_info_invincible.Name = "lbl_info_invincible";
             this.lbl_info_invincible.Size = new System.Drawing.Size(76, 21);
             this.lbl_info_invincible.TabIndex = 3;
@@ -263,7 +265,7 @@
             // 
             this.lbl_info_doubleFood.AutoSize = true;
             this.lbl_info_doubleFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_info_doubleFood.Location = new System.Drawing.Point(242, 78);
+            this.lbl_info_doubleFood.Location = new System.Drawing.Point(285, 78);
             this.lbl_info_doubleFood.Name = "lbl_info_doubleFood";
             this.lbl_info_doubleFood.Size = new System.Drawing.Size(95, 21);
             this.lbl_info_doubleFood.TabIndex = 2;
@@ -287,7 +289,7 @@
             this.lbl_snekSize.Name = "lbl_snekSize";
             this.lbl_snekSize.Size = new System.Drawing.Size(78, 21);
             this.lbl_snekSize.TabIndex = 0;
-            this.lbl_snekSize.Text = "Lenght : 0";
+            this.lbl_snekSize.Text = "Length : 0";
             // 
             // btn_Help
             // 
@@ -322,6 +324,16 @@
             // tmr_grpboxpaint
             // 
             this.tmr_grpboxpaint.Tick += new System.EventHandler(this.tmr_grpboxpaint_Tick);
+            // 
+            // lbl_currentscore
+            // 
+            this.lbl_currentscore.AutoSize = true;
+            this.lbl_currentscore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_currentscore.Location = new System.Drawing.Point(151, 26);
+            this.lbl_currentscore.Name = "lbl_currentscore";
+            this.lbl_currentscore.Size = new System.Drawing.Size(69, 21);
+            this.lbl_currentscore.TabIndex = 8;
+            this.lbl_currentscore.Text = "Score : 0";
             // 
             // Form1
             // 
@@ -376,6 +388,7 @@
         private System.Windows.Forms.Label lbl_info_bullets;
         private System.Windows.Forms.Button btn_opencfg;
         private System.Windows.Forms.Timer tmr_grpboxpaint;
+        private System.Windows.Forms.Label lbl_currentscore;
     }
 
 

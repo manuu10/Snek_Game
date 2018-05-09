@@ -78,6 +78,14 @@ namespace Snek_Game
             250,    // Speedy
             650     // Bullets
         };
+        public static readonly int[] score =
+        {
+            10,    // Invincible
+            5,     // DoubleFood
+            15,    // Slow
+            20,    // Speedy
+            7      // Bullets
+        };
         public enum PowerUps
         {
             Invincible,

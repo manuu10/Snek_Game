@@ -72,7 +72,14 @@ namespace Snek_Game
                 if (snakeSnek.HitObject(snakeFood.Loc))
                 {
                     snakeSnek.AddSegment();
-                    if (doubleMaFood) snakeSnek.AddSegment();
+                    _currentscore += Food.score;
+
+                    if (doubleMaFood)
+                    {
+                        snakeSnek.AddSegment();
+                        _currentscore += Food.score;
+                    }
+
                     Point rPoint;
                     do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }
                     while (CheckIfTileIsUsed(rPoint));
@@ -108,6 +115,8 @@ namespace Snek_Game
                     if (snakeSnek.HitObject(_bonuses[i].loc) && !_bonuses[i].IsStarted())
                     {
                         _bonuses[i].StartTimer();
+                        _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
+                        if(doubleMaFood) _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
                         if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow) useSlowOrSpeed = true;
@@ -342,6 +351,7 @@ namespace Snek_Game
             UpdLabelSpeed();
             UpdLabelLength();
             UpdLabelObstacle();
+            UpdLabelScore();
             lbl_info_doubleFood.ForeColor = doubleMaFood ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_invincible.ForeColor = invincible ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_slow.ForeColor = slow ? Color.MediumSeaGreen : grpBox_info.ForeColor;

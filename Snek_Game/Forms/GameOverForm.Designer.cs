@@ -105,7 +105,7 @@
             this.btn_submit.FlatAppearance.BorderSize = 0;
             this.btn_submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_submit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_submit.Location = new System.Drawing.Point(129, 225);
+            this.btn_submit.Location = new System.Drawing.Point(156, 225);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(135, 37);
             this.btn_submit.TabIndex = 9;

@@ -4,6 +4,7 @@ namespace Snek_Game
 {
     class Food
     {
+        public static readonly int score = 5;
         public Food(Point loc)
         {
             Loc = loc;
