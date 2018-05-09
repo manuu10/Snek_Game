@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Snek_Game
 {
@@ -122,6 +123,32 @@ namespace Snek_Game
         {
             return MakeRandomARGB(255);
         }
+
+        public static List<Score_info> GetScoreboard(string path)
+        {
+            List<Score_info> Scoreboard = new List<Score_info>();
+            if (File.Exists(path))
+            {
+                try
+                {
+                    string line;
+                    StreamReader sr = new StreamReader(path);
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] teile = line.Split(':');
+                        string name = teile[0];
+                        int score = Convert.ToInt32(teile[1]);
+                        Scoreboard.Add(new Score_info(name, score));
+                    }
+                    sr.Dispose();
+                }
+                catch
+                {
+                    throw new FileLoadException("Could not load Scoreboard beacause of bad formatting", path);
+                }
+            }
+            return Scoreboard;
+        }
     }
     public class ManuProgressBar
     {
@@ -141,6 +168,18 @@ namespace Snek_Game
             Rectangle rect = new Rectangle(region.Location, s);
             gfx.FillRectangle(Brushes.Green,rect);
             gfx.DrawRectangle(Pens.White, region);
+        }
+    }
+
+    public class Score_info
+    {
+        public string name;
+        public int score;
+
+        public Score_info(string name, int score)
+        {
+            this.name = name;
+            this.score = score;
         }
     }
 }

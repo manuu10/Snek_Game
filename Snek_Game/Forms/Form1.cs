@@ -203,7 +203,7 @@ namespace Snek_Game
 
         private void btn_opencfg_Click(object sender, EventArgs e)
         {
-            
+
             var cw = new ConfigWindow(this)
             {
                 Parent = ParentForm,

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Snek_Game
 {
-    public partial class Form1
+    public partial class Form1 : Form
     {
         public void InitMyShit()
         {
@@ -268,6 +269,10 @@ namespace Snek_Game
                 #endregion
 
 
+            }
+            else
+            {
+                
             }
         }
 

@@ -203,7 +203,7 @@
             this.grpBox_info.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.grpBox_info.Location = new System.Drawing.Point(225, 3);
             this.grpBox_info.Name = "grpBox_info";
-            this.grpBox_info.Size = new System.Drawing.Size(1230, 127);
+            this.grpBox_info.Size = new System.Drawing.Size(941, 127);
             this.grpBox_info.TabIndex = 15;
             this.grpBox_info.TabStop = false;
             this.grpBox_info.Text = "Information";
