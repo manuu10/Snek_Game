@@ -18,6 +18,7 @@ namespace Snek_Game
         private bool _gameOver;
         private const int widht = 44;
         private const int height = 24;
+        private int _currentscore;
 
 
         #region entities

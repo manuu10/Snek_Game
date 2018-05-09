@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Snek_Game.Forms
+namespace Snek_Game
 {
     public partial class GameOverForm : Form
     {
@@ -17,7 +17,7 @@ namespace Snek_Game.Forms
             InitializeComponent();
             lbl_WndInfo.Text = Text;
             btn_submit.Left = (this.ClientSize.Width - btn_submit.Width) / 2;
-            btn_submit.Top = (this.ClientSize.Height - btn_submit.Height) / 2;
+            
             Score = score;
             lbl_score.Text = "Your final Score\n" +
                                     "is\n" +
@@ -64,7 +64,7 @@ namespace Snek_Game.Forms
             StreamWriter sw = new StreamWriter("Scoreboard.txt");
             foreach(var item in Scoreboard)
             {
-                sw.Write("{0} : {1}" + Environment.NewLine, item.name, item.score);
+                sw.Write("{0}:{1}" + Environment.NewLine, item.name, item.score);
             }
             sw.Dispose();
             this.Close();

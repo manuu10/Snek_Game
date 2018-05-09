@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Snek_Game
 {
-    public partial class Form1 : Form
+    public partial class Form1
     {
         public void InitMyShit()
         {
@@ -26,7 +26,8 @@ namespace Snek_Game
                 new ManuProgressBar(new Rectangle(lbl_info_speedy.Left,lbl_info_speedy.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Speedy]),
                 new ManuProgressBar(new Rectangle(lbl_info_bullets.Left,lbl_info_bullets.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Bullets])
             };
-            
+
+            _currentscore = 0;
 
             UpdLabelSpeed();
             UpdLabelLength();
@@ -272,7 +273,14 @@ namespace Snek_Game
             }
             else
             {
-                
+                btn_stop.PerformClick();
+                var gw = new GameOverForm(_currentscore)
+                {
+                    Parent = ParentForm,
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                gw.ShowDialog();
+                btn_reset.PerformClick();
             }
         }
 

@@ -134,6 +134,7 @@ namespace Snek_Game
             _snakeSpeedUpPeriod = 0;
             _obstacleSpawnPeriod = 0;
             _powerUpSpawnPeriod = 0;
+            _currentscore = 0;
             _bonuses.Clear();
             _obstacles.Clear();
             _bullets.Clear();

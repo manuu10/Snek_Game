@@ -1,4 +1,4 @@
-﻿namespace Snek_Game.Forms
+﻿namespace Snek_Game
 {
     partial class GameOverForm
     {
@@ -69,6 +69,7 @@
             // lbl_score
             // 
             this.lbl_score.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_score.Location = new System.Drawing.Point(0, 27);
             this.lbl_score.Name = "lbl_score";
             this.lbl_score.Size = new System.Drawing.Size(448, 85);
