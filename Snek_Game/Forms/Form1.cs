@@ -115,14 +115,14 @@ namespace Snek_Game
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Up)
-                snakeSnek.SetDirection(new Size(0, -1));
-            else if (keyData == Keys.Down)
-                snakeSnek.SetDirection(new Size(0, 1));
-            else if (keyData == Keys.Left)
-                snakeSnek.SetDirection(new Size(-1, 0));
-            else if (keyData == Keys.Right)
-                snakeSnek.SetDirection(new Size(1, 0));
+            if (keyData == Keys.Up && snakeSnek.GetSnakeDirection() != Directions.down())
+                snakeSnek.SetDirection(Directions.up());
+            else if (keyData == Keys.Down && snakeSnek.GetSnakeDirection() != Directions.up())
+                snakeSnek.SetDirection(Directions.down());
+            else if (keyData == Keys.Left && snakeSnek.GetSnakeDirection() != Directions.right())
+                snakeSnek.SetDirection(Directions.left());
+            else if (keyData == Keys.Right && snakeSnek.GetSnakeDirection() != Directions.left())
+                snakeSnek.SetDirection(Directions.right());
             else if (keyData == Keys.K)
                 snakeSnek.AddSegment();
             else if (keyData == Keys.F && canShootBullets)

@@ -150,6 +150,7 @@ namespace Snek_Game
             return Scoreboard;
         }
     }
+
     public class ManuProgressBar
     {
         public ManuProgressBar(Rectangle Region, int MaxValue)
@@ -180,6 +181,26 @@ namespace Snek_Game
         {
             this.name = name;
             this.score = score;
+        }
+    }
+
+    public static class Directions
+    {
+        public static Size up()
+        {
+            return new Size(0, -1);
+        }
+        public static Size down()
+        {
+            return new Size(0, 1);
+        }
+        public static Size left()
+        {
+            return new Size(-1, 0);
+        }
+        public static Size right()
+        {
+            return new Size(1, 0);
         }
     }
 }

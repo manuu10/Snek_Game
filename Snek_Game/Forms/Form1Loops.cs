@@ -414,22 +414,34 @@ namespace Snek_Game
                 {
                     if (mJoy.buttons[0])
                     {
-                        snakeSnek.SetDirection(new Size(0, 1));
+                        if (snakeSnek.GetSnakeDirection() != Directions.up())
+                        {
+                            snakeSnek.SetDirection(Directions.down());
+                        }
                     }
 
                     if (mJoy.buttons[1])
                     {
-                        snakeSnek.SetDirection(new Size(1, 0));
+                        if (snakeSnek.GetSnakeDirection() != Directions.left())
+                        {
+                            snakeSnek.SetDirection(Directions.right());
+                        }
                     }
 
                     if (mJoy.buttons[2])
                     {
-                        snakeSnek.SetDirection(new Size(-1, 0));
+                        if (snakeSnek.GetSnakeDirection() != Directions.right())
+                        {
+                            snakeSnek.SetDirection(Directions.left());
+                        }
                     }
 
                     if (mJoy.buttons[3])
                     {
-                        snakeSnek.SetDirection(new Size(0, -1));
+                        if (snakeSnek.GetSnakeDirection() != Directions.down())
+                        {
+                            snakeSnek.SetDirection(Directions.up());
+                        }
                     }
 
                     if (mJoy.buttons[4])
@@ -442,11 +454,12 @@ namespace Snek_Game
                         _bullets.Add(new Bullet(snakeSnek.GetHeadLocation(), snakeSnek.GetSnakeDirection()));
                     }
                 }
-
+                //select / options
                 if (mJoy.buttons[6])
                 {
                     btn_Help.PerformClick();
                 }
+                //start button
                 if (mJoy.buttons[7])
                 {
                     btn_reset.PerformClick();
