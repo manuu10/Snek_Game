@@ -1,0 +1,17 @@
+﻿[snake]
+startspeed = 40
+maxspeed = 6
+speedyspeed = 3
+slowspeed = 50
+speeduptime = 240
+
+[powerup]
+spawnTime = 720
+maxAmount = 10
+
+[obstacle]
+spawnTime = 900
+maxAmount = 100
+
+[other]
+glowing = False

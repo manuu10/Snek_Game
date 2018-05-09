@@ -70,6 +70,8 @@ namespace Snek_Game
         {
             string path = string.Empty;
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.RestoreDirectory = true;
+            ofd.InitialDirectory = Environment.CurrentDirectory + @"\Configs\";
             ofd.Filter = "Ini files (*.ini)|*.ini";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -79,7 +81,6 @@ namespace Snek_Game
             if (!string.IsNullOrEmpty(path))
             {
                 loadconf(path);
-                debuglabel.Text = "Configuration loaded!";
                 return;
             }
             debuglabel.Text = "Loading cancelled";           
@@ -110,12 +111,15 @@ namespace Snek_Game
             {
                 chk_glowing.Checked = false;
             }
+            debuglabel.Text = "Configuration loaded!";
         }
 
         private void btn_savecfg_Click(object sender, EventArgs e)
         {
             string path = string.Empty;
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.RestoreDirectory = true;
+            sfd.InitialDirectory = Environment.CurrentDirectory + @"\Configs\";
             sfd.Filter = "Ini files (*.ini)|*.ini";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
@@ -169,46 +173,9 @@ namespace Snek_Game
             debuglabel.Text = "Configuration applied!";
         }
 
-        //private string StringFromAllOptions()
-        //{
-            
-        //    var output = String.Format(
-        //            "[startspeed]\n" +
-        //            "{0}\n" +
-        //            "[maxspeed]\n" +
-        //            "{1}\n" +
-        //            "[speedyspeed]\n" +
-        //            "{2}\n" +
-        //            "[slowspeed]\n" +
-        //            "{3}\n" +
-        //            "[speeduptime]\n" +
-        //            "{4}\n\n" +
-
-        //            "[powerupspawntime]\n" +
-        //            "{5}\n" +
-        //            "[maxpowerups]\n" +
-        //            "{6}\n\n" +
-
-        //            "[obstaclespawntime]\n" +
-        //            "{7}\n" +
-        //            "[maxobstacle]\n" +
-        //            "{8}",
-        //            txt_startspeed.Text,
-        //            txt_maxspeed.Text,
-        //            txt_speedySpeed.Text,
-        //            txt_slowSpeed.Text,
-        //            txt_speedUpTime.Text,
-        //            txt_pwupTime.Text,
-        //            txt_maxPwup.Text,
-        //            txt_obsTime.Text,
-        //            txt_maxObs.Text);
-        //    output = output.Replace("\n", Environment.NewLine);
-        //    return output;
-        //}
-
         private void btn_res_def_Click(object sender, EventArgs e)
         {
-            loadconf("defaultconfig.DEFAULT_INI");
+            loadconf(@"Configs\defaultconfig.DEFAULT_INI");
         }
 
         private void txt_TextChanged(object sender, EventArgs e)
@@ -218,6 +185,14 @@ namespace Snek_Game
                 ((TextBox)sender).Text = "0";
             }
             ((TextBox)sender).Text = ((TextBox)sender).Text.Replace("-", "");
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
