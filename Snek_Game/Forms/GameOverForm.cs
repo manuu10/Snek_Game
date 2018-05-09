@@ -59,7 +59,7 @@ namespace Snek_Game
         {
             Scoreboard = Misc.GetScoreboard("Scoreboard.txt");
             Scoreboard.Add(new Score_info(txt_name.Text, Score));
-            Scoreboard = Scoreboard.OrderBy(x => x.score).ToList();
+            Scoreboard = Scoreboard.OrderByDescending(x => x.score).ToList();
 
             StreamWriter sw = new StreamWriter("Scoreboard.txt");
             foreach(var item in Scoreboard)

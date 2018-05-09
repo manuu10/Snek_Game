@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Snek_Game
 {
@@ -220,6 +221,19 @@ namespace Snek_Game
             btn_start.PerformClick();
         }
 
-        
+        private void grpbox_Scoreboard_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics gfx = e.Graphics;
+            List<Score_info> Scoreboard = Misc.GetScoreboard("Scoreboard.txt");
+            Point start = new Point(20,35);
+            int counter = 1;
+            foreach(var item in Scoreboard)
+            {
+                gfx.DrawString(string.Format("{0}.{1} : {2}", counter, item.name, item.score), new Font("Arial", 13, FontStyle.Italic), new SolidBrush(Color.White), start);
+                counter++;
+                start.Y = start.Y + 20;
+                if (counter > 3) break;
+            }
+        }
     }
 }

@@ -289,6 +289,7 @@ namespace Snek_Game
                     StartPosition = FormStartPosition.CenterParent
                 };
                 gw.ShowDialog();
+                grpbox_Scoreboard.Invalidate();
                 btn_reset.PerformClick();
             }
         }

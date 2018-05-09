@@ -53,6 +53,7 @@
             this.btn_opencfg = new System.Windows.Forms.Button();
             this.tmr_grpboxpaint = new System.Windows.Forms.Timer(this.components);
             this.lbl_currentscore = new System.Windows.Forms.Label();
+            this.grpbox_Scoreboard = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -178,6 +179,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.grpbox_Scoreboard);
             this.panel1.Controls.Add(this.grpBox_info);
             this.panel1.Controls.Add(this.btn_start);
             this.panel1.Controls.Add(this.btnadd);
@@ -335,6 +337,18 @@
             this.lbl_currentscore.TabIndex = 8;
             this.lbl_currentscore.Text = "Score : 0";
             // 
+            // grpbox_Scoreboard
+            // 
+            this.grpbox_Scoreboard.Font = new System.Drawing.Font("SketchFlow Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpbox_Scoreboard.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.grpbox_Scoreboard.Location = new System.Drawing.Point(1182, 3);
+            this.grpbox_Scoreboard.Name = "grpbox_Scoreboard";
+            this.grpbox_Scoreboard.Size = new System.Drawing.Size(280, 127);
+            this.grpbox_Scoreboard.TabIndex = 16;
+            this.grpbox_Scoreboard.TabStop = false;
+            this.grpbox_Scoreboard.Text = "Scoreboard";
+            this.grpbox_Scoreboard.Paint += new System.Windows.Forms.PaintEventHandler(this.grpbox_Scoreboard_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,6 +403,7 @@
         private System.Windows.Forms.Button btn_opencfg;
         private System.Windows.Forms.Timer tmr_grpboxpaint;
         private System.Windows.Forms.Label lbl_currentscore;
+        private System.Windows.Forms.GroupBox grpbox_Scoreboard;
     }
 
 
