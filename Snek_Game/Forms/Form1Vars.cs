@@ -59,10 +59,10 @@ namespace Snek_Game
         private bool invincible;
 
         private bool slow;
-        private bool useSlowOrSpeed;
         private bool speedy;
 
         private bool canShootBullets;
+        private bool ghosting;
         #endregion
 
         #region other settings

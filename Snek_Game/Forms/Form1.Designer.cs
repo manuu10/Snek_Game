@@ -40,7 +40,9 @@
             this.btn_reset = new System.Windows.Forms.Button();
             this.chk_toggleGrid = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grpbox_Scoreboard = new System.Windows.Forms.GroupBox();
             this.grpBox_info = new System.Windows.Forms.GroupBox();
+            this.lbl_currentscore = new System.Windows.Forms.Label();
             this.lbl_info_bullets = new System.Windows.Forms.Label();
             this.lbl_info_obstacles = new System.Windows.Forms.Label();
             this.lbl_info_speedy = new System.Windows.Forms.Label();
@@ -52,8 +54,7 @@
             this.btn_Help = new System.Windows.Forms.Button();
             this.btn_opencfg = new System.Windows.Forms.Button();
             this.tmr_grpboxpaint = new System.Windows.Forms.Timer(this.components);
-            this.lbl_currentscore = new System.Windows.Forms.Label();
-            this.grpbox_Scoreboard = new System.Windows.Forms.GroupBox();
+            this.lbl_info_ghosting = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbGameCanvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpBox_info.SuspendLayout();
@@ -192,8 +193,21 @@
             this.panel1.Size = new System.Drawing.Size(1468, 137);
             this.panel1.TabIndex = 15;
             // 
+            // grpbox_Scoreboard
+            // 
+            this.grpbox_Scoreboard.Font = new System.Drawing.Font("SketchFlow Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpbox_Scoreboard.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.grpbox_Scoreboard.Location = new System.Drawing.Point(1182, 3);
+            this.grpbox_Scoreboard.Name = "grpbox_Scoreboard";
+            this.grpbox_Scoreboard.Size = new System.Drawing.Size(280, 127);
+            this.grpbox_Scoreboard.TabIndex = 16;
+            this.grpbox_Scoreboard.TabStop = false;
+            this.grpbox_Scoreboard.Text = "Scoreboard";
+            this.grpbox_Scoreboard.Paint += new System.Windows.Forms.PaintEventHandler(this.grpbox_Scoreboard_Paint);
+            // 
             // grpBox_info
             // 
+            this.grpBox_info.Controls.Add(this.lbl_info_ghosting);
             this.grpBox_info.Controls.Add(this.lbl_currentscore);
             this.grpBox_info.Controls.Add(this.lbl_info_bullets);
             this.grpBox_info.Controls.Add(this.lbl_info_obstacles);
@@ -212,6 +226,16 @@
             this.grpBox_info.TabStop = false;
             this.grpBox_info.Text = "Information";
             this.grpBox_info.Paint += new System.Windows.Forms.PaintEventHandler(this.grpBox_info_Paint);
+            // 
+            // lbl_currentscore
+            // 
+            this.lbl_currentscore.AutoSize = true;
+            this.lbl_currentscore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_currentscore.Location = new System.Drawing.Point(151, 26);
+            this.lbl_currentscore.Name = "lbl_currentscore";
+            this.lbl_currentscore.Size = new System.Drawing.Size(69, 21);
+            this.lbl_currentscore.TabIndex = 8;
+            this.lbl_currentscore.Text = "Score : 0";
             // 
             // lbl_info_bullets
             // 
@@ -327,27 +351,15 @@
             // 
             this.tmr_grpboxpaint.Tick += new System.EventHandler(this.tmr_grpboxpaint_Tick);
             // 
-            // lbl_currentscore
+            // lbl_info_ghosting
             // 
-            this.lbl_currentscore.AutoSize = true;
-            this.lbl_currentscore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_currentscore.Location = new System.Drawing.Point(151, 26);
-            this.lbl_currentscore.Name = "lbl_currentscore";
-            this.lbl_currentscore.Size = new System.Drawing.Size(69, 21);
-            this.lbl_currentscore.TabIndex = 8;
-            this.lbl_currentscore.Text = "Score : 0";
-            // 
-            // grpbox_Scoreboard
-            // 
-            this.grpbox_Scoreboard.Font = new System.Drawing.Font("SketchFlow Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpbox_Scoreboard.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.grpbox_Scoreboard.Location = new System.Drawing.Point(1182, 3);
-            this.grpbox_Scoreboard.Name = "grpbox_Scoreboard";
-            this.grpbox_Scoreboard.Size = new System.Drawing.Size(280, 127);
-            this.grpbox_Scoreboard.TabIndex = 16;
-            this.grpbox_Scoreboard.TabStop = false;
-            this.grpbox_Scoreboard.Text = "Scoreboard";
-            this.grpbox_Scoreboard.Paint += new System.Windows.Forms.PaintEventHandler(this.grpbox_Scoreboard_Paint);
+            this.lbl_info_ghosting.AutoSize = true;
+            this.lbl_info_ghosting.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_info_ghosting.Location = new System.Drawing.Point(574, 78);
+            this.lbl_info_ghosting.Name = "lbl_info_ghosting";
+            this.lbl_info_ghosting.Size = new System.Drawing.Size(51, 21);
+            this.lbl_info_ghosting.TabIndex = 9;
+            this.lbl_info_ghosting.Text = "Ghost";
             // 
             // Form1
             // 
@@ -404,6 +416,7 @@
         private System.Windows.Forms.Timer tmr_grpboxpaint;
         private System.Windows.Forms.Label lbl_currentscore;
         private System.Windows.Forms.GroupBox grpbox_Scoreboard;
+        private System.Windows.Forms.Label lbl_info_ghosting;
     }
 
 

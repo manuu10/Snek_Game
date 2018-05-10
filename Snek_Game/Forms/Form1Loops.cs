@@ -24,7 +24,8 @@ namespace Snek_Game
                 new ManuProgressBar(new Rectangle(lbl_info_doubleFood.Left,lbl_info_doubleFood.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.DoubleFood]),
                 new ManuProgressBar(new Rectangle(lbl_info_slow.Left,lbl_info_slow.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Slow]),
                 new ManuProgressBar(new Rectangle(lbl_info_speedy.Left,lbl_info_speedy.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Speedy]),
-                new ManuProgressBar(new Rectangle(lbl_info_bullets.Left,lbl_info_bullets.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Bullets])
+                new ManuProgressBar(new Rectangle(lbl_info_bullets.Left,lbl_info_bullets.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Bullets]),
+                new ManuProgressBar(new Rectangle(lbl_info_ghosting.Left,lbl_info_ghosting.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Ghost])
             };
             _powerupList = new ProportionValue<Bonus.PowerUps>[]
             {
@@ -55,14 +56,14 @@ namespace Snek_Game
             {
                 // if snek is not invicible,
                 // Game is rip if snek left board or hit itself
-                if ((!brd.IsInsideBoard(snakeSnek.GetHeadLocation()) || snakeSnek.HitOwnBody()) && !invincible)
+                if ((!brd.IsInsideBoard(snakeSnek.GetHeadLocation()) || snakeSnek.HitOwnBody() && !ghosting) && !invincible)
                 {
                     _gameOver = true;
                 }
                 // check if snake hit an obstacle
                 foreach (var o in _obstacles)
                 {
-                    if (snakeSnek.HitObject(o.Loc) && !invincible)
+                    if (snakeSnek.HitObject(o.Loc) && !invincible && !ghosting)
                     {
                         _gameOver = true;
                         break;
@@ -78,7 +79,7 @@ namespace Snek_Game
                 #region Collision Detection
                 // Grow snake when food is hit
                 // place Food at new unused location
-                if (snakeSnek.HitObject(snakeFood.Loc))
+                if (snakeSnek.HitObject(snakeFood.Loc) && !ghosting)
                 {
                     snakeSnek.AddSegment();
                     _currentscore += Food.score;
@@ -121,7 +122,7 @@ namespace Snek_Game
                 for (var i = 0; i < _bonuses.Count; i++)
                 {
                     // if snake hit powerup and powerup isnt started yet, start powerups Timer 
-                    if (snakeSnek.HitObject(_bonuses[i].loc) && !_bonuses[i].IsStarted())
+                    if (snakeSnek.HitObject(_bonuses[i].loc) && !_bonuses[i].IsStarted() && !ghosting)
                     {
                         _bonuses[i].StartTimer();
                         _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
@@ -188,6 +189,12 @@ namespace Snek_Game
                                     canShootBullets = true;
                                     break;
                                 }
+                            case (int)Bonus.PowerUps.Ghost:
+                                {
+                                    snakeSnek.EnableGhostEffect();
+                                    ghosting = true;
+                                    break;
+                                }
                         }
                         _bonuses[i].Update();
                     }
@@ -223,6 +230,12 @@ namespace Snek_Game
                             case (int)Bonus.PowerUps.Bullets:
                                 {
                                     canShootBullets = false;
+                                    break;
+                                }
+                            case (int)Bonus.PowerUps.Ghost:
+                                {
+                                    snakeSnek.DisableGhostEffect();
+                                    ghosting = false;
                                     break;
                                 }
                         }
@@ -319,6 +332,8 @@ namespace Snek_Game
                 #region Draw Entities
                 if (!glowing)
                 {
+                    if (ghosting) snakeSnek.Draw(brd);
+
                     snakeFood.Draw(brd);
                     foreach (var b in _bonuses)
                     {
@@ -334,10 +349,12 @@ namespace Snek_Game
                     {
                         b.Draw(brd);
                     }
-                    snakeSnek.Draw(brd);
+
+                    if(!ghosting)snakeSnek.Draw(brd);
                 }
                 else
                 {
+                    if (ghosting) snakeSnek.DrawGlowing(brd, Color.White);
                     snakeFood.DrawGlowing(brd,Color.LightGreen);
                     foreach (var b in _bonuses)
                     {
@@ -353,7 +370,7 @@ namespace Snek_Game
                     {
                         b.DrawGlowing(brd);
                     }
-                    snakeSnek.DrawGlowing(brd,Color.White);
+                    if(!ghosting)snakeSnek.DrawGlowing(brd,Color.White);
                 }
                 #endregion
             }

@@ -23,9 +23,17 @@ namespace Snek_Game
             {
                 brd.DrawRoundedRectCell(Loc, col);
             }
+            public void DrawOutlined(Board brd)
+            {
+                brd.DrawRoundedRectCellOutlined(Loc, Color.Black, Color.Maroon);
+            }
             public void DrawGlowing(Board brd,Color glowColor)
             {
                 brd.DrawRoundedRectGlowingCell(Loc, col, glowColor, 7, 128);
+            }
+            public void DrawGlowingOutlined(Board brd, Color glowColor)
+            {
+                brd.DrawRoundedRectGlowingCell(Loc, Color.Black, glowColor, 8, 200);
             }
         }
 
@@ -41,6 +49,7 @@ namespace Snek_Game
         private readonly List<Segment> nSegments = new List<Segment>();
         private Size dir = new Size(1,0);
 
+        private bool _ghosting = false;
         private readonly Color _headColor = Color.FromArgb(0,67,10);
         private readonly Color[] _bodyColors =
         {
@@ -76,16 +85,37 @@ namespace Snek_Game
 
         public void Draw(Board brd)
         {
-            for (int i = nSegments.Count - 1; i >= 0; i--)
+            if (!_ghosting)
             {
-                nSegments[i].Draw(brd);
+                for (int i = nSegments.Count - 1; i >= 0; i--)
+                {
+                    nSegments[i].Draw(brd);
+                }
+            }
+            else
+            {
+                for (int i = nSegments.Count - 1; i >= 0; i--)
+                {
+                    nSegments[i].DrawOutlined(brd);
+                }
             }
         }
         public void DrawGlowing(Board brd,Color glowColor)
         {
-            for (int i = nSegments.Count - 1; i >= 0; i--)
+            if (_ghosting)
             {
-                nSegments[i].DrawGlowing(brd,glowColor);
+                glowColor = Color.Maroon;
+                for (int i = nSegments.Count - 1; i >= 0; i--)
+                {
+                    nSegments[i].DrawGlowingOutlined(brd, glowColor);
+                }
+            }
+            else
+            {
+                for (int i = nSegments.Count - 1; i >= 0; i--)
+                {
+                    nSegments[i].DrawGlowing(brd, glowColor);
+                }
             }
         }
         public void AddSegment()
@@ -135,7 +165,8 @@ namespace Snek_Game
             }
             
         }
-
+        public void EnableGhostEffect() { _ghosting = true; }
+        public void DisableGhostEffect() { _ghosting = false; }
 
         public void Update()
         {
