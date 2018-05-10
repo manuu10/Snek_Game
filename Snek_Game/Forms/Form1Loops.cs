@@ -26,6 +26,14 @@ namespace Snek_Game
                 new ManuProgressBar(new Rectangle(lbl_info_speedy.Left,lbl_info_speedy.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Speedy]),
                 new ManuProgressBar(new Rectangle(lbl_info_bullets.Left,lbl_info_bullets.Bottom + 3,70,10),Bonus.durationsMax[(int)Bonus.PowerUps.Bullets])
             };
+            _powerupList = new ProportionValue<Bonus.PowerUps>[]
+            {
+                ProportionValue.Create(0.2, Bonus.PowerUps.Invincible),
+                ProportionValue.Create(0.2, Bonus.PowerUps.Bullets),
+                ProportionValue.Create(0.2, Bonus.PowerUps.Slow),
+                ProportionValue.Create(0.2, Bonus.PowerUps.Speedy),
+                ProportionValue.Create(0.2, Bonus.PowerUps.DoubleFood)
+            };
 
             _currentscore = 0;
 
@@ -240,12 +248,7 @@ namespace Snek_Game
                     _powerUpSpawnPeriod++;
                     if (_powerUpSpawnPeriod >= _powerUpSpawnPeriodMax)
                     {
-                        //every powerup has a 1 / 5 chance to spawn
-                        int randPow = Rnd.Next(0, 1250);
-                        randPow = randPow - randPow % 250;
-                        randPow = randPow / 250;
-
-                        Bonus.PowerUps pow = (Bonus.PowerUps)randPow;
+                        Bonus.PowerUps pow = _powerupList.ChooseByRandom();
 
                         Point rPoint;
                         do { rPoint = new Point(Rnd.Next(0, widht), Rnd.Next(0, height)); }

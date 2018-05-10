@@ -14,6 +14,7 @@ namespace Snek_Game
         private readonly Point startLocation = new Point(8,1);
 
         private ManuProgressBar[] manuProgress;
+        private ProportionValue<Bonus.PowerUps>[] _powerupList;
 
         private bool _gameOver;
         private const int widht = 44;
