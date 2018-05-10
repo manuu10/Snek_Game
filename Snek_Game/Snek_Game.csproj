@@ -158,12 +158,6 @@
   <ItemGroup>
     <None Include="Images\GameOver.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\_powerUp_Star.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\_powerUp_Star.png" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
