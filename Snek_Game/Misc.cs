@@ -147,6 +147,7 @@ namespace Snek_Game
                     throw new FileLoadException("Could not load Scoreboard beacause of bad formatting", path);
                 }
             }
+            Scoreboard = Scoreboard.OrderByDescending(x => x.score).ToList();
             return Scoreboard;
         }
     }
