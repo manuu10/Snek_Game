@@ -45,6 +45,11 @@ namespace Snek_Game
         {
             if (!_started)
             {
+                if(PowerUpType == (int)PowerUps.Ghost)
+                {
+                    DrawGlowing(brd);
+                    return;
+                }
                 brd.DrawRoundedRectCell(loc, colPallete[PowerUpType]);
             }
         }
@@ -52,6 +57,11 @@ namespace Snek_Game
         {
             if (!_started)
             {
+                if(PowerUpType == (int)PowerUps.Ghost)
+                {
+                    brd.DrawRoundedRectGlowingCell(loc, colPallete[PowerUpType], Color.White, 5, 255);
+                    return;
+                }
                 brd.DrawRoundedRectGlowingCell(loc, colPallete[PowerUpType], colPallete[PowerUpType], 5, 255);
             }
         }
@@ -67,7 +77,9 @@ namespace Snek_Game
             Color.Yellow,       // DoubleFood
             Color.DeepSkyBlue,  // Slow
             Color.Red,          // Speedy
-            Color.White         // Bullets
+            Color.White,        // Bullets
+            Color.Black         // Ghost
+
         };
 
         public static readonly int[] durationsMax =
@@ -76,7 +88,8 @@ namespace Snek_Game
             500,    // DoubleFood
             300,    // Slow
             250,    // Speedy
-            650     // Bullets
+            650,    // Bullets
+            350     // Ghost
         };
         public static readonly int[] score =
         {
@@ -84,7 +97,8 @@ namespace Snek_Game
             5,     // DoubleFood
             15,    // Slow
             20,    // Speedy
-            7      // Bullets
+            7,     // Bullets
+            30     // Ghost
         };
         public enum PowerUps
         {
@@ -92,7 +106,8 @@ namespace Snek_Game
             DoubleFood,
             Slow,
             Speedy,
-            Bullets
+            Bullets,
+            Ghost
         }
         #endregion  
     }

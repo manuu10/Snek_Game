@@ -28,11 +28,12 @@ namespace Snek_Game
             };
             _powerupList = new ProportionValue<Bonus.PowerUps>[]
             {
-                ProportionValue.Create(0.2, Bonus.PowerUps.Invincible),
-                ProportionValue.Create(0.2, Bonus.PowerUps.Bullets),
+                ProportionValue.Create(0.1, Bonus.PowerUps.Invincible),
+                ProportionValue.Create(0.1, Bonus.PowerUps.Bullets),
                 ProportionValue.Create(0.2, Bonus.PowerUps.Slow),
                 ProportionValue.Create(0.2, Bonus.PowerUps.Speedy),
-                ProportionValue.Create(0.2, Bonus.PowerUps.DoubleFood)
+                ProportionValue.Create(0.3, Bonus.PowerUps.DoubleFood),
+                ProportionValue.Create(0.1, Bonus.PowerUps.Ghost)
             };
 
             _currentscore = 0;
