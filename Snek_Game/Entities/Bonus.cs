@@ -47,7 +47,7 @@ namespace Snek_Game
             {
                 if(PowerUpType == (int)PowerUps.Ghost)
                 {
-                    DrawGlowing(brd);
+                    brd.DrawRoundedRectCellOutlined(loc, colPallete[PowerUpType], Color.White);
                     return;
                 }
                 brd.DrawRoundedRectCell(loc, colPallete[PowerUpType]);
