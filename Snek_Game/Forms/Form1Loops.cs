@@ -127,8 +127,21 @@ namespace Snek_Game
                         if(doubleMaFood) _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
-                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow) useSlowOrSpeed = true;
-                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Speedy) useSlowOrSpeed = false;
+                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow)
+                        {
+                            _bonuses.RemoveAll(x =>
+                                x.GetPowerUpType() == (int)Bonus.PowerUps.Speedy &&
+                                x.IsStarted()
+                                );
+                        }
+                        if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Speedy)
+                        {
+                            _bonuses.RemoveAll(x =>
+                                x.GetPowerUpType() == (int)Bonus.PowerUps.Slow &&
+                                x.IsStarted()
+                                );
+                        }
+                        
                     }
 
                     // apply shit for while Bonus is active
@@ -148,33 +161,25 @@ namespace Snek_Game
                                     break;
                                 }
                             case (int)Bonus.PowerUps.Slow:
-                                {
-                                    if (useSlowOrSpeed)
+                                { 
+                                    if (!slow && !speedy)
                                     {
-                                        if (!slow && !speedy)
-                                        {
-                                            _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
-                                        }
-                                        _snakeMovePeriodMax = _snakeMovePeriodMaxMax - 1;
-                                        slow = true;
-                                        speedy = false;
+                                        _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
                                     }
-
+                                    _snakeMovePeriodMax = _snakeMovePeriodMaxMax - 1;
+                                    slow = true;
+                                    speedy = false;
                                     break;
                                 }
                             case (int)Bonus.PowerUps.Speedy:
                                 {
-                                    if (!useSlowOrSpeed)
+                                    if (!speedy && !slow)
                                     {
-                                        if (!speedy && !slow)
-                                        {
-                                            _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
-                                        }
-                                        _snakeMovePeriodMax = _snakeMovePeriodMinMin;
-                                        speedy = true;
-                                        slow = false;
+                                        _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
                                     }
-
+                                    _snakeMovePeriodMax = _snakeMovePeriodMinMin;
+                                    speedy = true;
+                                    slow = false;
                                     break;
                                 }
                             case (int)Bonus.PowerUps.Bullets:
@@ -226,6 +231,8 @@ namespace Snek_Game
                 #endregion
 
                 #region SpawnAndSpeed Handling
+                /////////////////////////////////////////////////
+                //          Snake Speed
                 _snakeMovePeriod++;
                 if (_snakeMovePeriod >= _snakeMovePeriodMax)
                 {
@@ -243,6 +250,8 @@ namespace Snek_Game
                     }
                 }
 
+                /////////////////////////////////////////////////
+                //          Powerup Spawning
                 if (_bonuses.Count < _powerUpAmountMax)
                 {
                     _powerUpSpawnPeriod++;
@@ -258,6 +267,8 @@ namespace Snek_Game
                     }
                 }
 
+                /////////////////////////////////////////////////
+                //          Obstacle Spawning
                 if (_obstacles.Count < _obstacleAmountMax)
                 {
                     _obstacleSpawnPeriod++;
@@ -271,6 +282,8 @@ namespace Snek_Game
                     }
                 }
 
+                /////////////////////////////////////////////////
+                //          Bullet Speed
                 _bulletMovePeriod++;
                 if (_bulletMovePeriod >= _bulletMovePeriodMax)
                 {
