@@ -2,7 +2,7 @@
 
 namespace Snek_Game
 {
-    class Obstacle
+    public class Obstacle
     {
         public Obstacle(Point loc)
         {

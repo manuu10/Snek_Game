@@ -2,7 +2,7 @@
 
 namespace Snek_Game
 {
-    class Food
+    public class Food
     {
         public static readonly int score = 5;
         public Food(Point loc)

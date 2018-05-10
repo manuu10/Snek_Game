@@ -2,7 +2,7 @@
 
 namespace Snek_Game
 {
-    class Bonus
+    public class Bonus
     {
         public Bonus(Point Loc, PowerUps pow)
         {

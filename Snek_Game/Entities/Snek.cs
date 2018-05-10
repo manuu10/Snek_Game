@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Snek_Game
 {
-    class Snek
+    public class Snek
     {
         class Segment
         {

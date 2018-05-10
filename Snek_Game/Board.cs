@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace Snek_Game
 {
-    class Board
+    public class Board
     {
         public Board(int w,int h, int maxw,int maxh)
         {

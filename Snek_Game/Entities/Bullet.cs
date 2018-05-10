@@ -2,7 +2,7 @@
 
 namespace Snek_Game
 {
-    class Bullet
+    public class Bullet
     {
         public Bullet(Point loc, Size dir)
         {
