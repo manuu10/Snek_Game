@@ -22,7 +22,7 @@ namespace Snek_Game
                     Location = new Point(startX, startY),
                     Text = Enum.GetName(typeof(Bonus.PowerUps), val),
                     AutoSize = false,
-                    Size = new Size(150,30),
+                    Size = new Size(150, 30),
                     Font = new Font("Arial", 13, FontStyle.Bold, GraphicsUnit.Pixel),
                     ForeColor = Color.White,
                     TextAlign = ContentAlignment.MiddleLeft,
@@ -32,10 +32,10 @@ namespace Snek_Game
                 Label col = new Label
                 {
                     Name = txt.Text,
-                    Location = new Point(startX + txt.Width - 30, startY+5),
+                    Location = new Point(startX + txt.Width - 30, startY + 5),
                     BackColor = Bonus.colPallete[(int)val],
                     AutoSize = false,
-                    Size = new Size(20,20)
+                    Size = new Size(20, 20)
                 };
                 col.Click += Pickable_info_Click;
                 pnl_powerups.Controls.Add(txt);
@@ -66,7 +66,7 @@ namespace Snek_Game
                     Size = new Size(20, 20)
                 };
                 col.Click += Pickable_info_Click;
-                
+
                 col.Paint += FoodInfo_Paint;
                 pnl_powerups.Controls.Add(txt);
                 pnl_powerups.Controls.Add(col);
@@ -107,17 +107,15 @@ namespace Snek_Game
 
             if (this.Size.Height < startY)
             {
-                this.Size = new Size(this.Size.Width,startY + 60);
+                this.Size = new Size(this.Size.Width, startY + 60);
             }
-
         }
 
         private void Pickable_info_Click(object sender, EventArgs e)
         {
-            
             string message = "";
             string title = "";
-            switch(((Label)sender).Name)
+            switch (((Label)sender).Name)
             {
                 case nameof(Bonus.PowerUps.Invincible):
                     {
@@ -181,7 +179,7 @@ namespace Snek_Game
                         break;
                     }
             }
-            if(!string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(title))
+            if (!string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(title))
             {
                 using (var dmsg = new DarkMessageBox(message, title)
                 {
@@ -196,10 +194,11 @@ namespace Snek_Game
 
         private void FoodInfo_Paint(object sender, PaintEventArgs e)
         {
-            Label l = (Label) sender;
+            Label l = (Label)sender;
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             e.Graphics.FillEllipse(new SolidBrush(new Food(new Point(-1, -1)).c), 0, 0, l.Width, l.Height);
         }
+
         private void ObstacleInfo_Paint(object sender, PaintEventArgs e)
         {
             Label l = (Label)sender;
@@ -207,8 +206,10 @@ namespace Snek_Game
         }
 
         #region Window tasks
-        Point lastlocation;
-        bool mousedown;
+
+        private Point lastlocation;
+        private bool mousedown;
+
         private void btn_CloseWnd_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -235,11 +236,11 @@ namespace Snek_Game
                 this.Update();
             }
         }
-        #endregion
+
+        #endregion Window tasks
 
         private void HelpWindow_Load(object sender, EventArgs e)
         {
-            
         }
     }
 }

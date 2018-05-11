@@ -8,16 +8,18 @@ namespace Snek_Game
         {
             Loc = loc;
         }
+
         public readonly Point Loc;
         public readonly Color c = Color.Gray;
 
         public void Draw(Board brd)
         {
-            brd.DrawCell(Loc,c);
+            brd.DrawCell(Loc, c);
         }
+
         public void DrawGlowing(Board brd)
         {
-            brd.DrawGlowingCell(Loc, c,c,5,255);
+            brd.DrawGlowingCell(Loc, c, c, 5, 255);
         }
     }
 }

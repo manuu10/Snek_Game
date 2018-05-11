@@ -66,8 +66,9 @@
             // 
             // lbl_text
             // 
-            this.lbl_text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_text.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_text.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_text.ForeColor = System.Drawing.SystemColors.Control;
             this.lbl_text.Location = new System.Drawing.Point(0, 27);
@@ -77,6 +78,7 @@
             this.lbl_text.TabIndex = 5;
             this.lbl_text.Text = "Hi im gonna\r\nbe the message\r\nhere";
             this.lbl_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_text.Paint += new System.Windows.Forms.PaintEventHandler(this.lbl_text_Paint);
             // 
             // btn_Ok
             // 
@@ -99,14 +101,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(539, 228);
-            this.Controls.Add(this.btn_Ok);
             this.Controls.Add(this.lbl_text);
             this.Controls.Add(this.btn_CloseWnd);
+            this.Controls.Add(this.btn_Ok);
             this.Controls.Add(this.lbl_WndInfo);
             this.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DarkMessageBox";
             this.Text = "DarkMessageBox";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DarkMessageBox_Paint);
             this.ResumeLayout(false);
 
         }

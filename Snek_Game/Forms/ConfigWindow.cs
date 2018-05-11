@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using IniParser;
+﻿using IniParser;
 using IniParser.Model;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Snek_Game
 {
@@ -34,10 +28,14 @@ namespace Snek_Game
 
             chk_glowing.Checked = mainForm.glowing;
         }
+
         private Form1 mainForm;
+
         #region Window tasks
-        Point lastlocation;
-        bool mousedown;
+
+        private Point lastlocation;
+        private bool mousedown;
+
         private void btn_CloseWnd_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -64,7 +62,8 @@ namespace Snek_Game
                 this.Update();
             }
         }
-        #endregion
+
+        #endregion Window tasks
 
         private void btn_loadcfg_Click(object sender, EventArgs e)
         {
@@ -83,8 +82,9 @@ namespace Snek_Game
                 loadconf(path);
                 return;
             }
-            debuglabel.Text = "Loading cancelled";           
+            debuglabel.Text = "Loading cancelled";
         }
+
         private void loadconf(string path)
         {
             var parser = new FileIniDataParser();
@@ -134,12 +134,13 @@ namespace Snek_Game
             }
             debuglabel.Text = "Saving cancelled";
         }
+
         private void saveconf(string path)
         {
             var parser = new FileIniDataParser();
             var data = new IniData();
             data["snake"]["startspeed"] = txt_startspeed.Text;
-            
+
             data["snake"]["maxspeed"] = txt_maxspeed.Text;
             data["snake"]["speedyspeed"] = txt_speedySpeed.Text;
             data["snake"]["slowspeed"] = txt_slowSpeed.Text;

@@ -1,10 +1,5 @@
-﻿using System;
+﻿using SlimDX.DirectInput;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using SlimDX.DirectInput;
-
 
 namespace Snek_Game
 {
@@ -16,6 +11,7 @@ namespace Snek_Game
         public int yval { get; private set; }
         public int zval { get; private set; }
         public bool[] buttons { get; private set; }
+
         public Joystick[] GetSticks()
         {
             List<Joystick> sticks = new List<Joystick>();
@@ -36,7 +32,6 @@ namespace Snek_Game
                 }
                 catch (DirectInputException)
                 {
-
                 }
             }
 

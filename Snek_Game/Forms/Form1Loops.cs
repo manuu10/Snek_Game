@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Snek_Game
@@ -48,7 +48,6 @@ namespace Snek_Game
             tmr_Draw.Start();
         }
 
-
         private void UpdateModel()
         {
             HandleJoystickInput();
@@ -68,7 +67,6 @@ namespace Snek_Game
                         _gameOver = true;
                         break;
                     }
-
                 }
                 // snake can go through walls if invicibility is active
                 if (invincible)
@@ -77,6 +75,7 @@ namespace Snek_Game
                 }
 
                 #region Collision Detection
+
                 // Grow snake when food is hit
                 // place Food at new unused location
                 if (snakeSnek.HitObject(snakeFood.Loc) && !ghosting)
@@ -116,17 +115,19 @@ namespace Snek_Game
                     if (!brd.IsInsideBoard(_bullets[i].Loc))
                         _bullets.RemoveAt(i);
                 }
-                #endregion
+
+                #endregion Collision Detection
 
                 #region Powerup Handling
+
                 for (var i = 0; i < _bonuses.Count; i++)
                 {
-                    // if snake hit powerup and powerup isnt started yet, start powerups Timer 
+                    // if snake hit powerup and powerup isnt started yet, start powerups Timer
                     if (snakeSnek.HitObject(_bonuses[i].loc) && !_bonuses[i].IsStarted() && !ghosting)
                     {
                         _bonuses[i].StartTimer();
                         _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
-                        if(doubleMaFood) _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
+                        if (doubleMaFood) _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
                         if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow)
@@ -143,7 +144,6 @@ namespace Snek_Game
                                 x.IsStarted()
                                 );
                         }
-                        
                     }
 
                     // apply shit for while Bonus is active
@@ -163,7 +163,7 @@ namespace Snek_Game
                                     break;
                                 }
                             case (int)Bonus.PowerUps.Slow:
-                                { 
+                                {
                                     if (!slow && !speedy)
                                     {
                                         _oldsnakeMovePeriodMax = _snakeMovePeriodMax;
@@ -242,9 +242,11 @@ namespace Snek_Game
                         _bonuses.RemoveAt(i);
                     }
                 }
-                #endregion
+
+                #endregion Powerup Handling
 
                 #region SpawnAndSpeed Handling
+
                 /////////////////////////////////////////////////
                 //          Snake Speed
                 _snakeMovePeriod++;
@@ -306,9 +308,8 @@ namespace Snek_Game
                         bullet.Update();
                     }
                 }
-                #endregion
 
-
+                #endregion SpawnAndSpeed Handling
             }
             else
             {
@@ -330,6 +331,7 @@ namespace Snek_Game
             if (!_gameOver)
             {
                 #region Draw Entities
+
                 if (!glowing)
                 {
                     if (ghosting) snakeSnek.Draw(brd);
@@ -350,12 +352,12 @@ namespace Snek_Game
                         b.Draw(brd);
                     }
 
-                    if(!ghosting)snakeSnek.Draw(brd);
+                    if (!ghosting) snakeSnek.Draw(brd);
                 }
                 else
                 {
                     if (ghosting) snakeSnek.DrawGlowing(brd, Color.White);
-                    snakeFood.DrawGlowing(brd,Color.LightGreen);
+                    snakeFood.DrawGlowing(brd, Color.LightGreen);
                     foreach (var b in _bonuses)
                     {
                         b.DrawGlowing(brd);
@@ -370,11 +372,11 @@ namespace Snek_Game
                     {
                         b.DrawGlowing(brd);
                     }
-                    if(!ghosting)snakeSnek.DrawGlowing(brd,Color.White);
+                    if (!ghosting) snakeSnek.DrawGlowing(brd, Color.White);
                 }
-                #endregion
-            }
 
+                #endregion Draw Entities
+            }
             else
             {
                 brd.DrawGameOver();
@@ -383,6 +385,7 @@ namespace Snek_Game
             brd.DrawBorders();
 
             #region Information GroupBox Visuals
+
             UpdLabelSpeed();
             UpdLabelLength();
             UpdLabelObstacle();
@@ -393,9 +396,7 @@ namespace Snek_Game
             lbl_info_speedy.ForeColor = speedy ? Color.MediumSeaGreen : grpBox_info.ForeColor;
             lbl_info_bullets.ForeColor = canShootBullets ? Color.MediumSeaGreen : grpBox_info.ForeColor;
 
-
-            
-            #endregion
+            #endregion Information GroupBox Visuals
         }
 
         private void GroupBoxPainting(Graphics gfx)
@@ -417,7 +418,6 @@ namespace Snek_Game
                 }
             }
         }
-
 
         private bool CheckIfTileIsUsed(Point loc)
         {

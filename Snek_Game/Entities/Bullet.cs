@@ -9,9 +9,11 @@ namespace Snek_Game
             Loc = loc;
             Dir = dir;
         }
+
         private Size Dir;
         public Point Loc;
         public Color c = Color.OrangeRed;
+
         public void Update()
         {
             Loc = Point.Add(Loc, Dir);
@@ -21,9 +23,10 @@ namespace Snek_Game
         {
             brd.DrawBullet(Loc, c, Dir);
         }
+
         public void DrawGlowing(Board brd)
         {
-            brd.DrawBulletGlowing(Loc, c, Dir,c,2,128);
+            brd.DrawBulletGlowing(Loc, c, Dir, c, 2, 128);
         }
 
         public bool HitObject(Point loc)
@@ -31,6 +34,5 @@ namespace Snek_Game
             if (loc == Loc) return true;
             return false;
         }
-
     }
 }

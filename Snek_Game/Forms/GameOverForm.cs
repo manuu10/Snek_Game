@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Snek_Game
 {
@@ -17,15 +15,18 @@ namespace Snek_Game
             InitializeComponent();
             lbl_WndInfo.Text = Text;
             btn_submit.Left = (this.ClientSize.Width - btn_submit.Width) / 2;
-            
+
             Score = score;
             lbl_score.Text = "Your final Score\n" +
                                     "is\n" +
                                Score.ToString();
         }
+
         #region Window tasks
-        Point lastlocation;
-        bool mousedown;
+
+        private Point lastlocation;
+        private bool mousedown;
+
         private void btn_CloseWnd_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -52,9 +53,12 @@ namespace Snek_Game
                 this.Update();
             }
         }
-        #endregion
-        int Score;
-        List<Score_info> Scoreboard = new List<Score_info>();
+
+        #endregion Window tasks
+
+        private int Score;
+        private List<Score_info> Scoreboard = new List<Score_info>();
+
         private void btn_submit_Click(object sender, EventArgs e)
         {
             Scoreboard = Misc.GetScoreboard("Scoreboard.txt");
@@ -62,14 +66,12 @@ namespace Snek_Game
             Scoreboard = Scoreboard.OrderByDescending(x => x.score).ToList();
 
             StreamWriter sw = new StreamWriter("Scoreboard.txt");
-            foreach(var item in Scoreboard)
+            foreach (var item in Scoreboard)
             {
                 sw.Write("{0}:{1}" + Environment.NewLine, item.name, item.score);
             }
             sw.Dispose();
             this.Close();
         }
-
-        
     }
 }

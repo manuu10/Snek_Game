@@ -9,7 +9,7 @@ namespace Snek_Game
             loc = Loc;
             PowerUpType = (int)pow;
         }
-        
+
         public readonly Point loc;
         private readonly int PowerUpType;
         public int duration { get; private set; }
@@ -20,6 +20,7 @@ namespace Snek_Game
         {
             return _started;
         }
+
         public bool CanBeDeleted()
         {
             return _canBeDeleted;
@@ -31,7 +32,6 @@ namespace Snek_Game
             duration = 0;
         }
 
-
         public void Update()
         {
             duration++;
@@ -41,11 +41,12 @@ namespace Snek_Game
                 _canBeDeleted = true;
             }
         }
+
         public void Draw(Board brd)
         {
             if (!_started)
             {
-                if(PowerUpType == (int)PowerUps.Ghost)
+                if (PowerUpType == (int)PowerUps.Ghost)
                 {
                     brd.DrawRoundedRectCellOutlined(loc, colPallete[PowerUpType], Color.White);
                     return;
@@ -53,11 +54,12 @@ namespace Snek_Game
                 brd.DrawRoundedRectCell(loc, colPallete[PowerUpType]);
             }
         }
+
         public void DrawGlowing(Board brd)
         {
             if (!_started)
             {
-                if(PowerUpType == (int)PowerUps.Ghost)
+                if (PowerUpType == (int)PowerUps.Ghost)
                 {
                     brd.DrawRoundedRectGlowingCell(loc, colPallete[PowerUpType], Color.White, 5, 255);
                     return;
@@ -65,12 +67,14 @@ namespace Snek_Game
                 brd.DrawRoundedRectGlowingCell(loc, colPallete[PowerUpType], colPallete[PowerUpType], 5, 255);
             }
         }
+
         public int GetPowerUpType()
         {
             return PowerUpType;
         }
 
         #region static Information about Powerups
+
         public static readonly Color[] colPallete =
         {
             Color.Magenta,      // Invincible
@@ -79,7 +83,6 @@ namespace Snek_Game
             Color.Red,          // Speedy
             Color.White,        // Bullets
             Color.Black         // Ghost
-
         };
 
         public static readonly int[] durationsMax =
@@ -91,6 +94,7 @@ namespace Snek_Game
             650,    // Bullets
             350     // Ghost
         };
+
         public static readonly int[] score =
         {
             10,    // Invincible
@@ -100,6 +104,7 @@ namespace Snek_Game
             7,     // Bullets
             30     // Ghost
         };
+
         public enum PowerUps
         {
             Invincible,
@@ -109,6 +114,8 @@ namespace Snek_Game
             Bullets,
             Ghost
         }
-        #endregion  
+
+        #endregion static Information about Powerups
+
     }
 }

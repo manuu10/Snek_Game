@@ -5,9 +5,9 @@ namespace Snek_Game
 {
     public class Snek
     {
-        class Segment
+        private class Segment
         {
-            public Segment(Point loc,Color c)
+            public Segment(Point loc, Color c)
             {
                 Loc = loc;
                 col = c;
@@ -15,22 +15,27 @@ namespace Snek_Game
 
             public Point Loc;
             public Color col;
+
             public void Follow(Segment seg)
             {
                 Loc = seg.Loc;
             }
+
             public void Draw(Board brd)
             {
                 brd.DrawRoundedRectCell(Loc, col);
             }
+
             public void DrawOutlined(Board brd)
             {
                 brd.DrawRoundedRectCellOutlined(Loc, Color.Black, Color.Maroon);
             }
-            public void DrawGlowing(Board brd,Color glowColor)
+
+            public void DrawGlowing(Board brd, Color glowColor)
             {
                 brd.DrawRoundedRectGlowingCell(Loc, col, glowColor, 7, 128);
             }
+
             public void DrawGlowingOutlined(Board brd, Color glowColor)
             {
                 brd.DrawRoundedRectGlowingCell(Loc, Color.Black, glowColor, 8, 200);
@@ -39,18 +44,19 @@ namespace Snek_Game
 
         public Snek(Point start)
         {
-            nSegments.Add(new Segment(start,_headColor));
+            nSegments.Add(new Segment(start, _headColor));
             for (int i = 0; i < 6; i++)
             {
                 AddSegment();
             }
         }
-    
+
         private readonly List<Segment> nSegments = new List<Segment>();
-        private Size dir = new Size(1,0);
+        private Size dir = new Size(1, 0);
 
         private bool _ghosting = false;
-        private readonly Color _headColor = Color.FromArgb(0,67,10);
+        private readonly Color _headColor = Color.FromArgb(0, 67, 10);
+
         private readonly Color[] _bodyColors =
         {
             Color.FromArgb(0,0,128),
@@ -60,6 +66,7 @@ namespace Snek_Game
             Color.FromArgb(16,52,166),
             Color.FromArgb(17,30,108)
         };
+
         private readonly Color[] _bodyColorsRainbow =
         {
             Color.FromArgb(148,0,211),
@@ -70,14 +77,17 @@ namespace Snek_Game
             Color.FromArgb(255,127,0),
             Color.FromArgb(255,0,0)
         };
+
         public Point GetHeadLocation()
         {
             return nSegments[0].Loc;
         }
+
         public int GetSnakeLength()
         {
             return nSegments.Count;
         }
+
         public Size GetSnakeDirection()
         {
             return dir;
@@ -100,7 +110,8 @@ namespace Snek_Game
                 }
             }
         }
-        public void DrawGlowing(Board brd,Color glowColor)
+
+        public void DrawGlowing(Board brd, Color glowColor)
         {
             if (_ghosting)
             {
@@ -118,6 +129,7 @@ namespace Snek_Game
                 }
             }
         }
+
         public void AddSegment()
         {
             int dummyx = 0;
@@ -131,7 +143,6 @@ namespace Snek_Game
                 Point dummyp2 = nSegments[index].Loc;
                 if (dummyp.X < dummyp2.X) dummyx = -1;
                 else if (dummyp.X > dummyp2.X) dummyx = 1;
-                
 
                 if (dummyp.Y < dummyp2.Y) dummyy = -1;
                 else if (dummyp.Y > dummyp2.Y) dummyy = 1;
@@ -143,13 +154,15 @@ namespace Snek_Game
             }
 
             Point p = new Point(nSegments[index].Loc.X - dummyx, nSegments[index].Loc.Y - dummyy);
-            nSegments.Add(new Segment(p,_bodyColors[index % _bodyColors.Length]));
+            nSegments.Add(new Segment(p, _bodyColors[index % _bodyColors.Length]));
         }
+
         public void SetDirection(Size newdir)
         {
             //Richtung ändern
             dir = newdir;
         }
+
         public void ApplyRainbowEffect()
         {
             for (int i = 1; i < nSegments.Count; i++)
@@ -157,21 +170,29 @@ namespace Snek_Game
                 nSegments[i].col = _bodyColorsRainbow[i % _bodyColorsRainbow.Length];
             }
         }
+
         public void ApplyStandardColors()
         {
             for (int i = 1; i < nSegments.Count; i++)
             {
                 nSegments[i].col = _bodyColors[i % _bodyColors.Length];
             }
-            
         }
-        public void EnableGhostEffect() { _ghosting = true; }
-        public void DisableGhostEffect() { _ghosting = false; }
+
+        public void EnableGhostEffect()
+        {
+            _ghosting = true;
+        }
+
+        public void DisableGhostEffect()
+        {
+            _ghosting = false;
+        }
 
         public void Update()
         {
             //von hinten nach vorne folgt jedes segment seinen vordermann
-            for( int i = nSegments.Count-1; i > 0 ; i--)
+            for (int i = nSegments.Count - 1; i > 0; i--)
             {
                 nSegments[i].Follow(nSegments[i - 1]);
             }
@@ -179,15 +200,13 @@ namespace Snek_Game
             nSegments[0].Loc = Point.Add(nSegments[0].Loc, dir);
         }
 
-        
-
         public void GoThroughWalls(Board brd)
-        { 
+        {
             ref var first = ref nSegments[0].Loc;
-            if (first.X < 0) first.X = brd._fieldWidth-1;
-            if (first.X > brd._fieldWidth-1) first.X = 0;
-            if (first.Y < 0) first.Y = brd._fieldHeight-1;
-            if (first.Y > brd._fieldHeight-1) first.Y = 0;
+            if (first.X < 0) first.X = brd._fieldWidth - 1;
+            if (first.X > brd._fieldWidth - 1) first.X = 0;
+            if (first.Y < 0) first.Y = brd._fieldHeight - 1;
+            if (first.Y > brd._fieldHeight - 1) first.Y = 0;
         }
 
         public bool HitObject(Point p)
@@ -197,6 +216,7 @@ namespace Snek_Game
             if (first == p) return true;
             return false;
         }
+
         public bool HitOwnBody()
         {
             for (var i = 1; i < nSegments.Count; i++)
@@ -216,6 +236,5 @@ namespace Snek_Game
 
             return false;
         }
-        
     }
 }

@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Snek_Game
 {
     public partial class DarkMessageBox : Form
     {
-        public DarkMessageBox(string message,string title)
+        public DarkMessageBox(string message, string title)
         {
             InitializeComponent();
             lbl_WndInfo.Text = title;
             lbl_text.Text = message;
             btn_Ok.Left = (this.ClientSize.Width - btn_Ok.Width) / 2;
+            lbl_text.Left = thickness;
+            lbl_text.Size = new Size(Right - thickness * 2, lbl_text.Size.Height);
         }
 
         #region Window tasks
-        Point lastlocation;
-        bool mousedown;
+
+        private Point lastlocation;
+        private bool mousedown;
+
         private void btn_CloseWnd_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,10 +47,31 @@ namespace Snek_Game
                 this.Update();
             }
         }
-        #endregion
+
+        #endregion Window tasks
+
         private void btn_Ok_Click(object sender, EventArgs e)
         {
             Close();
         }
+        int thickness = 1;
+        private void DarkMessageBox_Paint(object sender, PaintEventArgs e)
+        {
+            Color c = Color.CadetBlue;
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,    c, thickness, ButtonBorderStyle.Solid,
+                                                                    c, thickness, ButtonBorderStyle.Solid,
+                                                                    c, thickness, ButtonBorderStyle.Solid,
+                                                                    c, thickness, ButtonBorderStyle.Solid);
+            }
+
+        private void lbl_text_Paint(object sender, PaintEventArgs e)
+        {
+            Color c = this.ForeColor;
+            ControlPaint.DrawBorder(e.Graphics, lbl_text.ClientRectangle, c, 0, ButtonBorderStyle.Solid,
+                                                                          c, 0, ButtonBorderStyle.Solid,
+                                                                          c, 0, ButtonBorderStyle.Solid,
+                                                                          c, thickness, ButtonBorderStyle.Dashed);
+        }
+    
     }
 }

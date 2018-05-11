@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Linq;
 
 namespace Snek_Game
 {
@@ -13,7 +12,8 @@ namespace Snek_Game
         private static Random rnd = new Random();
 
         public static readonly Bitmap gameOverBitmap = Snek_Game.Properties.Resources.GameOver;
-        public static Rectangle RectFromCenter(Point center,int hWidth,int hHeight)
+
+        public static Rectangle RectFromCenter(Point center, int hWidth, int hHeight)
         {
             return new Rectangle(center.X - hWidth, center.Y - hHeight, hWidth * 2, hHeight * 2);
         }
@@ -106,6 +106,7 @@ namespace Snek_Game
 
             return path;
         }
+
         public static GraphicsPath MakeRoundedRect(RectangleF rect, float xradius, float yradius, bool All)
         {
             return MakeRoundedRect(rect, xradius, yradius, true, true, true, true);
@@ -160,15 +161,17 @@ namespace Snek_Game
             region = Region;
             muliplier = (float)region.Size.Width / (float)maxval;
         }
+
         private int maxval;
         public readonly Rectangle region;
         private float muliplier;
+
         public void Draw(Graphics gfx, int currentval)
         {
             float width = muliplier * currentval;
             Size s = new Size((int)width, region.Size.Height);
             Rectangle rect = new Rectangle(region.Location, s);
-            gfx.FillRectangle(Brushes.Green,rect);
+            gfx.FillRectangle(Brushes.Green, rect);
             gfx.DrawRectangle(Pens.White, region);
         }
     }
@@ -191,14 +194,17 @@ namespace Snek_Game
         {
             return new Size(0, -1);
         }
+
         public static Size down()
         {
             return new Size(0, 1);
         }
+
         public static Size left()
         {
             return new Size(-1, 0);
         }
+
         public static Size right()
         {
             return new Size(1, 0);

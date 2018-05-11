@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Snek_Game
 {
@@ -18,7 +16,8 @@ namespace Snek_Game
             return new ProportionValue<T> { Proportion = proportion, Value = value };
         }
 
-        static Random random = new Random();
+        private static Random random = new Random();
+
         public static T ChooseByRandom<T>(
             this IEnumerable<ProportionValue<T>> collection)
         {

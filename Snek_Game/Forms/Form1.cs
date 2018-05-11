@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Snek_Game
 {
@@ -16,7 +16,6 @@ namespace Snek_Game
             btn_reset_Click(null, null);
         }
 
-
         //UPDATE MODEL
         private void tmr_Game_Tick(object sender, EventArgs e)
         {
@@ -29,17 +28,17 @@ namespace Snek_Game
         {
             pbGameCanvas.Invalidate();
         }
+
         private void tmr_grpboxpaint_Tick(object sender, EventArgs e)
         {
             //Point start = lbl_info_invincible.Location;
             //Size size = new Size(grpBox_info.Width - 10 - start.X, grpBox_info.Height - 10 - start.Y);
-            foreach(var m in manuProgress)
+            foreach (var m in manuProgress)
             {
                 var rect = m.region;
                 rect.Inflate(1, 1);
                 grpBox_info.Invalidate(rect);
             }
-            
         }
 
         private void pbGameCanvas_Paint(object sender, PaintEventArgs e)
@@ -48,11 +47,11 @@ namespace Snek_Game
             var g = e.Graphics;
             DrawingModel(g);
         }
+
         private void grpBox_info_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxPainting(e.Graphics);
         }
-
 
         private void UpdLabelSpeed()
         {
@@ -75,8 +74,6 @@ namespace Snek_Game
             lbl_currentscore.Text = "Score : " + _currentscore;
         }
 
-
-
         private void btnadd_Click(object sender, EventArgs e)
         {
             snakeSnek.AddSegment();
@@ -95,18 +92,21 @@ namespace Snek_Game
 
         private void btnControlss(object sender, EventArgs e)
         {
-            var btn = (Button) sender;
+            var btn = (Button)sender;
             switch (btn.Text)
             {
-                case"up":
+                case "up":
                     snakeSnek.SetDirection(new Size(0, -1));
                     break;
+
                 case "down":
                     snakeSnek.SetDirection(new Size(0, 1));
                     break;
+
                 case "left":
                     snakeSnek.SetDirection(new Size(-1, 0));
                     break;
+
                 case "right":
                     snakeSnek.SetDirection(new Size(1, 0));
                     break;
@@ -160,21 +160,22 @@ namespace Snek_Game
 
         private void btn_Help_Click(object sender, EventArgs e)
         {
-            var hw = new HelpWindow
+            using (var hw = new HelpWindow
             {
                 Parent = ParentForm,
                 StartPosition = FormStartPosition.CenterParent
-            };
-            btn_stop.PerformClick();
-            hw.ShowDialog();
-            btn_start.PerformClick();
+            })
+            {
+                btn_stop.PerformClick();
+                hw.ShowDialog();
+                btn_start.PerformClick();
+            }
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
             btn_Help.PerformClick();
         }
-
 
         #region Window tasks
 
@@ -206,30 +207,37 @@ namespace Snek_Game
             Update();
         }
 
-        #endregion
+        #endregion Window tasks
 
         private void btn_opencfg_Click(object sender, EventArgs e)
         {
-
-            var cw = new ConfigWindow(this)
+            using (var cw = new ConfigWindow(this)
             {
                 Parent = ParentForm,
                 StartPosition = FormStartPosition.CenterParent
-            };
-            btn_stop.PerformClick();
-            cw.ShowDialog();
-            btn_start.PerformClick();
+            })
+            {
+                btn_stop.PerformClick();
+                cw.ShowDialog();
+                btn_start.PerformClick();
+            }
         }
 
         private void grpbox_Scoreboard_Paint(object sender, PaintEventArgs e)
         {
             Graphics gfx = e.Graphics;
             List<Score_info> Scoreboard = Misc.GetScoreboard("Scoreboard.txt");
-            Point start = new Point(20,35);
+            Point start = new Point(20, 35);
             int counter = 1;
-            foreach(var item in Scoreboard)
+            foreach (var item in Scoreboard)
             {
-                gfx.DrawString(string.Format("{0}.{1} : {2}", counter, item.name, item.score), new Font("Arial", 13, FontStyle.Italic), new SolidBrush(Color.White), start);
+                using (var font = new Font("Arial", 13, FontStyle.Italic))
+                {
+                    using (var solidBrush = new SolidBrush(Color.White))
+                    {
+                        gfx.DrawString(string.Format("{0}.{1} : {2}", counter, item.name, item.score), font, solidBrush, start);
+                    }
+                }
                 counter++;
                 start.Y = start.Y + 20;
                 if (counter > 3) break;

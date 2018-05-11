@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SlimDX.DirectInput;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using SlimDX.DirectInput;
 
 namespace Snek_Game
 {
@@ -11,7 +11,7 @@ namespace Snek_Game
         public Joystick[] joysticks;
         public Random Rnd = new Random();
 
-        private readonly Point startLocation = new Point(8,1);
+        private readonly Point startLocation = new Point(8, 1);
 
         private ManuProgressBar[] manuProgress;
         private ProportionValue<Bonus.PowerUps>[] _powerupList;
@@ -21,17 +21,19 @@ namespace Snek_Game
         private const int height = 24;
         private int _currentscore;
 
-
         #region entities
+
         private Snek snakeSnek;
         private Food snakeFood;
         private Board brd;
         private List<Bonus> _bonuses;
         private List<Obstacle> _obstacles;
         private List<Bullet> _bullets;
-        #endregion
+
+        #endregion entities
 
         #region speed etc.
+
         private int _snakeMovePeriod;
         public int _snakeMovePeriodStart = 40;
         private int _snakeMovePeriodMax = 0; // changes over time, snake starts with that speed
@@ -52,9 +54,11 @@ namespace Snek_Game
 
         private int _bulletMovePeriod;
         private int _bulletMovePeriodMax = 5; // speed for the bullets
-        #endregion
+
+        #endregion speed etc.
 
         #region powerUps
+
         private bool doubleMaFood;
         private bool invincible;
 
@@ -63,11 +67,13 @@ namespace Snek_Game
 
         private bool canShootBullets;
         private bool ghosting;
-        #endregion
+
+        #endregion powerUps
 
         #region other settings
-        public bool glowing;
-        #endregion
 
+        public bool glowing;
+
+        #endregion other settings
     }
 }
