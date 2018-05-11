@@ -32,7 +32,7 @@ namespace Snek_Game
 
         #endregion entities
 
-        #region speed etc.
+        #region speed_etc.
 
         private int _snakeMovePeriod;
         public int _snakeMovePeriodStart = 40;
@@ -55,7 +55,7 @@ namespace Snek_Game
         private int _bulletMovePeriod;
         private int _bulletMovePeriodMax = 5; // speed for the bullets
 
-        #endregion speed etc.
+        #endregion speed_etc.
 
         #region powerUps
 

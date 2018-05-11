@@ -12,8 +12,7 @@ namespace Snek_Game
             lbl_WndInfo.Text = title;
             lbl_text.Text = message;
             btn_Ok.Left = (this.ClientSize.Width - btn_Ok.Width) / 2;
-            lbl_text.Left = thickness;
-            lbl_text.Size = new Size(Right - thickness * 2, lbl_text.Size.Height);
+            
         }
 
         #region Window tasks
@@ -66,12 +65,21 @@ namespace Snek_Game
 
         private void lbl_text_Paint(object sender, PaintEventArgs e)
         {
-            Color c = this.ForeColor;
-            ControlPaint.DrawBorder(e.Graphics, lbl_text.ClientRectangle, c, 0, ButtonBorderStyle.Solid,
+            Color c = Color.CadetBlue;
+            ControlPaint.DrawBorder(e.Graphics, lbl_text.ClientRectangle, c, thickness, ButtonBorderStyle.Solid,
                                                                           c, 0, ButtonBorderStyle.Solid,
-                                                                          c, 0, ButtonBorderStyle.Solid,
-                                                                          c, thickness, ButtonBorderStyle.Dashed);
+                                                                          c, thickness, ButtonBorderStyle.Solid,
+                                                                          c, 0, ButtonBorderStyle.Dashed);
+            
         }
-    
+
+        private void lbl_WndInfo_Paint(object sender, PaintEventArgs e)
+        {
+            Color c = Color.CadetBlue;
+            ControlPaint.DrawBorder(e.Graphics, lbl_text.ClientRectangle, c, thickness, ButtonBorderStyle.Solid,
+                                                                          c, thickness, ButtonBorderStyle.Solid,
+                                                                          c, thickness, ButtonBorderStyle.Solid,
+                                                                          c, 0, ButtonBorderStyle.Dashed);
+        }
     }
 }

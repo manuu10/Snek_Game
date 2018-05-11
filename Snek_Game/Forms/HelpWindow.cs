@@ -119,7 +119,7 @@ namespace Snek_Game
             {
                 case nameof(Bonus.PowerUps.Invincible):
                     {
-                        title = nameof(Bonus.PowerUps.Invincible);
+                        title = "The " + nameof(Bonus.PowerUps.Invincible) + " powerup";
                         message = "With this powerup you will have the\n" +
                             "ability to go through walls and be immune\n" +
                             "against any Collision that would kill you.";
@@ -127,7 +127,7 @@ namespace Snek_Game
                     }
                 case nameof(Bonus.PowerUps.DoubleFood):
                     {
-                        title = nameof(Bonus.PowerUps.DoubleFood);
+                        title = "The " + nameof(Bonus.PowerUps.DoubleFood) + " powerup";
                         message = "With this powerup your points you earn get\n" +
                             "doubled while active and when picking up food you\n" +
                             "earn two Segments instead of one.";
@@ -135,13 +135,13 @@ namespace Snek_Game
                     }
                 case nameof(Bonus.PowerUps.Speedy):
                     {
-                        title = nameof(Bonus.PowerUps.Speedy);
+                        title = "The " + nameof(Bonus.PowerUps.Speedy) + " powerup";
                         message = "You are gonna be speedy as fuck with that shit.";
                         break;
                     }
                 case nameof(Bonus.PowerUps.Slow):
                     {
-                        title = nameof(Bonus.PowerUps.Slow);
+                        title = "The " + nameof(Bonus.PowerUps.Slow) + " powerup";
                         message = "While active your speed is\n" +
                             "decreased abnormous.";
                         break;

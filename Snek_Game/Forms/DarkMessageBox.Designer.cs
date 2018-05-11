@@ -45,6 +45,7 @@
             this.lbl_WndInfo.Size = new System.Drawing.Size(539, 27);
             this.lbl_WndInfo.TabIndex = 0;
             this.lbl_WndInfo.Text = this.Text;
+            this.lbl_WndInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.lbl_WndInfo_Paint);
             this.lbl_WndInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_WndInfo_MouseDown);
             this.lbl_WndInfo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_WndInfo_MouseMove);
             this.lbl_WndInfo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbl_WndInfo_MouseUp);
@@ -66,9 +67,7 @@
             // 
             // lbl_text
             // 
-            this.lbl_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_text.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbl_text.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_text.ForeColor = System.Drawing.SystemColors.Control;
             this.lbl_text.Location = new System.Drawing.Point(0, 27);
