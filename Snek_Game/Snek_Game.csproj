@@ -67,6 +67,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\DarkMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DarkMessageBox.Designer.cs">
+      <DependentUpon>DarkMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Board.cs" />
     <Compile Include="Entities\Bonus.cs" />
     <Compile Include="Entities\BonusRefactor.cs" />
@@ -111,6 +117,9 @@
     <Compile Include="Misc\Proportion.cs" />
     <EmbeddedResource Include="Forms\ConfigWindow.resx">
       <DependentUpon>ConfigWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DarkMessageBox.resx">
+      <DependentUpon>DarkMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

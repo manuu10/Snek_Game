@@ -28,14 +28,16 @@ namespace Snek_Game
                     TextAlign = ContentAlignment.MiddleLeft,
                     BorderStyle = BorderStyle.FixedSingle,
                 };
-                
+
                 Label col = new Label
                 {
+                    Name = txt.Text,
                     Location = new Point(startX + txt.Width - 30, startY+5),
                     BackColor = Bonus.colPallete[(int)val],
                     AutoSize = false,
                     Size = new Size(20,20)
                 };
+                col.Click += Pickable_info_Click;
                 pnl_powerups.Controls.Add(txt);
                 pnl_powerups.Controls.Add(col);
                 txt.SendToBack();
@@ -58,10 +60,12 @@ namespace Snek_Game
 
                 Label col = new Label
                 {
+                    Name = txt.Text,
                     Location = new Point(startX + txt.Width - 30, startY + 5 + space),
                     AutoSize = false,
                     Size = new Size(20, 20)
                 };
+                col.Click += Pickable_info_Click;
                 
                 col.Paint += FoodInfo_Paint;
                 pnl_powerups.Controls.Add(txt);
@@ -86,10 +90,12 @@ namespace Snek_Game
 
                 Label col = new Label
                 {
+                    Name = txt.Text,
                     Location = new Point(startX + txt.Width - 30, startY + 5 + space),
                     AutoSize = false,
                     Size = new Size(20, 20)
                 };
+                col.Click += Pickable_info_Click;
 
                 col.Paint += ObstacleInfo_Paint;
                 pnl_powerups.Controls.Add(txt);
@@ -104,6 +110,88 @@ namespace Snek_Game
                 this.Size = new Size(this.Size.Width,startY + 60);
             }
 
+        }
+
+        private void Pickable_info_Click(object sender, EventArgs e)
+        {
+            
+            string message = "";
+            string title = "";
+            switch(((Label)sender).Name)
+            {
+                case nameof(Bonus.PowerUps.Invincible):
+                    {
+                        title = nameof(Bonus.PowerUps.Invincible);
+                        message = "With this powerup you will have the\n" +
+                            "ability to go through walls and be immune\n" +
+                            "against any Collision that would kill you.";
+                        break;
+                    }
+                case nameof(Bonus.PowerUps.DoubleFood):
+                    {
+                        title = nameof(Bonus.PowerUps.DoubleFood);
+                        message = "With this powerup your points you earn get\n" +
+                            "doubled while active and when picking up food you\n" +
+                            "earn two Segments instead of one.";
+                        break;
+                    }
+                case nameof(Bonus.PowerUps.Speedy):
+                    {
+                        title = nameof(Bonus.PowerUps.Speedy);
+                        message = "You are gonna be speedy as fuck with that shit.";
+                        break;
+                    }
+                case nameof(Bonus.PowerUps.Slow):
+                    {
+                        title = nameof(Bonus.PowerUps.Slow);
+                        message = "While active your speed is\n" +
+                            "decreased abnormous.";
+                        break;
+                    }
+                case nameof(Bonus.PowerUps.Bullets):
+                    {
+                        title = "The " + nameof(Bonus.PowerUps.Bullets) + " powerup";
+                        message = "With that powerup you will have the\n" +
+                            "ability to shoot Bullets when pressing the\n" +
+                            "'F' Key on your Keyboard.\n" +
+                            "They will destroy obstacles if you hit them.";
+                        break;
+                    }
+                case nameof(Bonus.PowerUps.Ghost):
+                    {
+                        title = "The " + nameof(Bonus.PowerUps.Ghost) + " powerup";
+                        message = "If you pick this powerup up, you will become\n" +
+                            "a ghost, meaning that you can go through everthing but\n" +
+                            "also wont be able to pick anything up.\n" +
+                            "You cannont go through walls";
+                        break;
+                    }
+                case "Food":
+                    {
+                        title = "The Food";
+                        message = "Your classic Snek Food.\n" +
+                            "If you pick it you will grow.";
+                        break;
+                    }
+                case "Obstacle":
+                    {
+                        title = "The Obstacle";
+                        message = "If you hit one of these fuckers, you are\n" +
+                            "probably not living for much longer.";
+                        break;
+                    }
+            }
+            if(!string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(title))
+            {
+                using (var dmsg = new DarkMessageBox(message, title)
+                {
+                    Parent = ParentForm,
+                    StartPosition = FormStartPosition.CenterParent
+                })
+                {
+                    dmsg.ShowDialog();
+                }
+            }
         }
 
         private void FoodInfo_Paint(object sender, PaintEventArgs e)
