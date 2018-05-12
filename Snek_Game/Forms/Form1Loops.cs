@@ -352,7 +352,7 @@ namespace Snek_Game
                         b.Draw(brd);
                     }
 
-                    if (!ghosting) snakeSnek.Draw(brd);
+                    if (!ghosting) snakeSnek.DrawFull(brd);
                 }
                 else
                 {

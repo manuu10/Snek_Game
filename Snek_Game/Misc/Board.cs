@@ -21,6 +21,7 @@ namespace Snek_Game
                    loc.Y >= 0 &&
                    loc.Y < _fieldHeight;
         }
+        
 
         public void DrawCell(Point loc, Color c)
         {
@@ -30,6 +31,81 @@ namespace Snek_Game
             {
                 gfx.FillRectangle(solidBrush, rect);
             }
+        }
+        public void DrawMultipleCells(Point[] pts, Color c)
+        {
+            var unitedregion = new Region();
+            GraphicsPath gp = new GraphicsPath();
+            unitedregion.MakeEmpty();
+            for (int i = 0; i < pts.Length; i++)
+            {
+                Point loc = pts[i];
+                Rectangle hori = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
+                Rectangle verti = new Rectangle(loc.X * dimension + Padding + offset_x, loc.Y * dimension + Padding + offset_y, dimension - Padding * 2, dimension - Padding * 2);
+                bool hoti = false ;
+                bool veti = false;
+                if(i != 0)
+                {
+                    var prv = pts[i - 1];
+                    if(loc.X > prv.X)
+                    {
+                        hori.Location = Point.Subtract(hori.Location, new Size(Padding, 0));
+                        hori.Size += new Size(Padding, 0);
+                        hoti = true;
+                    }
+                    else if( loc.X < prv.X)
+                    {
+                        hori.Size += new Size(Padding, 0);
+                        hoti = true;
+                    }
+                    else if( loc.Y > prv.Y)
+                    {
+                        verti.Location = Point.Subtract(verti.Location, new Size(0, Padding));
+                        verti.Size += new Size(0, Padding);
+                        veti = true;
+                    }
+                    else if(loc.Y < prv.Y)
+                    {
+                        verti.Size += new Size(0, Padding);
+                        veti = true;
+                    }
+                }
+                if(i != pts.Length-1)
+                {
+                    var prv = pts[i + 1];
+                    if (loc.X > prv.X)
+                    {
+                        hori.Location = Point.Subtract(hori.Location, new Size(Padding, 0));
+                        hori.Size += new Size(Padding, 0);
+                        hoti = true;
+                    }
+                    else if (loc.X < prv.X)
+                    {
+                        hori.Size += new Size(Padding, 0);
+                        hoti = true;
+                    }
+                    else if (loc.Y > prv.Y)
+                    {
+                        verti.Location = Point.Subtract(verti.Location, new Size(0, Padding));
+                        verti.Size += new Size(0, Padding);
+                        veti = true;
+                    }
+                    else if (loc.Y < prv.Y)
+                    {
+                        verti.Size += new Size(0, Padding);
+                        veti = true;
+                    }
+                }
+
+                if(hoti)gp.AddRectangle(hori);
+                if(veti)gp.AddRectangle(verti);
+                unitedregion.Union(hori);
+                unitedregion.Union(verti);
+            }
+            gfx.DrawPath(new Pen(c, 2), gp);
+            //gfx.FillRegion(new SolidBrush(c), gp);
+            
+
         }
         public void DrawCellOutlined(Point loc, Color cellColor, Color outlineColor)
         {
@@ -239,7 +315,7 @@ namespace Snek_Game
         }
 
         public Graphics gfx { get; set; }
-        public int dimension = 30;
+        public const int dimension = 30;
 
         public readonly int _fieldWidth;
         public readonly int _fieldHeight;

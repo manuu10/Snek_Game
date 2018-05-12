@@ -18,9 +18,9 @@ namespace Snek_Game
             return new Rectangle(center.X - hWidth, center.Y - hHeight, hWidth * 2, hHeight * 2);
         }
 
-        // Draw a rectangle in the indicated Rectangle
-        // rounding the indicated corners.
-        public static GraphicsPath MakeRoundedRect(
+            // Draw a rectangle in the indicated Rectangle
+            // rounding the indicated corners.
+            public static GraphicsPath MakeRoundedRect(
             RectangleF rect, float xradius, float yradius,
             bool round_ul, bool round_ur, bool round_lr, bool round_ll)
         {

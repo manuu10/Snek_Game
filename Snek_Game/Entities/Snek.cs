@@ -56,7 +56,6 @@ namespace Snek_Game
 
         private bool _ghosting = false;
         private readonly Color _headColor = Color.FromArgb(0, 67, 10);
-
         private readonly Color[] _bodyColors =
         {
             Color.FromArgb(0,0,128),
@@ -66,7 +65,6 @@ namespace Snek_Game
             Color.FromArgb(16,52,166),
             Color.FromArgb(17,30,108)
         };
-
         private readonly Color[] _bodyColorsRainbow =
         {
             Color.FromArgb(148,0,211),
@@ -82,12 +80,10 @@ namespace Snek_Game
         {
             return nSegments[0].Loc;
         }
-
         public int GetSnakeLength()
         {
             return nSegments.Count;
         }
-
         public Size GetSnakeDirection()
         {
             return dir;
@@ -110,7 +106,6 @@ namespace Snek_Game
                 }
             }
         }
-
         public void DrawGlowing(Board brd, Color glowColor)
         {
             if (_ghosting)
@@ -128,6 +123,15 @@ namespace Snek_Game
                     nSegments[i].DrawGlowing(brd, glowColor);
                 }
             }
+        }
+        public void DrawFull(Board brd)
+        {
+            var arr = new Point[nSegments.Count];
+            for (int i = 0; i < nSegments.Count; i++)
+            {
+                arr[i] = nSegments[i].Loc;
+            }
+            brd.DrawMultipleCells(arr, Color.Maroon);
         }
 
         public void AddSegment()
@@ -156,7 +160,6 @@ namespace Snek_Game
             Point p = new Point(nSegments[index].Loc.X - dummyx, nSegments[index].Loc.Y - dummyy);
             nSegments.Add(new Segment(p, _bodyColors[index % _bodyColors.Length]));
         }
-
         public void SetDirection(Size newdir)
         {
             //Richtung ändern
@@ -170,7 +173,6 @@ namespace Snek_Game
                 nSegments[i].col = _bodyColorsRainbow[i % _bodyColorsRainbow.Length];
             }
         }
-
         public void ApplyStandardColors()
         {
             for (int i = 1; i < nSegments.Count; i++)
@@ -183,7 +185,6 @@ namespace Snek_Game
         {
             _ghosting = true;
         }
-
         public void DisableGhostEffect()
         {
             _ghosting = false;
@@ -208,7 +209,6 @@ namespace Snek_Game
             if (first.Y < 0) first.Y = brd._fieldHeight - 1;
             if (first.Y > brd._fieldHeight - 1) first.Y = 0;
         }
-
         public bool HitObject(Point p)
         {
             var first = nSegments[0].Loc;
@@ -216,7 +216,6 @@ namespace Snek_Game
             if (first == p) return true;
             return false;
         }
-
         public bool HitOwnBody()
         {
             for (var i = 1; i < nSegments.Count; i++)
@@ -226,7 +225,6 @@ namespace Snek_Game
 
             return false;
         }
-
         public bool IsInsideSnake(Point loc)
         {
             foreach (var seg in nSegments)
