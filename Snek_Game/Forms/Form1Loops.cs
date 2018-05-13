@@ -106,6 +106,7 @@ namespace Snek_Game
                         {
                             _obstacles.RemoveAt(j);
                             _bullets.RemoveAt(i);
+                            _currentscore += doubleMaFood ? Obstacle.score : Obstacle.score * 2;
                             skip = true;
                             break;
                         }
@@ -128,6 +129,7 @@ namespace Snek_Game
                         _bonuses[i].StartTimer();
                         _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
                         if (doubleMaFood) _currentscore += Bonus.score[_bonuses[i].GetPowerUpType()];
+
                         // decision for which to use when looping through the active
                         // bonuses based on the lastest object you hit
                         if (_bonuses[i].GetPowerUpType() == (int)Bonus.PowerUps.Slow)
@@ -314,14 +316,16 @@ namespace Snek_Game
             else
             {
                 btn_stop.PerformClick();
-                var gw = new GameOverForm(_currentscore)
+                using (var gw = new GameOverForm(_currentscore)
                 {
                     Parent = ParentForm,
                     StartPosition = FormStartPosition.CenterParent
-                };
-                gw.ShowDialog();
-                grpbox_Scoreboard.Invalidate();
-                btn_reset.PerformClick();
+                })
+                {
+                    gw.ShowDialog();
+                    grpbox_Scoreboard.Invalidate();
+                    btn_reset.PerformClick();
+                }
             }
         }
 
@@ -352,7 +356,7 @@ namespace Snek_Game
                         b.Draw(brd);
                     }
 
-                    if (!ghosting) snakeSnek.DrawFull(brd);
+                    if (!ghosting) snakeSnek.Draw(brd);
                 }
                 else
                 {

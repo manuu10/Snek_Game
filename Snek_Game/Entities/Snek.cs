@@ -26,7 +26,7 @@ namespace Snek_Game
                 brd.DrawRoundedRectCell(Loc, col);
             }
 
-            public void DrawOutlined(Board brd)
+            public void DrawOutlined(Board brd, Color outlineColor)
             {
                 brd.DrawRoundedRectCellOutlined(Loc, Color.Black, Color.Maroon);
             }
@@ -56,6 +56,7 @@ namespace Snek_Game
 
         private bool _ghosting = false;
         private readonly Color _headColor = Color.FromArgb(0, 67, 10);
+        private readonly Color _ghostColor = Color.Maroon;
         private readonly Color[] _bodyColors =
         {
             Color.FromArgb(0,0,128),
@@ -100,17 +101,21 @@ namespace Snek_Game
             }
             else
             {
-                for (int i = nSegments.Count - 1; i >= 0; i--)
-                {
-                    nSegments[i].DrawOutlined(brd);
-                }
+                DrawOutlined(brd, _ghostColor);
             }
         }
+        public void DrawOutlined(Board brd, Color outlineColor)
+        {
+            for (int i = nSegments.Count - 1; i >= 0; i--)
+            {
+                nSegments[i].DrawOutlined(brd, outlineColor);
+            }
+        } 
         public void DrawGlowing(Board brd, Color glowColor)
         {
             if (_ghosting)
             {
-                glowColor = Color.Maroon;
+                glowColor = _ghostColor;
                 for (int i = nSegments.Count - 1; i >= 0; i--)
                 {
                     nSegments[i].DrawGlowingOutlined(brd, glowColor);
@@ -124,6 +129,7 @@ namespace Snek_Game
                 }
             }
         }
+
         public void DrawFull(Board brd)
         {
             var arr = new Point[nSegments.Count];

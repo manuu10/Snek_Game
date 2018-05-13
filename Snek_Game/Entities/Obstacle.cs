@@ -11,6 +11,7 @@ namespace Snek_Game
 
         public readonly Point Loc;
         public readonly Color c = Color.Gray;
+        public static readonly int score = 20;
 
         public void Draw(Board brd)
         {

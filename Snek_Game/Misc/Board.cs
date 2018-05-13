@@ -14,14 +14,16 @@ namespace Snek_Game
             offset_y = maxh / 2 - _fieldHeight * dimension / 2;
         }
 
-        public bool IsInsideBoard(Point loc)
-        {
-            return loc.X >= 0 &&
-                   loc.X < _fieldWidth &&
-                   loc.Y >= 0 &&
-                   loc.Y < _fieldHeight;
-        }
-        
+        public Graphics gfx { get; set; }
+        public const int dimension = 30;
+
+        public readonly int _fieldWidth;
+        public readonly int _fieldHeight;
+
+        private const int Padding = 3;
+
+        private readonly int offset_x;
+        private readonly int offset_y;
 
         public void DrawCell(Point loc, Color c)
         {
@@ -35,7 +37,6 @@ namespace Snek_Game
         public void DrawMultipleCells(Point[] pts, Color c)
         {
             var unitedregion = new Region();
-            GraphicsPath gp = new GraphicsPath();
             unitedregion.MakeEmpty();
             for (int i = 0; i < pts.Length; i++)
             {
@@ -97,14 +98,16 @@ namespace Snek_Game
                     }
                 }
 
-                if(hoti)gp.AddRectangle(hori);
-                if(veti)gp.AddRectangle(verti);
-                unitedregion.Union(hori);
-                unitedregion.Union(verti);
+                
+                if(hoti)unitedregion.Union(hori);
+                if(veti)unitedregion.Union(verti);
             }
-            gfx.DrawPath(new Pen(c, 2), gp);
-            //gfx.FillRegion(new SolidBrush(c), gp);
-            
+
+            using (var solidBrush = new SolidBrush(c))
+            {
+                gfx.FillRegion(solidBrush, unitedregion);
+            }
+
 
         }
         public void DrawCellOutlined(Point loc, Color cellColor, Color outlineColor)
@@ -314,15 +317,14 @@ namespace Snek_Game
             gfx.DrawImage(Misc.gameOverBitmap, offset_x + Padding * 3, offset_y + Padding * 3, _fieldWidth * dimension - Padding * 6, _fieldHeight * dimension - Padding * 6);
         }
 
-        public Graphics gfx { get; set; }
-        public const int dimension = 30;
+        public bool IsInsideBoard(Point loc)
+        {
+            return loc.X >= 0 &&
+                   loc.X < _fieldWidth &&
+                   loc.Y >= 0 &&
+                   loc.Y < _fieldHeight;
+        }
 
-        public readonly int _fieldWidth;
-        public readonly int _fieldHeight;
 
-        private const int Padding = 3;
-
-        private readonly int offset_x;
-        private readonly int offset_y;
     }
 }
