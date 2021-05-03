@@ -48,11 +48,14 @@ namespace Snek_Game
             tmr_Draw.Start();
         }
 
+
+
         private void UpdateModel()
         {
             HandleJoystickInput();
             if (!_gameOver)
             {
+                #region snekshit
                 // if snek is not invicible,
                 // Game is rip if snek left board or hit itself
                 if ((!brd.IsInsideBoard(snakeSnek.GetHeadLocation()) || snakeSnek.HitOwnBody() && !ghosting) && !invincible)
@@ -73,6 +76,7 @@ namespace Snek_Game
                 {
                     snakeSnek.GoThroughWalls(brd);
                 }
+                #endregion snekshit
 
                 #region Collision Detection
 
@@ -315,6 +319,7 @@ namespace Snek_Game
             }
             else
             {
+                #region open Scoreboard input
                 btn_stop.PerformClick();
                 using (var gw = new GameOverForm(_currentscore)
                 {
@@ -326,9 +331,10 @@ namespace Snek_Game
                     grpbox_Scoreboard.Invalidate();
                     btn_reset.PerformClick();
                 }
+                #endregion open Scoreboard input
             }
         }
-
+        
         private void DrawingModel(Graphics gfx)
         {
             brd.gfx = gfx;
@@ -402,6 +408,8 @@ namespace Snek_Game
 
             #endregion Information GroupBox Visuals
         }
+
+
 
         private void GroupBoxPainting(Graphics gfx)
         {

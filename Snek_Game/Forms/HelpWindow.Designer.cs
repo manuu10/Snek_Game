@@ -84,7 +84,8 @@
             this.label1.Size = new System.Drawing.Size(266, 283);
             this.label1.TabIndex = 0;
             this.label1.Text = "- Use Arrow Keys to control\r\n\r\n- Snek will speed-up over time\r\n\r\n- Use F Key to f" +
-    "ire Bullets if powerup is active\r\n\r\n- Bullets can kill obstacles\r\n\r\n\r\n";
+    "ire Bullets if powerup is active\r\n\r\n- Bullets can kill obstacles\r\n\r\n- Click the " +
+    "icons for more info\r\n\r\n\r\n";
             // 
             // pnl_powerups
             // 

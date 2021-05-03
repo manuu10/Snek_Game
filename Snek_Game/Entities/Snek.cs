@@ -28,7 +28,7 @@ namespace Snek_Game
 
             public void DrawOutlined(Board brd, Color outlineColor)
             {
-                brd.DrawRoundedRectCellOutlined(Loc, Color.Black, Color.Maroon);
+                brd.DrawRoundedRectCellOutlined(Loc, Color.Black, outlineColor);
             }
 
             public void DrawGlowing(Board brd, Color glowColor)
